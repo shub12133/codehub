@@ -1,0 +1,10 @@
+Afzal : 
+1. create branch dev 
+2. create the auth with jwt and github 
+3. secure the secrets by adding .env 
+4. Adding dev environment setup 
+5. Setup the dev environment
+Bharath : 
+1. checkout https://docusaurus.io/docs/en/installation
+
+Shubham : 
