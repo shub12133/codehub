@@ -8,7 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const keys = require('./config').keys
 var app = express();
-
+console.log(keys)
 // DB config 
 const db = keys.mongoURI
 
