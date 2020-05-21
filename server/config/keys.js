@@ -24,9 +24,9 @@ if(process.env.NODE_ENV === "production"){
         secretOrKey: "secret",
         f_url : 'http://localhost:3000',
         github : {
-            id : '',
-            clientSecret : '',
-            redirectUrl : ''
+            id : 'Iv1.6e9eda6099477c5d',
+            clientSecret : 'f590b56fc90a38820bf84002f97d2bab64e9af15',
+            redirectUrl : '/auth/github/redirect'
         },
         nodemailer : {
             email : '',

@@ -4,11 +4,20 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose')
+const passport = require('passport')
+const session = require('express-session')
+var bodyParser = require('body-parser')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const authRouter = require('./routes/auth')
 const keys = require('./config').keys
 var app = express();
-console.log(keys)
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+ 
+// parse application/json
+app.use(bodyParser.json())
 // DB config 
 const db = keys.mongoURI
 
@@ -16,6 +25,27 @@ const db = keys.mongoURI
 mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(()=> console.log("MongoDb connected"))
 .catch((err)=> console.log(err))
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}))
+
+passport.serializeUser(function(user,done){
+  done(null,user)
+});
+
+passport.deserializeUser(function(user,done){
+  done(null,user)
+})
+
+//passport init 
+app.use(passport.initialize())
+app.use(passport.session())
+//import 
+require('./config/passport')(passport)
 
 
 // view engine setup
@@ -30,6 +60,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/auth' , authRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

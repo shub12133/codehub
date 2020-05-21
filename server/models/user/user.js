@@ -16,7 +16,7 @@ const userSchema = new Schema({
     }, 
     email : { 
         type : String,
-        required : [true , "email is required"],
+       
         unique : [true, " Email already exists"],
         match : [
             /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/,
