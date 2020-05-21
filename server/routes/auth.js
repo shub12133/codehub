@@ -110,7 +110,7 @@ router.post('/register', [check('email').isEmail(), check('password').isLength({
   )
 
   router.get('/dashboard' , passport.authenticate('jwt' ,{session :false}),(req,res)=>{
-      console.log(req.user)
+    
       res.send('hello this is a protect route')
   })
 

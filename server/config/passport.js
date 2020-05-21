@@ -27,7 +27,7 @@ module.exports = passport =>{
         callbackURL: keys.github.redirectUrl
       },
       (accessToken, refreshToken, profile, done) => {
-          console.log("profile" , profile)
+        
         User.findOne({ githubId: profile._json.id })
         .then((user)=> {
             if(user){
