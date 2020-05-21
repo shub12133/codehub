@@ -1,9 +1,158 @@
 {
+	"id": "c428fb6c-61d1-77ab-406e-3f4b8a0581c7",
 	"name": "codehub",
 	"description": "codehub cb2020",
-	"id": "c428fb6c-61d1-77ab-406e-3f4b8a0581c7",
 	"order": [],
+	"folders": [
+		{
+			"name": "auth",
+			"description": "all the apis related to authentication",
+			"collectionId": "c428fb6c-61d1-77ab-406e-3f4b8a0581c7",
+			"order": [
+				"2fefbe1a-a360-3a4b-febd-d5e6095b7adb",
+				"6fe0b94b-136f-5c75-2c1b-f860635b8ed0",
+				"0384d60c-073f-9526-fc70-64e7f5ccc3fc"
+			],
+			"owner": 0,
+			"folders_order": [],
+			"id": "85369c5a-4425-1f4b-a3dd-6a513d0b69e3"
+		}
+	],
+	"folders_order": [
+		"85369c5a-4425-1f4b-a3dd-6a513d0b69e3"
+	],
 	"timestamp": 1590042418462,
 	"owner": 0,
-	"requests": []
+	"public": false,
+	"requests": [
+		{
+			"id": "0384d60c-073f-9526-fc70-64e7f5ccc3fc",
+			"headers": "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWVjNjI5NTY5MDUyYTI1OThjYWRhNjg4IiwibmFtZSI6Ik1vaGFtbWVkIEFmemFsIiwiZW1haWwiOiJhZnphbEBjb2RlLmluIn0sImlhdCI6MTU5MDA0NTY4NCwiZXhwIjoxNTkwMDQ1NzQ0fQ.cw295Ut5ErnDus15_o3f43rcRaOWgudnLmMnBggUBOs\n",
+			"headerData": [
+				{
+					"key": "Authorization",
+					"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWVjNjI5NTY5MDUyYTI1OThjYWRhNjg4IiwibmFtZSI6Ik1vaGFtbWVkIEFmemFsIiwiZW1haWwiOiJhZnphbEBjb2RlLmluIn0sImlhdCI6MTU5MDA0NTY4NCwiZXhwIjoxNTkwMDQ1NzQ0fQ.cw295Ut5ErnDus15_o3f43rcRaOWgudnLmMnBggUBOs",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:3001/auth/dashboard",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "c428fb6c-61d1-77ab-406e-3f4b8a0581c7",
+			"data": null,
+			"dataMode": "params",
+			"name": "http://localhost:3001/auth/dashboard",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1590046920038,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "85369c5a-4425-1f4b-a3dd-6a513d0b69e3"
+		},
+		{
+			"id": "2fefbe1a-a360-3a4b-febd-d5e6095b7adb",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:3001/auth/register",
+			"folder": "85369c5a-4425-1f4b-a3dd-6a513d0b69e3",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "email",
+					"value": "afzal@code.in",
+					"type": "text",
+					"enabled": true,
+					"description": ""
+				},
+				{
+					"key": "password",
+					"value": "abc123xyz",
+					"type": "text",
+					"enabled": true,
+					"description": ""
+				},
+				{
+					"key": "name",
+					"value": "Mohammed Afzal",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1590045013616,
+			"name": "http://localhost:3001/auth/register",
+			"description": "",
+			"collectionId": "c428fb6c-61d1-77ab-406e-3f4b8a0581c7",
+			"responses": []
+		},
+		{
+			"id": "6fe0b94b-136f-5c75-2c1b-f860635b8ed0",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:3001/auth/login",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "c428fb6c-61d1-77ab-406e-3f4b8a0581c7",
+			"data": [
+				{
+					"key": "email",
+					"value": "afzal@code.in",
+					"type": "text",
+					"enabled": true,
+					"description": ""
+				},
+				{
+					"key": "password",
+					"value": "abc123xyz",
+					"type": "text",
+					"enabled": true,
+					"description": ""
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "http://localhost:3001/auth/login",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1590043290096,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "85369c5a-4425-1f4b-a3dd-6a513d0b69e3"
+		}
+	]
 }
