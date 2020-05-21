@@ -116,5 +116,3 @@ router.post('/register', [check('email').isEmail(), check('password').isLength({
 
 module.exports = router;
 
-
-// http://localhost:3000/oauth/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWVjNjJkNjI2NzhjYzg1MTNjMTcwNjhlIiwibmFtZSI6Ik1vaGFtbWVkIEFmemFsIiwiZW1haWwiOm51bGx9LCJpYXQiOjE1OTAwNDYzMDksImV4cCI6MTU5MDA0NjM2OX0.TVow27AjogFd2hTDTDEwamNa5mxNmO3dTghTQagmA5Q/success/true
