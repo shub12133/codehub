@@ -7,3 +7,4 @@ if(process.env.NODE_ENV === 'development'){
 }
 
 export const host = url
+export const register = 'auth/register'
