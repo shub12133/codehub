@@ -8,4 +8,4 @@ if(process.env.NODE_ENV === 'development'){
 
 export const host = url
 export const register = 'auth/register'
-export const login = 'auth/login'
+export const loginpath = 'auth/login'

@@ -1,9 +1,10 @@
- import {AUTH_USER , AUTH_LOGIN , ERROR_AUTH} from '../actions/types'
+import {AUTH_USER , AUTH_LOGIN , ERROR_AUTH,LOGIN_SUCCESS,LOGIN_Fail,LOGOUT} from '../actions/types'
  const initialState = {
      isAuthenticated : false ,
      User : {},
      successMessage : null ,
-     error : null 
+     error : null ,
+     token:{}
     
  }
 
@@ -26,6 +27,13 @@
                  ...state, 
                  error : action.payload
              }
+             case LOGIN_SUCCESS:
+           return {
+               ...state,
+               token:action.payload,
+               isAuthenticated:true,
+               loading:false
+           }
         default :
              return state
      }

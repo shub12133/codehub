@@ -12,7 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {connect} from 'react-redux'
-import {loginLocal} from '../../actions/authAction'
+import {login} from '../../actions/authAction'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
  function Login(props) {
-  const {loginLocal,user} = props
+  const {login,user} = props
   const [formData, setFormData] = useState({
        email : "",
       password:'',
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
  const handleSubmit = (e)=>{
      e.preventDefault()
      console.log("state" , formData)
-     loginLocal(formData)
+     login(formData)
  }
  console.log("user" , user)
   return (
@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Login
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Grid container spacing={2}>
@@ -121,4 +121,4 @@ const mapStateToProps = state =>({
   user : state.authReducer
 })
 
-export default connect(mapStateToProps, {loginLocal})(Login)
+export default connect(mapStateToProps, {login})(Login)
