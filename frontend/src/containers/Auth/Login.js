@@ -15,8 +15,14 @@ import Container from '@material-ui/core/Container';
 import {connect} from 'react-redux'
 import {login} from '../../actions/authAction'
 import {Redirect} from 'react-router-dom'
-
+import {Alert} from '@material-ui/lab';
 const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
+  },
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -69,6 +75,9 @@ const  handleSubmit = e =>{
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
+        <div className={classes.root}>
+        <Alert severity="error">This is an error alert — check it out!</Alert>
+        </div>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
