@@ -1,16 +1,18 @@
-import React from 'react';
-import {Provider} from 'react-redux';
+import React , {useEffect} from 'react';
 import {BrowserRouter as Router,Route} from 'react-router-dom';
 import Sidebar from './components/sideBar'
 import Footer from './components/Footer/Footer'
 import './App.css';
-import store from './store'
 import Login from './containers/Auth/Login'
 import Register from './containers/Auth/Register'
-
-function App() {
+import {loadUser} from './actions/authAction'
+import {connect} from 'react-redux'
+function App({loadUser}) {
+  useEffect(() => {
+    loadUser()
+   
+  }, [])
   return (
-    <Provider store = {store}>
       <Router>
         <div className="App">
               <header>
@@ -25,8 +27,7 @@ function App() {
                <Footer/>
         </div>
       </Router>
-    </Provider>
   );
 }
 
-export default App;
+export default connect(null,  {loadUser})(App);

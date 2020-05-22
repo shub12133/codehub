@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
  function Register(props) {
-  const {registerLocal,user} = props
+  const {registerLocal,user,history} = props
   const [formData, setFormData] = useState({
       name : '',
       email : "",
@@ -52,7 +52,8 @@ const useStyles = makeStyles((theme) => ({
  const handleSubmit = (e)=>{
      e.preventDefault()
      console.log("state" , formData)
-     registerLocal(formData)
+     registerLocal(formData, history)
+     
  }
  console.log("user" , user)
   return (
