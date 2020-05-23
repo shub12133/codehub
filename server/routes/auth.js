@@ -20,7 +20,7 @@ const {User} = require('../models/user')
 //create a jwt token using method sign 
 //send back the token as response 
 router.post('/register', [check('email').isEmail(), check('password').isLength({min:6})] ,async (req,res)=>{
-    console.log(req.body)
+  
     const errors = validationResult(req)
     if(!errors.isEmpty()){
           return res.status(422).json({errors : errors.array()})
