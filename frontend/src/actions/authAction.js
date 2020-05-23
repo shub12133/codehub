@@ -1,75 +1,103 @@
-import {AUTH_USER , AUTH_LOGIN , ERROR_AUTH,LOGIN_SUCCESS,LOGIN_FAIL,LOGOUT,USER_LOADED} from './types'
-import axios from 'axios'
-import {host,register,loginRoute,authDashboard} from '../utils/constants'
-import setAuthToken from '../utils/setAuthToken'
+import axios from "axios";
+import {setAlert} from "./alert";
+import {
+    REGISTER_SUCCESS,
+    REGISTER_FAIL,
+    USER_LOADED,
+    AUTH_ERROR,
+    LOGIN_SUCCESS,
+    LOGIN_FAIL,
+    LOGOUT,
+    CLEAR_PROFILE
+} from "./types";
+import {host,registerRoute,loginRoute,authDashboard} from '../utils/constants'
+import setAuthToken from "../utils/setAuthToken";
 
-//actioncreators 
-export const loadUser = () => async dispatch =>{
+export const loadUser = () => async dispatch => {
     if(localStorage.token){
-        setAuthToken(localStorage.token)
+        setAuthToken(localStorage.token);
     }
-    try {
-        const res = await axios.get(`${host}${authDashboard}`)
+
+    try{
+        const res = await axios.get(`${host}${authDashboard}`);
         dispatch({
             type : USER_LOADED,
             payload : res.data
         })
-    }
-    catch(err){
+    }catch(err){
         dispatch({
-            type : ERROR_AUTH
+            type : AUTH_ERROR
         })
     }
+
 }
 
 
-export const registerLocal = (data,history) => dispatch=>{
-    console.log("action",data)
-    axios.post(`${host}${register}` , data)
-    .then(res => res)
-    .then(data => dispatch({
-        type : AUTH_USER,
-        payload : data
-    }))
-    .catch(err => {
-        dispatch({
-            type : ERROR_AUTH,
-            payload : err.response
-        })
-    })
-    history.push('/login')
-}
-
-
-export const login = (data) => async dispatch =>{
+//Register User
+export const register = (data) => 
+    async dispatch => {
         const config = {
             headers : {
                 'Content-Type' : "application/json"
             }
         }
-    try {
-        const res = await axios.post(`${host}${loginRoute}`, data,config)
+    
+    try{
+
+        const res = await axios.post(`${host}${registerRoute}`,data,config);
         dispatch({
-            type : LOGIN_SUCCESS,
+            type : REGISTER_SUCCESS,
             payload : res.data
-        })
-        dispatch(loadUser())
-    }
-    catch(err){
-        const errors = err.response.data.errors
+        });
+        dispatch(loadUser());
+
+    }catch(err){
+        const errors = err.response.data.errors;
         if(errors){
-            console.log(errors)
+            errors.forEach(error => dispatch(setAlert(error.msg, "red")));
         }
         dispatch({
-            type : LOGIN_FAIL
-        })
-
+            type : REGISTER_FAIL
+        });
     }
 }
 
-//logoout 
-export const logout = (history)=> dispatch =>{
-    dispatch({
-        type : LOGOUT
-    })
+
+//Login User
+export const login = (data) => 
+    async dispatch => {
+        const config = {
+            headers : {
+                'Content-Type' : "application/json"
+            }
+        };
+    
+    try{
+        const res = await axios.post(`${host}${loginRoute}`,data,config);
+        dispatch({
+            type : LOGIN_SUCCESS,
+            payload : res.data
+        });
+
+        dispatch(loadUser());
+
+    }catch(err){
+        const errors = err.response.data.errors;
+        if(errors){
+            errors.forEach(error => dispatch(setAlert(error.msg, "red")));
+        }
+        dispatch({
+            type : LOGIN_FAIL
+        });
+    }
+}
+
+//LOG OUT User and Clear Profile 
+export const logout = (history) => dispatch => {
+   
+    dispatch({type : CLEAR_PROFILE});
+    dispatch({type : LOGOUT});
+    localStorage.clear();
+    sessionStorage.clear();
+    history.push('/login')
 }

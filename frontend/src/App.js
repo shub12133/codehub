@@ -20,7 +20,7 @@ function App({loadUser}) {
               </header>
               <div>
                 <Route exact path='/' component={Sidebar}/>
-                <Route exact path='/login' component={Login}/>
+                <Route  path='/login' component={Login}/>
                 <Route exact path='/register' component={Register}/>
 
                </div>

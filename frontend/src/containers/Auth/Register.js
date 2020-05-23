@@ -12,8 +12,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {connect} from 'react-redux'
-import {registerLocal} from '../../actions/authAction'
-
+import {register} from '../../actions/authAction'
+import AlertC from '../../components/Alert/Alert'
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
  function Register(props) {
-  const {registerLocal,user,history} = props
+  const {register,user,history} = props
   const [formData, setFormData] = useState({
       name : '',
       email : "",
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
  const handleSubmit = (e)=>{
      e.preventDefault()
      console.log("state" , formData)
-     registerLocal(formData, history)
+     register(formData, history)
      
  }
  console.log("user" , user)
@@ -66,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
+        <AlertC/>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
@@ -149,7 +150,7 @@ const useStyles = makeStyles((theme) => ({
 }
 
 const mapStateToProps = state =>({
-  user : state.authReducer
+  user : state.auth
 })
 
-export default connect(mapStateToProps, {registerLocal})(Register)
+export default connect(mapStateToProps, {register})(Register)

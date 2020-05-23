@@ -15,7 +15,7 @@ import Container from '@material-ui/core/Container';
 import {connect} from 'react-redux'
 import {login} from '../../actions/authAction'
 import {Redirect} from 'react-router-dom'
-import {Alert} from '@material-ui/lab';
+import AlertC from '../../components/Alert/Alert'
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -62,9 +62,9 @@ const  handleSubmit = e =>{
       e.preventDefault()
       login(formData)
   }
-  if(isAuthenticated){
-      return <Redirect to='/' />
-  }
+  // if(isAuthenticated){
+  //     return <Redirect to='/' />
+  // }
   return (
     <Container component="main" maxWidth="xs" className={classes.bkg}>
       <CssBaseline />
@@ -75,9 +75,7 @@ const  handleSubmit = e =>{
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <div className={classes.root}>
-        <Alert severity="error">This is an error alert — check it out!</Alert>
-        </div>
+        <AlertC/>
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
@@ -127,7 +125,7 @@ const  handleSubmit = e =>{
   );
 }
 const mapStateToProps= state => ({
-    isAuthenticated : state.authReducer.isAuthenticated
+    isAuthenticated : state.auth
 })
 
 export default  connect(mapStateToProps, {login})(Login)
