@@ -3,7 +3,7 @@ import {AUTH_USER , AUTH_LOGIN , ERROR_AUTH,LOGIN_SUCCESS,LOGIN_FAIL,LOGOUT,USER
      isAuthenticated : false ,
      User : {},
      successMessage : null ,
-     error : null ,
+     error : [] ,
      token:{},
     
      loading: true,
@@ -59,7 +59,8 @@ import {AUTH_USER , AUTH_LOGIN , ERROR_AUTH,LOGIN_SUCCESS,LOGIN_FAIL,LOGOUT,USER
                 ...state, 
                 token : null,
                 isAuthenticated : false,
-                loading : false
+                loading : false,
+                error:action.payload
             }
         default :
              return state

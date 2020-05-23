@@ -31,7 +31,6 @@ export const registerLocal = (data,history) => dispatch=>{
         type : AUTH_USER,
         payload : data
     }),
-    history.push('/login')
     )
     .catch(err => {
         dispatch({
@@ -39,8 +38,9 @@ export const registerLocal = (data,history) => dispatch=>{
             payload : err.response
         })
     })
-    history.push('./login')
-}
+     //    history.push('/login')
+
+ }
 
 
 export const login = (data) => async dispatch =>{
@@ -63,7 +63,8 @@ export const login = (data) => async dispatch =>{
             console.log(errors)
         }
         dispatch({
-            type : LOGIN_FAIL
+            type : LOGIN_FAIL,
+            payload:err.response.data.errors
         })
 
     }

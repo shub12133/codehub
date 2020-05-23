@@ -17,7 +17,7 @@ import {login} from '../../actions/authAction'
 import {Redirect} from 'react-router-dom'
 import {Alert} from '@material-ui/lab';
 import GitHubLogin from 'react-github-login';
-
+import {github} from '../../utils/constants'
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -67,6 +67,7 @@ const  handleSubmit = e =>{
   if(isAuthenticated){
       return <Redirect to='/' />
   }
+  console.log(props.errorMessage)
   return (
     <Container component="main" maxWidth="xs" className={classes.bkg}>
       <CssBaseline />
@@ -77,10 +78,14 @@ const  handleSubmit = e =>{
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        {errorMessage !== null && 
-          <div className={classes.root}>
-        <Alert severity="error">This is an error alert — check it out!</Alert>
-        </div> }
+        {/* {props.errorMessage.length && 
+          errorMessage.map(error=>{
+           return <div className={classes.root}>
+        <Alert severity="error">{error.msg}</Alert>
+        </div> 
+          })
+        
+         } */}
        
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
@@ -123,7 +128,10 @@ const  handleSubmit = e =>{
           >
             Sign In
           </Button>
-          <GitHubLogin/>
+          <a href={`http://localhost:3001/api/${github}`} id="github-button" class="btn btn-block btn-social btn-github">
+    <i class="fa fa-github"></i> Sign in with GitHub
+</a>
+
 
           <Grid container justify="flex-end">
             <Grid item>
