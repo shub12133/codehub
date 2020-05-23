@@ -8,7 +8,7 @@ Bharath :
 1. checkout https://docusaurus.io/docs/en/installation
 2. resume  nd profile  
 Shubham : 
-merging
+merging change
 
  login and signup flow 
  add navbar 
