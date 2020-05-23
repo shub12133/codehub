@@ -20,7 +20,7 @@ const {User} = require('../models/user')
 //create a jwt token using method sign 
 //send back the token as response 
 router.post('/register', [check('email').isEmail(), check('password').isLength({min:6})] ,async (req,res)=>{
-    console.log(req.body)
+  
     const errors = validationResult(req)
     if(!errors.isEmpty()){
           return res.status(422).json({errors : errors.array()})
@@ -92,6 +92,7 @@ router.post('/register', [check('email').isEmail(), check('password').isLength({
   //github redirect 
   router.get('/github/redirect', passport.authenticate('github'),
   (req,res)=>{
+    console.log(req.user)
     const payload = {
         user : {
             id : req.user._id,
@@ -109,9 +110,18 @@ router.post('/register', [check('email').isEmail(), check('password').isLength({
   }
   )
 
-  router.get('/dashboard' , passport.authenticate('jwt' ,{session :false}),(req,res)=>{
+  router.get('/dashboard' , passport.authenticate('jwt' ,{session :false}),async (req,res)=>{
     
-      res.send('hello this is a protect route')
+   try {
+     console.log("rew" ,req.user)
+     const user =  await ( User.findOne({_id : req.user._id}).select('-password'))
+     res.json(user)
+   }
+   catch(err){
+     console.error(err.message)
+     res.status(500).send("Server Error")
+   }
+      
   })
 
 module.exports = router;

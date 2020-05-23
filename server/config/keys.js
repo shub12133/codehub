@@ -26,7 +26,7 @@ if(process.env.NODE_ENV === "production"){
         github : {
             id : 'Iv1.6e9eda6099477c5d',
             clientSecret : 'f590b56fc90a38820bf84002f97d2bab64e9af15',
-            redirectUrl : '/auth/github/redirect'
+            redirectUrl : '/api/auth/github/redirect'
         },
         nodemailer : {
             email : '',
