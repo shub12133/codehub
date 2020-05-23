@@ -1,13 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React , {useEffect} from 'react';
+import {BrowserRouter as Router,Route} from 'react-router-dom';
+import Sidebar from './components/sideBar'
+import Footer from './components/Footer/Footer'
 import './App.css';
-import SideBar from './components/sideBar'
-function App() {
+import Login from './containers/Auth/Login'
+import Register from './containers/Auth/Register'
+import {loadUser} from './actions/authAction'
+import {connect} from 'react-redux'
+function App({loadUser}) {
+  useEffect(() => {
+    loadUser()
+   
+  }, [])
   return (
-    <div className="App">
-      <SideBar/>
-    </div>
+      <Router>
+        <div className="App">
+              <header>
+                  <h1>Header</h1>
+              </header>
+              <div>
+                <Route exact path='/' component={Sidebar}/>
+                <Route exact path='/login' component={Login}/>
+                <Route exact path='/register' component={Register}/>
+
+               </div>
+               <Footer/>
+        </div>
+      </Router>
   );
 }
 
-export default App;
+export default connect(null,  {loadUser})(App);

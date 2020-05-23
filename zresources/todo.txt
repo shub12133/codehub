@@ -6,6 +6,17 @@ Afzal :
 5. Setup the dev environment
 Bharath : 
 1. checkout https://docusaurus.io/docs/en/installation
-
+2. resume  nd profile  
 Shubham : 
-shub merge
+merging change
+
+ login and signup flow 
+ add navbar 
+ build ui like atlassian 
+ add github done 
+ add alert messages 
+
+
+ // tomorrow 
+ apis - gitbreaker
+ 
