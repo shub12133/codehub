@@ -10,3 +10,4 @@ export const host = url
 export const registerRoute = 'auth/register'
 export const loginRoute = 'auth/login'
 export const authDashboard = 'auth/dashboard'
+export const githubAuth = 'auth/github'

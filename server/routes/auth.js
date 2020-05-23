@@ -92,6 +92,7 @@ router.post('/register', [check('email').isEmail(), check('password').isLength({
   //github redirect 
   router.get('/github/redirect', passport.authenticate('github'),
   (req,res)=>{
+    console.log(req.user)
     const payload = {
         user : {
             id : req.user._id,
@@ -110,8 +111,9 @@ router.post('/register', [check('email').isEmail(), check('password').isLength({
   )
 
   router.get('/dashboard' , passport.authenticate('jwt' ,{session :false}),async (req,res)=>{
-  
+    
    try {
+     console.log("rew" ,req.user)
      const user =  await ( User.findOne({_id : req.user._id}).select('-password'))
      res.json(user)
    }

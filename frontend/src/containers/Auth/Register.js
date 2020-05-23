@@ -51,11 +51,9 @@ const useStyles = makeStyles((theme) => ({
   }
  const handleSubmit = (e)=>{
      e.preventDefault()
-     console.log("state" , formData)
      register(formData, history)
      
  }
- console.log("user" , user)
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -137,7 +135,7 @@ const useStyles = makeStyles((theme) => ({
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/login" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>

@@ -7,6 +7,13 @@ import Login from './containers/Auth/Login'
 import Register from './containers/Auth/Register'
 import {loadUser} from './actions/authAction'
 import {connect} from 'react-redux'
+import Navbar from './components/Navbar/Navbar'
+import Oauth from './containers/Auth/Oauth'
+const Home = ()=>{
+  return (
+    <h1>Home</h1>
+  )
+}
 function App({loadUser}) {
   useEffect(() => {
     loadUser()
@@ -14,15 +21,16 @@ function App({loadUser}) {
   }, [])
   return (
       <Router>
-        <div className="App">
+        <div >
               <header>
-                  <h1>Header</h1>
+                  <Navbar/>
               </header>
               <div>
-                <Route exact path='/' component={Sidebar}/>
+                <Route exact path='/' component={Home}/>
+                <Route exact path='/dashboard' component={Sidebar}/>
                 <Route  path='/login' component={Login}/>
                 <Route exact path='/register' component={Register}/>
-
+                <Route path="/oauth/:token/success/:success" component={Oauth}/>
                </div>
                <Footer/>
         </div>

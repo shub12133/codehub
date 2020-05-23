@@ -10,7 +10,7 @@ opts.secretOrKey = keys.secretOrKey;
 module.exports = passport =>{
     passport.use(
        new JwtStrategy(opts ,(jwt_payload,done)=>{
-
+            console.log(jwt_payload)
            User.findOne({_id:jwt_payload.user.id})
            .then((user)=>{
                if(user){
@@ -27,7 +27,7 @@ module.exports = passport =>{
         callbackURL: keys.github.redirectUrl
       },
       (accessToken, refreshToken, profile, done) => {
-        
+       
         User.findOne({ githubId: profile._json.id })
         .then((user)=> {
             if(user){

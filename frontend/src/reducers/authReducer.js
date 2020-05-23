@@ -6,7 +6,8 @@ import {
     LOGIN_FAIL,
     LOGIN_SUCCESS,
     LOGOUT,
-    ACCOUNT_DELETED
+    ACCOUNT_DELETED,
+    OAUTH_SUCCESS
 } from "../actions/types";
 
 const initialState = {
@@ -25,6 +26,7 @@ export  function auth(state = initialState, action){
             }
         case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
+        case OAUTH_SUCCESS:
             localStorage.setItem('token',payload);
             return {
                 ...state, 

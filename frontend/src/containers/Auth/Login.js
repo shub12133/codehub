@@ -16,6 +16,8 @@ import {connect} from 'react-redux'
 import {login} from '../../actions/authAction'
 import {Redirect} from 'react-router-dom'
 import AlertC from '../../components/Alert/Alert'
+import GitHubIcon from '@material-ui/icons/GitHub';
+import {host,githubAuth} from '../../utils/constants'
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -65,6 +67,9 @@ const  handleSubmit = e =>{
   // if(isAuthenticated){
   //     return <Redirect to='/' />
   // }
+ const handleGithub = ()=>{
+   window.location.href = `${host}${githubAuth}`
+ }
   return (
     <Container component="main" maxWidth="xs" className={classes.bkg}>
       <CssBaseline />
@@ -72,10 +77,12 @@ const  handleSubmit = e =>{
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
+        <GitHubIcon onClick={handleGithub}/>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
         <AlertC/>
+       
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
             variant="outlined"
@@ -117,7 +124,18 @@ const  handleSubmit = e =>{
           >
             Sign In
           </Button>
-          
+          <Grid container>
+            {/* <Grid item xs>
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid> */}
+            <Grid item>
+              <Link href="/register" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
         </form>
       </div>
      

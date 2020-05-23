@@ -8,7 +8,7 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT,
-    CLEAR_PROFILE
+    CLEAR_PROFILE,OAUTH_SUCCESS
 } from "./types";
 import {host,registerRoute,loginRoute,authDashboard} from '../utils/constants'
 import setAuthToken from "../utils/setAuthToken";
@@ -99,5 +99,15 @@ export const logout = (history) => dispatch => {
     dispatch({type : LOGOUT});
     localStorage.clear();
     sessionStorage.clear();
-    history.push('/login')
+    history.push('/')
+}
+
+export const oauthAction =  token => dispatch=>{
+    //set the toke in localstorage
+    dispatch({
+        type : OAUTH_SUCCESS,
+        payload : token
+    })
+    dispatch(loadUser());
+
 }
