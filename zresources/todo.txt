@@ -8,3 +8,4 @@ Bharath :
 1. checkout https://docusaurus.io/docs/en/installation
 
 Shubham : 
+shub merge
