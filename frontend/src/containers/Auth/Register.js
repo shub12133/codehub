@@ -13,6 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {connect} from 'react-redux'
 import {registerLocal} from '../../actions/authAction'
+import {Alert} from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -35,7 +36,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
  function Register(props) {
-  const {registerLocal,user} = props
+  const {registerLocal,user,history} = props
+  const [error,setError] = useState('')
   const [formData, setFormData] = useState({
       name : '',
       email : "",
@@ -52,8 +54,11 @@ const useStyles = makeStyles((theme) => ({
  const handleSubmit = (e)=>{
      e.preventDefault()
      console.log("state" , formData)
-     registerLocal(formData)
+     registerLocal(formData, history)
+     
  }
+
+  
  console.log("user" , user)
   return (
     <Container component="main" maxWidth="xs">
@@ -65,6 +70,10 @@ const useStyles = makeStyles((theme) => ({
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
+        {user.error && 
+          <div className={classes.root}>
+        <Alert severity="error">This is an error alert — check it out!</Alert>
+        </div>}
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
@@ -135,7 +144,7 @@ const useStyles = makeStyles((theme) => ({
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/login" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>
