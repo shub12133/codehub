@@ -1,6 +1,5 @@
-import {AUTH_USER , AUTH_LOGIN , ERROR_AUTH,LOGIN_SUCCESS,LOGIN_Fail,LOGOUT} from '../actions/types'
- import {AUTH_USER , AUTH_LOGIN , ERROR_AUTH,LOGIN_SUCCESS,LOGIN_FAIL,LOGOUT,USER_LOADED} from '../actions/types'
- const initialState = {
+import {AUTH_USER , AUTH_LOGIN , ERROR_AUTH,LOGIN_SUCCESS,LOGIN_FAIL,LOGOUT,USER_LOADED, } from '../actions/types'
+  const initialState = {
      isAuthenticated : false ,
      User : {},
      successMessage : null ,
