@@ -15,9 +15,9 @@ import Container from '@material-ui/core/Container';
 import {connect} from 'react-redux'
 import {login} from '../../actions/authAction'
 import {Redirect} from 'react-router-dom'
-import {Alert} from '@material-ui/lab';
-import GitHubLogin from 'react-github-login';
-
+import AlertC from '../../components/Alert/Alert'
+import GitHubIcon from '@material-ui/icons/GitHub';
+import {host,githubAuth} from '../../utils/constants'
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -64,23 +64,23 @@ const  handleSubmit = e =>{
       e.preventDefault()
       login(formData)
   }
-  if(isAuthenticated){
-      return <Redirect to='/' />
-  }
+  // if(isAuthenticated){
+  //     return <Redirect to='/' />
+  // }
+ const handleGithub = ()=>{
+   window.location.href = `${host}${githubAuth}`
+ }
   return (
     <Container component="main" maxWidth="xs" className={classes.bkg}>
-      <CssBaseline />
-      <div className={classes.paper}>
+       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
+        <GitHubIcon onClick={handleGithub}/>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        {errorMessage !== null && 
-          <div className={classes.root}>
-        <Alert severity="error">This is an error alert — check it out!</Alert>
-        </div> }
+        <AlertC/>
        
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
@@ -129,6 +129,15 @@ const  handleSubmit = e =>{
             <Grid item>
               <Link href="/register" variant="body2">
                 donr have an account? Sign in
+          <Grid container>
+            {/* <Grid item xs>
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid> */}
+            <Grid item>
+              <Link href="/register" variant="body2">
+                {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
           </Grid>
@@ -141,6 +150,7 @@ const  handleSubmit = e =>{
 const mapStateToProps= state => ({
     isAuthenticated : state.authReducer.isAuthenticated,
     errorMessage:state.authReducer.error
+    isAuthenticated : state.auth
 })
 
 export default  connect(mapStateToProps, {login})(Login)
