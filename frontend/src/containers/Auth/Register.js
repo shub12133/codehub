@@ -1,3 +1,4 @@
+ 
 import React , {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -51,10 +52,6 @@ const useStyles = makeStyles((theme) => ({
   }
  const handleSubmit = (e)=>{
      e.preventDefault()
-     console.log("state" , formData)
-     registerLocal(formData,history)
-  }
- console.log("user" , user)
      register(formData, history)
      
  }
@@ -149,7 +146,7 @@ const useStyles = makeStyles((theme) => ({
       
     </Container>
   );
-
+}
 
 const mapStateToProps = state =>({
   user : state.auth
