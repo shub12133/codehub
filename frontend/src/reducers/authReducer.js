@@ -1,68 +1,48 @@
-import {AUTH_USER , AUTH_LOGIN , ERROR_AUTH,LOGIN_SUCCESS,LOGIN_FAIL,LOGOUT,USER_LOADED, } from '../actions/types'
-  const initialState = {
-     isAuthenticated : false ,
-     User : {},
-     successMessage : null ,
-     error : [] ,
-     token:{},
-    
-     loading: true,
-     token : localStorage.getItem('token')
- }
+import {
+    REGISTER_SUCCESS,
+    REGISTER_FAIL,
+    USER_LOADED,
+    AUTH_ERROR,
+    LOGIN_FAIL,
+    LOGIN_SUCCESS,
+    LOGOUT,
+    ACCOUNT_DELETED,
+    OAUTH_SUCCESS
+} from "../actions/types";
 
- export const authReducer = (state=initialState , action)=> {
-     switch(action.type){
-        case USER_LOADED : 
-        return {
-            ...state,
-            isAuthenticated : true,
-            loading : false,
-            User : action.payload
-        }
-        case AUTH_USER :
-             return {
-                 ...state,
-                 successMessage :action.payload
-             }
-        case AUTH_LOGIN : 
-             return {
-                 ...state, 
-                 isAuthenticated : true,
-                 User : action.payload
-             }
-        
-        case ERROR_AUTH : 
-             return {
-                 ...state, 
-                 error : action.payload
-             }
-             case LOGIN_SUCCESS:
-           return {
-               ...state,
-               token:action.payload,
-               isAuthenticated:true,
-               loading:false
-           }
-        case LOGIN_SUCCESS : 
-        localStorage.setItem('token' , action.payload)
-        return {
-            ...state , 
-            token : action.payload, 
-            isAuthenticated :true,
-            loading : false
-        }
-        case LOGOUT : 
-        case LOGIN_FAIL :
-        case ERROR_AUTH :
-            localStorage.removeItem('token')
+const initialState = {
+    token : localStorage.getItem('token'),
+    isAuthenticated : null,
+    loading : true,
+    user : null
+}
+
+export  function auth(state = initialState, action){
+    const {type,payload} = action;
+    switch(type){
+        case USER_LOADED:
+            return {
+                ...state, isAuthenticated : true, loading : false, user : payload
+            }
+        case REGISTER_SUCCESS:
+        case LOGIN_SUCCESS:
+        case OAUTH_SUCCESS:
+            localStorage.setItem('token',payload);
             return {
                 ...state, 
-                token : null,
-                isAuthenticated : false,
-                loading : false,
-                error:action.payload
+                token: payload
+                , isAuthenticated : true, loading : false
             }
-        default :
-             return state
-     }
- }
+        case REGISTER_FAIL:
+        case AUTH_ERROR:
+        case LOGIN_FAIL:
+        case ACCOUNT_DELETED:
+        case LOGOUT:
+            localStorage.removeItem("token");
+            return {
+                ...state, token : null, isAuthenticated : false, loading : false
+            }
+        default:
+            return state;
+    }
+}

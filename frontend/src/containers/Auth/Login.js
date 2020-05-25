@@ -15,9 +15,9 @@ import Container from '@material-ui/core/Container';
 import {connect} from 'react-redux'
 import {login} from '../../actions/authAction'
 import {Redirect} from 'react-router-dom'
-import {Alert} from '@material-ui/lab';
-import GitHubLogin from 'react-github-login';
-import {github} from '../../utils/constants'
+import AlertC from '../../components/Alert/Alert'
+import GitHubIcon from '@material-ui/icons/GitHub';
+import {host,githubAuth} from '../../utils/constants'
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Login(props) {
-    const {login,isAuthenticated,errorMessage} = props
+    const {login,isAuthenticated} = props
   const classes = useStyles();
   const [formData , setFormData] = useState({
       email : "mohammedafzal94@gmail.com",
@@ -64,10 +64,12 @@ const  handleSubmit = e =>{
       e.preventDefault()
       login(formData)
   }
-  if(isAuthenticated){
-      return <Redirect to='/' />
-  }
-  console.log(props.errorMessage)
+  // if(isAuthenticated){
+  //     return <Redirect to='/' />
+  // }
+ const handleGithub = ()=>{
+   window.location.href = `${host}${githubAuth}`
+ }
   return (
     <Container component="main" maxWidth="xs" className={classes.bkg}>
       <CssBaseline />
@@ -75,17 +77,11 @@ const  handleSubmit = e =>{
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
+        <GitHubIcon onClick={handleGithub}/>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        {/* {props.errorMessage.length && 
-          errorMessage.map(error=>{
-           return <div className={classes.root}>
-        <Alert severity="error">{error.msg}</Alert>
-        </div> 
-          })
-        
-         } */}
+        <AlertC/>
        
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <TextField
@@ -128,15 +124,15 @@ const  handleSubmit = e =>{
           >
             Sign In
           </Button>
-          <a href={`http://localhost:3001/api/${github}`} id="github-button" class="btn btn-block btn-social btn-github">
-    <i class="fa fa-github"></i> Sign in with GitHub
-</a>
-
-
-          <Grid container justify="flex-end">
+          <Grid container>
+            {/* <Grid item xs>
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid> */}
             <Grid item>
               <Link href="/register" variant="body2">
-                donr have an account? Sign in
+                {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
           </Grid>
@@ -147,9 +143,7 @@ const  handleSubmit = e =>{
   );
 }
 const mapStateToProps= state => ({
-    isAuthenticated : state.authReducer.isAuthenticated,
-    errorMessage:state.authReducer.error
+    isAuthenticated : state.auth
 })
 
-export default connect(mapStateToProps, {login})(Login)
- 
+export default  connect(mapStateToProps, {login})(Login)
