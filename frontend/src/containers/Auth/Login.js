@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Login(props) {
-    const {login,isAuthenticated,errorMessage} = props
+    const {login,isAuthenticated} = props
   const classes = useStyles();
   const [formData , setFormData] = useState({
       email : "mohammedafzal94@gmail.com",
@@ -72,7 +72,8 @@ const  handleSubmit = e =>{
  }
   return (
     <Container component="main" maxWidth="xs" className={classes.bkg}>
-       <div className={classes.paper}>
+      <CssBaseline />
+      <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
@@ -123,12 +124,6 @@ const  handleSubmit = e =>{
           >
             Sign In
           </Button>
-          <GitHubLogin/>
-
-          <Grid container justify="flex-end">
-            <Grid item>
-              <Link href="/register" variant="body2">
-                donr have an account? Sign in
           <Grid container>
             {/* <Grid item xs>
               <Link href="#" variant="body2">
@@ -148,8 +143,6 @@ const  handleSubmit = e =>{
   );
 }
 const mapStateToProps= state => ({
-    isAuthenticated : state.authReducer.isAuthenticated,
-    errorMessage:state.authReducer.error
     isAuthenticated : state.auth
 })
 

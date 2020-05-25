@@ -33,22 +33,6 @@ export const loadUser = () => async dispatch => {
 }
 
 
-export const registerLocal = (data,history) => dispatch=>{
-    console.log("action",data)
-    axios.post(`${host}${register}` , data)
-    .then(res => res)
-    .then(data => dispatch({
-        type : AUTH_USER,
-        payload : data
-    }),
-    history.push('/login')
-    )
-    .catch(err => {
-        dispatch({
-            type : ERROR_AUTH,
-            payload : err.response
-        })
-    })}
 //Register User
 export const register = (data) => 
     async dispatch => {
