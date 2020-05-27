@@ -10,6 +10,7 @@ function Oauth(props) {
     useEffect(()=>{
         oauthAction(token)
         setAuthToken(token)
+        history.push('./dashboard')
     },[])
     return (
         <div>

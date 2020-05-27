@@ -64,7 +64,7 @@ export const register = (data) =>
 
 
 //Login User
-export const login = (data) => 
+export const login = (data,history) => 
     async dispatch => {
         const config = {
             headers : {
@@ -80,6 +80,8 @@ export const login = (data) =>
         });
 
         dispatch(loadUser());
+        history.push('/dashboard')
+
 
     }catch(err){
         const errors = err.response.data.errors;
@@ -90,6 +92,7 @@ export const login = (data) =>
             type : LOGIN_FAIL
         });
     }
+
 }
 
 //LOG OUT User and Clear Profile 
