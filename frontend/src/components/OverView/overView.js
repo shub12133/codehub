@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function overView() {
     return (
-        <div style={{display:"col",justifyContent:"right"}} className="container">
+        <div style={{display:"col",justifyContent:"right",color:"blue"}} className="container">
              <div style={{alignItems:"center"}}>
                  <img  src="https://d301sr5gafysq2.cloudfront.net/frontbucket/parcel/present/empty-state.26a8b8b8.svg"/>
                  <h2>Here's where your work shines through</h2>

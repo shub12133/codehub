@@ -42,7 +42,7 @@ function App({loadUser}) {
                 <Route exact path='/workspace/create' component={Workspace}/>
                 <Route exact path='/repositories' component={ Repository}/>
                 <Route exact path='/projects' component={ Project}/>
-                <Route exact path='/:username/:repo' component={ User}/>
+                <Route exact path='/user/:username/:repo' component={ User}/>
 
                 <Route  path='/login' component={Login}/>
                 <Route exact path='/register' component={Register}/>
