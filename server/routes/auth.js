@@ -100,7 +100,7 @@ router.post('/register', [check('email').isEmail(), check('password').isLength({
             email : req.user.email,
         }
       }
-      jwt.sign(payload,"SECRETKEY", {expiresIn: 60} , (err,token)=>{
+      jwt.sign(payload,keys.secretOrKey, {expiresIn: 60} , (err,token)=>{
         if(err){
           throw err
         }
@@ -120,9 +120,9 @@ router.post('/register', [check('email').isEmail(), check('password').isLength({
    catch(err){
      console.error(err.message)
      res.status(500).send("Server Error")
+     
    }
       
   })
 
 module.exports = router;
-
