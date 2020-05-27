@@ -7,13 +7,13 @@ function Oauth(props) {
     const {oauthAction, auth :{isAuthenticated} ,history,loadUser} = props
     let { token ,success } = useParams();
     useEffect(()=>{
-        oauthAction(token)
+        oauthAction(token ,history)
     },[])
     return (
         <div>
             <center>
                 pls wait ...
-                {token}
+                
             </center>
         </div>
     )
