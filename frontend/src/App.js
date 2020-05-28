@@ -29,11 +29,11 @@ function App({loadUser}) {
   }, [])
   return (
       <Router>
-        <div style={{display:'flex'}} >
-              <div>
+        <div style={{display:'flex',height:"100vh"}} >
+              <div style={{backgroundColor:"rgb(7, 71, 166)"}}>
                   <SideBar/>
               </div>
-              <div>
+              <div  style={{textAlign:"center",width:"100%"}} >
                 <Route exact path='/' component={Home}/>
                 <Route exact path='/dashboard' />
                 <Route exact path='/overview' component={OverView}/>

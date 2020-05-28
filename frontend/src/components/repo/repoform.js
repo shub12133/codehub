@@ -14,11 +14,13 @@ export default function Repoform() {
            })
     }
     return (
-        <div>
+        <div style={{maxWidth:"960px"}}>
              <form>
-                 <label for="workspace" >Workspace  :  </label>
-                 <dropdown id="workspace">
-                     <select name="workspace" onChange={(e)=>handleCange(e)}>
+             <hr/>
+             <div style={{textAlign:"left",marginLeft:"15%"}}>
+                 <label  for="workspace" >Workspace  :  </label>
+                 <dropdown  id="workspace">
+                     <select className="formInput" name="workspace" onChange={(e)=>handleCange(e)}>
                          <option>bharth</option>
                          <option>dev</option>
 
@@ -26,18 +28,20 @@ export default function Repoform() {
                  </dropdown>
                  <br/>
                <label for="pname">Project name :</label>
-               <input name="projectName" id="pname" type="text" onChange={(e)=>handleCange(e)}/>
+               <input className="formInput" name="projectName" id="pname" type="text" onChange={(e)=>handleCange(e)}/>
                <br/>
                <label for="rname">Repository name :</label>
-               <input name="repositoryName" id="rname" type="text" onChange={(e)=>handleCange(e)}/>
+               <input className="formInput" name="repositoryName" id="rname" type="text" onChange={(e)=>handleCange(e)}/>
                <br/>
                <label for="access"> Access level :</label>
                <input type="checkbox" id="access" name="privateRepo" onChange={(e)=>handleCange(e)} />
                <span>private repo</span>
                <br/>
 
-               <a className="btn btn-primary">Create repository</a>
+               <a className="btn">Create repository</a>
                <a href="/overview">cancel</a>
+
+               </div>
              </form>
         </div>
     )

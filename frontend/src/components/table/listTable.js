@@ -3,8 +3,8 @@ import React,{useState} from 'react'
 export default function ListTable(props) {
 const {introName,item,createButton} = props
 return (
-        <div style={{width:"100%"}}>
-            <div style={{display:"flex",justifyContent:"space-between"}} className="intro">
+        <div style={{alignContent:"center",height:"100vh",width:"100%"}}>
+             <div  style={{display:"flex",textAlign:"center"}} className="intro">
             <h3>{introName}</h3>
             <a className="btn btn-info" >{ createButton}</a>
             </div>

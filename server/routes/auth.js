@@ -100,7 +100,7 @@ router.post('/register', [check('email').isEmail(), check('password').isLength({
             email : req.user.email,
         }
       }
-      jwt.sign(payload,"SECRETKEY", {expiresIn: 60} , (err,token)=>{
+      jwt.sign(payload,keys.secretOrKey, {expiresIn: 60} , (err,token)=>{
         if(err){
           throw err
         }

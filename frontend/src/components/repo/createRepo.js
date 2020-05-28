@@ -3,7 +3,7 @@ import React,{useState,useEffect} from 'react'
 export default function CreateRepo(props) {
   
     return (
-        <>
+        <div >
           <img  src="https://d301sr5gafysq2.cloudfront.net/frontbucket/parcel/present/empty-state.26a8b8b8.svg"/>
 
         <div className="container" style={{border:"1px solid grey"}}>
@@ -16,6 +16,6 @@ export default function CreateRepo(props) {
              
             <Repoform/>
         </div>
-        </>
+        </div>
     )
 }

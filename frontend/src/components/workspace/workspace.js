@@ -21,19 +21,19 @@ export default function Workspace() {
 
             <form>
             <label for="wname">Workspace name :</label>
-               <input name="workspaceName" id="wname" type="text" onChange={(e)=>handleCange(e)}/>
+               <input className="formInput" name="workspaceName" id="wname" type="text" onChange={(e)=>handleCange(e)}/>
                <br/>
                <label for="wId">workspace Id :</label>
-               <input placeholder="codehub.org/"/>
-               <input name="workSpaceId" id="wId" type="text" onChange={(e)=>handleCange(e)}/>
+               <input className="formInput" placeholder="codehub.org/"/>
+               <input className="formInput" name="workSpaceId" id="wId" type="text" onChange={(e)=>handleCange(e)}/>
                <br/>
                <span>This will be the URL for your workspace</span>
                <br/>
-                <input type="checkbox" id="access" name="privateRepo" onChange={(e)=>handleCange(e)} />
+                <input  type="checkbox" id="access" name="privateRepo" onChange={(e)=>handleCange(e)} />
                <span>keep this workspace private</span>
                <br/>
 
-               <a className="btn btn-primary">Create repository</a>
+               <a className="btn ">Create repository</a>
                <a href="/overview">cancel</a>
             </form>
         </div>
