@@ -20,6 +20,7 @@ const {User} = require('../models/user')
 //create a jwt token using method sign 
 //send back the token as response 
 router.post('/register', [check('email').isEmail(), check('password').isLength({min:6})] ,async (req,res)=>{
+  console.log(req.body)
   
     const errors = validationResult(req)
     if(!errors.isEmpty()){
@@ -43,6 +44,7 @@ router.post('/register', [check('email').isEmail(), check('password').isLength({
           res.json(token)
         })
     }catch(err){
+      console.log(err)
         res.status(500).send("Internal Server Error")
     }
   })
@@ -80,6 +82,7 @@ router.post('/register', [check('email').isEmail(), check('password').isLength({
             res.json(token)
         })
     }catch(err){
+      console.log(err)
       res.status(500).send("Server Error")
     }
   
