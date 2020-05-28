@@ -102,12 +102,12 @@ export const logout = (history) => dispatch => {
     history.push('/')
 }
 
-export const oauthAction =  token => dispatch=>{
+export const oauthAction =  (token,history) => dispatch=>{
     //set the toke in localstorage
     dispatch({
         type : OAUTH_SUCCESS,
         payload : token
     })
     dispatch(loadUser());
-
+    history.push('/dashboard')
 }
