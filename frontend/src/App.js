@@ -1,6 +1,6 @@
 import React , {useEffect} from 'react';
 import {BrowserRouter as Router,Route} from 'react-router-dom';
-import Sidebar from './components/sideBar'
+import Sidebar from './components/dashBoard'
 import Footer from './components/Footer/Footer'
 import './App.css';
 import Login from './containers/Auth/Login'
@@ -10,13 +10,16 @@ import {connect} from 'react-redux'
 import Navbar from './components/Navbar/Navbar'
 import OverView from './components/OverView/overView'
 import Oauth from './containers/Auth/Oauth'
-import SideBar from './components/sideBar'
+import DashBoard from './components/dashBoard'
 import CreateRepo from './components/repo/createRepo'
 import ImportRepo from './components/repo/importRepo'
 import Workspace from './components/workspace/workspace'
 import Repository from './components/repo/repository'
 import Project from './components/repo/project'
+import Explore from './components/explore'
+
 import User from './components/user/repo'
+import Api from './components/repos/gitbreaker'
 const Home = ()=>{
   return (
     <h1>Home</h1>
@@ -29,21 +32,28 @@ function App({loadUser}) {
   }, [])
   return (
       <Router>
+      <header>
+          <Navbar/>
+        </header>
         <div style={{display:'flex',height:"100vh"}} >
+        
               <div style={{backgroundColor:"rgb(7, 71, 166)"}}>
-                  <SideBar/>
+                  <DashBoard/>
               </div>
-              <div  style={{textAlign:"center",width:"100%"}} >
+              <div  style={{textAlign:"center",alignItems:"center",width:"100%"}} >
                 <Route exact path='/' component={Home}/>
-                <Route exact path='/dashboard' />
-                <Route exact path='/overview' component={OverView}/>
+                <Route exact path='/dashboard' component={DashBoard} />
+                <Route exact path='/dashboard/overview' component={OverView}/>
+                <Route exact path='/dashboard/overview' component={OverView}/>
+                <Route exact path='/dashboard/explore' component={Explore}/>
+
                 <Route exact path='/repo/create' component={CreateRepo}/>
                 <Route exact path='/repo/import' component={ImportRepo}/>
                 <Route exact path='/workspace/create' component={Workspace}/>
-                <Route exact path='/repositories' component={ Repository}/>
-                <Route exact path='/projects' component={ Project}/>
+                <Route exact path='/dashboard/repositories' component={ Repository}/>
+                <Route exact path='/dashboard/projects' component={ Api}/>
                 <Route exact path='/user/:username/:repo' component={ User}/>
-
+ 
                 <Route  path='/login' component={Login}/>
                 <Route exact path='/register' component={Register}/>
                 <Route path="/oauth/:token/success/:success" component={Oauth}/>

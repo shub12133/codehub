@@ -15,6 +15,8 @@ import Container from '@material-ui/core/Container';
 import {connect} from 'react-redux'
 import {register} from '../../actions/authAction'
 import AlertC from '../../components/Alert/Alert'
+import { useHistory } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -36,7 +38,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
  function Register(props) {
-  const {register,user,history} = props
+  let history = useHistory();
+
+  const {register,user} = props
   const [formData, setFormData] = useState({
       name : '',
       email : "",
@@ -52,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   }
  const handleSubmit = (e)=>{
      e.preventDefault()
-     register(formData, history)
+     register(formData,history)
      
  }
   return (

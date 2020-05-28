@@ -34,7 +34,7 @@ export const loadUser = () => async dispatch => {
 
 
 //Register User
-export const register = (data) => 
+export const register = (data,history) => 
     async dispatch => {
         const config = {
             headers : {
@@ -80,7 +80,7 @@ export const login = (data,history) =>
         });
 
         dispatch(loadUser());
-        history.push('/dashboard')
+        history.push('/dashboard/explore')
 
 
     }catch(err){

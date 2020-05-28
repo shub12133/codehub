@@ -1,4 +1,4 @@
-import React ,{useState} from 'react';
+import React ,{useState,useEffect} from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -10,7 +10,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
- 
+
+
 import {Link} from 'react-router-dom'
 import OverView from './OverView/overView'
 
@@ -24,15 +25,24 @@ const useStyles = makeStyles({
   },
 });
 
+
+
+
+
 export default function SwipeableTemporaryDrawer() {
   const classes = useStyles();
   const [state, setState] = React.useState({
      left: false,
+     projects:[]
     
   });
  const [component,setComponent] =useState({
 
  })
+
+
+
+
   const toggleDrawer = (anchor, open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -53,19 +63,25 @@ export default function SwipeableTemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-          <Link className="linkClass" to="/overview">
+      <Link className="linkClass" to="/dashboard/explore">
+           <ListItem button >
+          <ListItemText primary={"Explore"} />
+           </ListItem>
+           </Link>
+
+          <Link className="linkClass" to="/dashboard/overview">
            <ListItem button >
           <ListItemText primary={"Your Work"} />
            </ListItem>
            </Link>
 
-           <Link className="linkClass"  to="/repositories">
+           <Link className="linkClass"  to="/dashboard/repositories">
            <ListItem button >
           <ListItemText primary={"Repositories"} />
            </ListItem>
            </Link>
 
-           <Link   to="/projects">
+           <Link   to="/dashboard/projects">
            <ListItem button >
           <ListItemText className="linkClass" primary={"Projects"} />
            </ListItem>
@@ -83,6 +99,7 @@ export default function SwipeableTemporaryDrawer() {
   );
 
   return (
+    <div>
     <div >
       {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
@@ -98,5 +115,6 @@ export default function SwipeableTemporaryDrawer() {
         </React.Fragment>
       ))}
     </div>
-  );
-}
+
+      </div>
+  )}
