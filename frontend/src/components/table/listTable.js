@@ -44,16 +44,9 @@ return (
                          <p>this is the first repo</p>
                      </td>
                  </tr>
-<<<<<<< HEAD
-             </table>
-        </div>
-    )
-}
-=======
                  </tbody>
              </table>
         </div>
     )
 }
     
->>>>>>> 7cbac0afbffcc9537e54ee29d9d4cfa13b344f6d

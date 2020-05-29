@@ -34,7 +34,7 @@ export const loadUser = () => async dispatch => {
 
 
 //Register User
-export const register = (data) => 
+export const register = (data,history) => 
     async dispatch => {
         const config = {
             headers : {
@@ -64,7 +64,7 @@ export const register = (data) =>
 
 
 //Login User
-export const login = (data) => 
+export const login = (data,history) => 
     async dispatch => {
         const config = {
             headers : {
@@ -80,6 +80,8 @@ export const login = (data) =>
         });
 
         dispatch(loadUser());
+        history.push('/dashboard/explore')
+
 
     }catch(err){
         const errors = err.response.data.errors;
@@ -90,6 +92,7 @@ export const login = (data) =>
             type : LOGIN_FAIL
         });
     }
+
 }
 
 //LOG OUT User and Clear Profile 
@@ -102,12 +105,12 @@ export const logout = (history) => dispatch => {
     history.push('/')
 }
 
-export const oauthAction =  token => dispatch=>{
+export const oauthAction =  (token,history) => dispatch=>{
     //set the toke in localstorage
     dispatch({
         type : OAUTH_SUCCESS,
         payload : token
     })
     dispatch(loadUser());
-
+    history.push('/dashboard')
 }

@@ -4,7 +4,7 @@ const { Gitlab } = require('@gitbeaker/node')
 
 const api = new Gitlab({
   host: 'https://gitlab.com',
-  token: 'Aqo8yL2zwM3SQXqs-sEL',
+  token: 'jbfN2AzKZgFEmKksvviV-sEL',
 });
 
 //path - /api/repos/users
