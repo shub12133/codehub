@@ -1,20 +1,12 @@
 import React,{useState} from 'react'
 
 export default function ListTable(props) {
-<<<<<<< HEAD
-const {introName,item,createButton} = props
-=======
 const {introName,item,createButton,handleProjects} = props
->>>>>>> 4321e8b4047b29721125b935c2ecac0d16e1c762
 return (
         <div>
              <div  style={{display:"flex",textAlign:"center"}} className="intro">
             <h3>{introName}</h3>
-<<<<<<< HEAD
-            <a className="btn btn-info" >{ createButton}</a>
-=======
             <button   className="btn btn-info" >{ createButton}</button>
->>>>>>> 4321e8b4047b29721125b935c2ecac0d16e1c762
             </div>
 
              <table >
@@ -57,8 +49,4 @@ return (
         </div>
     )
 }
-<<<<<<< HEAD
     
-=======
-    
->>>>>>> 4321e8b4047b29721125b935c2ecac0d16e1c762
