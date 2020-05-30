@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
-
-export default function Repoform() {
+import {createRepo} from '../../actions/authAction'
+import {connect} from 'react-redux'
+  function Repoform() {
         
     const [repo,setRepo]=useState({
         workspace:"",
@@ -12,6 +13,7 @@ export default function Repoform() {
            setRepo({
                [e.target.name]:e.target.value
            })
+           createRepo(repo.repositoryName)
     }
     return (
         <div style={{maxWidth:"960px"}}>
@@ -19,14 +21,12 @@ export default function Repoform() {
              <hr/>
              <div style={{textAlign:"left",marginLeft:"15%"}}>
                  <label  for="workspace" >Workspace  :  </label>
-                 <dropdown  id="workspace">
-                     <select className="formInput" name="workspace" onChange={(e)=>handleCange(e)}>
+                      <select id="workspace" className="formInput" name="workspace" onChange={(e)=>handleCange(e)}>
                          <option>bharth</option>
                          <option>dev</option>
 
                      </select>
-                 </dropdown>
-                 <br/>
+                  <br/>
                <label for="pname">Project name :</label>
                <input className="formInput" name="projectName" id="pname" type="text" onChange={(e)=>handleCange(e)}/>
                <br/>
@@ -38,7 +38,7 @@ export default function Repoform() {
                <span>private repo</span>
                <br/>
 
-               <a className="btn">Create repository</a>
+               <button type="submit" className="btn" >Create repository</button>
                <a href="/overview">cancel</a>
 
                </div>
@@ -46,3 +46,8 @@ export default function Repoform() {
         </div>
     )
 }
+const mapStateToProps= state => ({
+    project : state.projects.projects
+})
+
+export default  connect(mapStateToProps, { createRepo})(Repoform)

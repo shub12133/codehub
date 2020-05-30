@@ -87,6 +87,13 @@ export default function SwipeableTemporaryDrawer() {
            </ListItem>
            </Link>
 
+           <Link className="linkClass"  to="/dashboard/profile">
+           <ListItem button >
+          <ListItemText primary={"Profile"} />
+           </ListItem>
+           </Link>
+
+
            <Link className="linkClass"  to="/:username/:repo">
            <ListItem button >
           <ListItemText primary={"Projects"} />

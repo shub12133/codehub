@@ -17,7 +17,6 @@ export const OAUTH_SUCCESS = "OAUTH_SUCCESS"
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 
-
 export const LOGOUT = "LOGOUT";
 
 
@@ -34,3 +33,11 @@ export const  PROFILE_ERROR = "PROFILE_ERROR";
 export const  CLEAR_PROFILE = "CLEAR_PROFILE";
 
 export const ACCOUNT_DELETED = "ACCOUNT_DELETED";
+
+
+//gitlab
+export const GITLAB_USER = "GITLAB_USER"
+export const PROJECTS_DATA = "PROJECTS_DATA"
+export const CREATE_REPOSITORY = 'CREATE_REPOSITORY'
+export const GITLAB_USER_FAIL = "GITLAB_USER_FAIL"
+export const GITLAB_PROJECT_FAIL='GITLAB_PROJECT_FAIL'

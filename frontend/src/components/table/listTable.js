@@ -1,12 +1,12 @@
 import React,{useState} from 'react'
 
 export default function ListTable(props) {
-const {introName,item,createButton} = props
+const {introName,item,createButton,handleProjects} = props
 return (
         <div>
              <div  style={{display:"flex",textAlign:"center"}} className="intro">
             <h3>{introName}</h3>
-            <a className="btn btn-info" >{ createButton}</a>
+            <button   className="btn btn-info" >{ createButton}</button>
             </div>
 
              <table >

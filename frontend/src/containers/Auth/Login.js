@@ -53,8 +53,8 @@ function Login(props) {
     const {login,isAuthenticated,history} = props
   const classes = useStyles();
   const [formData , setFormData] = useState({
-      email : "mohammedafzal94@gmail.com",
-      password : "abc123"
+      email : "",
+      password : ""
   })
  const handleChange = e =>{
       setFormData({
@@ -64,7 +64,7 @@ function Login(props) {
   }
 const  handleSubmit = e =>{
       e.preventDefault()
-      login(formData)
+      login(formData,history)
   }
   // if(isAuthenticated){
   //     return <Redirect to='/' />

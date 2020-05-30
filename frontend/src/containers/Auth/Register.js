@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {connect} from 'react-redux'
-import {register} from '../../actions/authAction'
+import {register,createUser} from '../../actions/authAction'
 import AlertC from '../../components/Alert/Alert'
 import { useHistory } from "react-router-dom";
 
@@ -40,9 +40,10 @@ const useStyles = makeStyles((theme) => ({
  function Register(props) {
   let history = useHistory();
 
-  const {register,user} = props
+  const {register,user,createUser} = props
   const [formData, setFormData] = useState({
       name : '',
+      username:'',
       email : "",
       password:'',
       phone: ''
@@ -57,7 +58,8 @@ const useStyles = makeStyles((theme) => ({
  const handleSubmit = (e)=>{
      e.preventDefault()
      register(formData,history)
-     
+    //  createUser(formData)
+     console.log(formData)
  }
   return (
     <Container component="main" maxWidth="xs">
@@ -84,7 +86,10 @@ const useStyles = makeStyles((theme) => ({
                 autoFocus
                 onChange={handleChange}
               />
+             
             </Grid>
+          
+
             <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
@@ -94,6 +99,19 @@ const useStyles = makeStyles((theme) => ({
                 label="Enter Phone Number"
                 name="phone"
                 autoComplete="phone"
+                onChange={handleChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={12}>
+            <TextField
+                autoComplete="fusername"
+                name="username"
+                variant="outlined"
+                required
+                fullWidth
+                id="username"
+                label="Enter Username"
+                autoFocus
                 onChange={handleChange}
               />
             </Grid>
@@ -156,4 +174,4 @@ const mapStateToProps = state =>({
   user : state.auth
 })
 
-export default connect(mapStateToProps, {register})(Register)
+export default connect(mapStateToProps, {register,createUser})(Register)

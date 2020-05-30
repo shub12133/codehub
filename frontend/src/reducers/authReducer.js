@@ -7,14 +7,16 @@ import {
     LOGIN_SUCCESS,
     LOGOUT,
     ACCOUNT_DELETED,
-    OAUTH_SUCCESS
+    OAUTH_SUCCESS,
+    GITLAB_USER,
 } from "../actions/types";
 
 const initialState = {
     token : localStorage.getItem('token'),
     isAuthenticated : null,
     loading : true,
-    user : null
+    user : null,
+    gitlabdata:[]
 }
 
 export  function auth(state = initialState, action){
@@ -24,6 +26,7 @@ export  function auth(state = initialState, action){
             return {
                 ...state, isAuthenticated : true, loading : false, user : payload
             }
+         
         case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
         case OAUTH_SUCCESS:
