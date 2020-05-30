@@ -18,6 +18,8 @@ import {Redirect} from 'react-router-dom'
 import AlertC from '../../components/Alert/Alert'
 import GitHubIcon from '@material-ui/icons/GitHub';
 import {host,githubAuth} from '../../utils/constants'
+import { useHistory } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -48,11 +50,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Login(props) {
-    const {login,isAuthenticated} = props
+    const {login,isAuthenticated,history} = props
   const classes = useStyles();
   const [formData , setFormData] = useState({
-      email : "mohammedafzal94@gmail.com",
-      password : "abc123"
+      email : "",
+      password : ""
   })
  const handleChange = e =>{
       setFormData({
@@ -62,7 +64,7 @@ function Login(props) {
   }
 const  handleSubmit = e =>{
       e.preventDefault()
-      login(formData)
+      login(formData,history)
   }
   // if(isAuthenticated){
   //     return <Redirect to='/' />

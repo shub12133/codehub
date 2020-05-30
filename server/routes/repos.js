@@ -5,6 +5,7 @@ const { Gitlab } = require('@gitbeaker/node')
 const api = new Gitlab({
   host: 'https://gitlab.com',
   token: 'jbfN2AzKZgFEmKksvviV-sEL',
+  token: 'Aqo8yL2zwM3SQXqs-sEL',
 });
 
 //path - /api/repos/users
@@ -26,6 +27,13 @@ router.get('/projects',async (req,res)=>{
   })
   .catch((err)=> {
     console.log(err)
+ let projects= await api.Projects.all({ maxPages: 2, perPage: 40 })
+  .then((projects) => {
+    console.log("pr",projects);
+    res.json(projects)
+  })
+  .catch((err)=> {
+    console.log("err",err)
   })
 })
 module.exports = router

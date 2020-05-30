@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useState,useEffect} from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -8,9 +8,14 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
+import HomeIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+
+
 import {Link} from 'react-router-dom'
+import OverView from './OverView/overView'
+
+const pageLinks = ['OverView','Repos', 'Profile', 'Pull request', 'Review']
 const useStyles = makeStyles({
   list: {
     width: 250,
@@ -20,12 +25,23 @@ const useStyles = makeStyles({
   },
 });
 
+
+
+
+
 export default function SwipeableTemporaryDrawer() {
   const classes = useStyles();
   const [state, setState] = React.useState({
      left: false,
+     projects:[]
     
   });
+ const [component,setComponent] =useState({
+
+ })
+
+
+
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -37,6 +53,8 @@ export default function SwipeableTemporaryDrawer() {
 
   const list = (anchor) => (
     <div
+  
+    style={{backgroundColor:"rgb(7, 71, 166)",height:"100%"}}
       className={clsx(classes.list, {
         [classes.fullList]: anchor === 'top' || anchor === 'bottom',
       })}
@@ -45,14 +63,43 @@ export default function SwipeableTemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Repos', 'Profile', 'Pull request', 'Review'].map((text, index) => (
-          <ListItem button key={text}>
-          <Link to="/{text}">
-             <ListItemText primary={text} />
-            </Link>
-          </ListItem>
-        ))}
-      </List>
+      <Link className="linkClass" to="/dashboard/explore">
+           <ListItem button >
+          <ListItemText primary={"Explore"} />
+           </ListItem>
+           </Link>
+
+          <Link className="linkClass" to="/dashboard/overview">
+           <ListItem button >
+          <ListItemText primary={"Your Work"} />
+           </ListItem>
+           </Link>
+
+           <Link className="linkClass"  to="/dashboard/repositories">
+           <ListItem button >
+          <ListItemText primary={"Repositories"} />
+           </ListItem>
+           </Link>
+
+           <Link   to="/dashboard/projects">
+           <ListItem button >
+          <ListItemText className="linkClass" primary={"Projects"} />
+           </ListItem>
+           </Link>
+
+           <Link className="linkClass"  to="/dashboard/profile">
+           <ListItem button >
+          <ListItemText primary={"Profile"} />
+           </ListItem>
+           </Link>
+
+
+           <Link className="linkClass"  to="/:username/:repo">
+           <ListItem button >
+          <ListItemText primary={"Projects"} />
+           </ListItem>
+           </Link>
+    </List>
       <Divider />
        
     </div>
@@ -60,6 +107,7 @@ export default function SwipeableTemporaryDrawer() {
 
   return (
     <div>
+    <div >
       {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
@@ -74,5 +122,6 @@ export default function SwipeableTemporaryDrawer() {
         </React.Fragment>
       ))}
     </div>
-  );
-}
+
+      </div>
+  )}

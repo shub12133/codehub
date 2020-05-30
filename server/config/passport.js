@@ -1,6 +1,7 @@
 const  JwtStrategy = require('passport-jwt').Strategy,
        ExtractJwt = require('passport-jwt').ExtractJwt;
 const GitHubStrategy = require('passport-github').Strategy;
+
 const {User} = require('../models/user')
 const keys = require('./keys')
 const opts = {}

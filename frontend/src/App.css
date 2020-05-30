@@ -37,3 +37,21 @@
     transform: rotate(360deg);
   }
 }
+
+.hoverbtn{
+   color: blue;
+}
+
+.formInput{
+  width: 60%;
+  height: 25px;
+  margin: 0 auto;
+  border: none; 
+  border:solid 1px #ccc;
+  border-radius: 10px;
+}
+
+.linkClass{
+  text-decoration: none;
+  text-emphasis: none;
+}
