@@ -11,10 +11,10 @@ const services = new ProjectsBundle({
 
 
   function Repository(props) {
-     const {projects,createRepo}= props
+     const {projects,createRepo,user}= props
     const  handleProject=()=>{
  console.log("working")
- createRepo()
+ createRepo(user)
 
     }
     useEffect(()=>{
@@ -25,15 +25,16 @@ const services = new ProjectsBundle({
             createButton="create Project"
             item="projects" 
             handleProject
-
+            buttonText="create Project"
             />
-            <button  onClick={handleProject} >create porject</button>
+            {/* <button  onClick={()=>handleProject} >create project</button> */}
         </div>
     )
 }
 
 const mapStateToProps= state => ({
-    projects : state.projects.projects
+    projects : state.projects.projects,
+    user:state.auth.user
 })
 
 export default  connect(mapStateToProps, {createRepo})(Repository)

@@ -27,18 +27,24 @@ const userSchema = new Schema({
         type : String,
         min : 6
     },
-    image : {
+    avatar_url : {
         type : String
     },
     phone : {
         type : String
     },
-    active  : {
+    state  : {
         type : Boolean
     },
     isVerified : {
         type : Boolean,
         default : false
+    },
+    username:{
+        type:String
+    },
+    web_url:{
+        type:String
     }
 })
 
