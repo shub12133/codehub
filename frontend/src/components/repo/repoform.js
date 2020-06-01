@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import {createRepo} from '../../actions/authAction'
+import {createRepositories} from '../../actions/gitActions'
 import {connect} from 'react-redux'
   function Repoform() {
         
@@ -11,13 +11,20 @@ import {connect} from 'react-redux'
     })
     const handleCange=(e)=>{
            setRepo({
+               ...repo,
                [e.target.name]:e.target.value
            })
-           createRepo(repo.repositoryName)
+     }
+
+    const handleCall = (e)=>{
+        e.preventDefault()
+
+        createRepositories(repo.repositoryName)
+
     }
     return (
         <div style={{maxWidth:"960px"}}>
-             <form>
+             <form onSubmit={(e)=>handleCall(e)}>
              <hr/>
              <div style={{textAlign:"left",marginLeft:"15%"}}>
                  <label  for="workspace" >Workspace  :  </label>
@@ -50,4 +57,4 @@ const mapStateToProps= state => ({
     project : state.projects.projects
 })
 
-export default  connect(mapStateToProps, { createRepo})(Repoform)
+export default  connect(mapStateToProps, { createRepositories})(Repoform)

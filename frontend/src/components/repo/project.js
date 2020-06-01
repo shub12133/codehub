@@ -14,8 +14,7 @@ import {connect} from 'react-redux'
  createProject(user)
 
     }
-    useEffect(()=>{
-    },[])
+     
     return (
         <div>
             <ListTable introName="Projects"
