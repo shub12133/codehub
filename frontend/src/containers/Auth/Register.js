@@ -1,4 +1,3 @@
- 
 import React , {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -15,7 +14,12 @@ import Container from '@material-ui/core/Container';
 import {connect} from 'react-redux'
 import {register,createUser} from '../../actions/authAction'
 import AlertC from '../../components/Alert/Alert'
+import '../../App.css';
+import PropTypes from "prop-types";
+import layout from '../../components/layout/Form'
+
 import { useHistory } from "react-router-dom";
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -36,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
+
 
  function Register(props) {
   let history = useHistory();
@@ -169,6 +174,7 @@ const useStyles = makeStyles((theme) => ({
     </Container>
   );
 }
+
 
 const mapStateToProps = state =>({
   user : state.auth

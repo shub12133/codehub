@@ -19,7 +19,7 @@ import Project from './components/repo/project'
 import Explore from './components/explore'
 import Profie from './components/Profile/Profile'
 import User from './components/user/repo'
-import Api from './components/repos/gitbreaker'
+// import Api from './components/repos/gitbreaker'
 import Projects from './components/repo/project'
 const Home = ()=>{
   return (

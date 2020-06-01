@@ -19,6 +19,10 @@ import AlertC from '../../components/Alert/Alert'
 import GitHubIcon from '@material-ui/icons/GitHub';
 import {host,githubAuth} from '../../utils/constants'
 import { useHistory } from "react-router-dom";
+import   '../../App.css';
+
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
