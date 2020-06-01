@@ -1,12 +1,12 @@
 import React,{useState} from 'react'
 
 export default function ListTable(props) {
-const {introName,item,createButton,handleProject,buttonText} = props
+const {introName,item,createButton,handleProject,buttonText,linkTo} = props
 return (
         <div>
              <div  style={{display:"flex",textAlign:"center"}} className="intro">
             <h3>{introName}</h3>
-            <button  onClick={()=>handleProject}   className="btn btn-info" >{buttonText}</button>
+            <a href={linkTo} onClick={handleProject}   className="btn btn-info" >{buttonText}</a>
             </div>
 
              <table >

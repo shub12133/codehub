@@ -1,20 +1,17 @@
 import React,{useEffect} from 'react'
 import ListTable from '../table/listTable'
 import { ProjectsBundle } from 'gitlab';
-import {createRepo} from '../../actions/authAction'
+import {createProject} from '../../actions/gitActions'
 import {connect} from 'react-redux'
-const services = new ProjectsBundle({
-  host:   'https://codehub.code.in',
-  token: '79Sus8xpmuKSsmFkKw2D'
-})
+ 
 
 
 
-  function Repository(props) {
-     const {projects,createRepo,user}= props
+  function Projects(props) {
+     const {projects,createProject,user}= props
     const  handleProject=()=>{
  console.log("working")
- createRepo(user)
+ createProject(user)
 
     }
     useEffect(()=>{
@@ -24,7 +21,8 @@ const services = new ProjectsBundle({
             <ListTable introName="Projects"
             createButton="create Project"
             item="projects" 
-            handleProject
+            linkTo="/account/projects/create"
+             handleProject={handleProject}
             buttonText="create Project"
             />
             {/* <button  onClick={()=>handleProject} >create project</button> */}
@@ -37,7 +35,7 @@ const mapStateToProps= state => ({
     user:state.auth.user
 })
 
-export default  connect(mapStateToProps, {createRepo})(Repository)
+export default  connect(mapStateToProps, {createProject})(Projects)
 
 
 
