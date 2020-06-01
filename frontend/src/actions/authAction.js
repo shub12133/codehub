@@ -22,7 +22,7 @@ import setAuthToken from "../utils/setAuthToken";
 import { Gitlab } from '@gitbeaker/browser'; // All Resources
 import { ProjectsBundle } from 'gitlab';
 
-
+ 
 const api = new Gitlab({
     host: `https://codehub.code.in`,
     token: '79Sus8xpmuKSsmFkKw2D',
@@ -33,7 +33,7 @@ const api = new Gitlab({
     host:   'https://codehub.code.in',
     token: '79Sus8xpmuKSsmFkKw2D'
   })
-  
+ 
 
 
 export const loadUser = () => async dispatch => {
@@ -111,7 +111,7 @@ export const createUser=(data)=> async dispatch=>{
 export const createRepo=(data)=>async dispatch=>{
     try{
         console.log("hello")
-        services.Projects.create({userId:10,name:'bharathcodes'})
+        services.Projects.create({userId:2,name:'bharathcodesnot'})
         .then((repository)=>{
             dispatch({
                 type:CREATE_REPOSITORY,
@@ -123,6 +123,28 @@ export const createRepo=(data)=>async dispatch=>{
         console.log(err)
         dispatch({
             type : GITLAB_PROJECT_FAIL
+        }); 
+       }
+    
+}
+
+
+export const getUser=(data)=>async dispatch=>{
+    try{
+        console.log(data)
+        const userName=data
+        api.Users.search({ username:data})
+        .then((user)=>{
+            dispatch({
+                type:GITLAB_USER,
+                payload:user
+            })
+            console.log(user)
+        })
+    } catch(err){
+        console.log(err)
+        dispatch({
+            type : GITLAB_USER_FAIL
         }); 
        }
     

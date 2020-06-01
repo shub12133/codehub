@@ -1,7 +1,10 @@
 import React,{useState,useEffect} from 'react'
  import Repoform from './repoform'
-export default function CreateRepo(props) {
-  
+import { connect } from 'react-redux'
+import {createRepo} from '../../actions/authAction'
+
+  function CreateRepo(props) {
+      
     return (
         <div >
           <img  src="https://d301sr5gafysq2.cloudfront.net/frontbucket/parcel/present/empty-state.26a8b8b8.svg"/>
@@ -19,3 +22,7 @@ export default function CreateRepo(props) {
         </div>
     )
 }
+
+
+
+export default connect(null,{})(CreateRepo)

@@ -1,5 +1,27 @@
+<<<<<<< HEAD
 // import React,{useState,useEffect} from 'react'
 
+=======
+import React,{useEffect ,useState} from 'react'
+import { connect } from 'react-redux'
+import {getUser} from '../../actions/authAction'
+ function Profile(props) {
+   const {user,setUser} = useState({
+       userdata:{}
+   })
+     const {getUsername,getUser} = props
+
+useEffect(()=>{
+   getUser(getUsername.user.username)
+     
+},[])
+    return (
+        <div>
+          profile data
+        </div>
+    )
+}
+>>>>>>> 6202863a2c9260a37414168e175376a12cf5aa09
 
 // const [Profile,SetProfile]=useState({
 //     userId:"",
@@ -36,8 +58,17 @@
 //            <span>private repo</span>
 //            <br/>
 
+<<<<<<< HEAD
 //            <button type="submit" className="btn" >Create repository</button>
 //            <a href="/overview">cancel</a> */}
+=======
+const mapStateToProps = state =>({
+    
+    getUsername : state.auth
+  })
+
+export default connect(mapStateToProps,{getUser})(Profile)
+>>>>>>> 6202863a2c9260a37414168e175376a12cf5aa09
 
 //            </div>
 //          </form>

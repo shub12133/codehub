@@ -63,8 +63,7 @@ const useStyles = makeStyles((theme) => ({
  const handleSubmit = (e)=>{
      e.preventDefault()
      register(formData,history)
-    //  createUser(formData)
-     console.log(formData)
+      console.log(formData)
  }
   return (
     <Container component="main" maxWidth="xs">

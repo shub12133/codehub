@@ -21,6 +21,7 @@ import Profie from './components/Profile/Profile'
 import User from './components/user/repo'
 // import Api from './components/repos/gitbreaker'
 import Projects from './components/repo/project'
+import CreateProject from './components/createProject'
 const Home = ()=>{
   return (
     <h1>Home</h1>
@@ -54,6 +55,7 @@ function App({loadUser}) {
                 <Route exact path='/dashboard/repositories' component={ Repository}/>
                 <Route exact path='/dashboard/projects' component={ Projects}/>
                 <Route exact path='/dashboard/profile' component={Profie}/>
+                <Route exact path='/account/projects/create' component={CreateProject}/>
 
                 <Route exact path='/user/:username/:repo' component={ User}/>
  
