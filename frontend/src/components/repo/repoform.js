@@ -1,13 +1,17 @@
 import React,{useState,useEffect} from 'react'
-import {createRepositories} from '../../actions/gitActions'
+import {createRepositories,createProject,getUser} from '../../actions/gitActions'
 import {connect} from 'react-redux'
-  function Repoform() {
-        
+  function Repoform(props) {
+        const [createProject,createRepositories,user,getUser] = props
     const [repo,setRepo]=useState({
         workspace:"",
         projectName:"",
         repositoryName:"",
         privateRepo:false
+    })
+
+    useEffect(()=>{
+        getUser(user)
     })
     const handleCange=(e)=>{
            setRepo({
@@ -18,13 +22,13 @@ import {connect} from 'react-redux'
 
     const handleCall = (e)=>{
         e.preventDefault()
-
-        createRepositories(repo.repositoryName)
-
+        
+        createProject(repo,user)
+        
     }
     return (
         <div style={{maxWidth:"960px"}}>
-             <form onSubmit={(e)=>handleCall(e)}>
+             <form onSubmit={handleCall}>
              <hr/>
              <div style={{textAlign:"left",marginLeft:"15%"}}>
                  <label  for="workspace" >Workspace  :  </label>
@@ -54,7 +58,9 @@ import {connect} from 'react-redux'
     )
 }
 const mapStateToProps= state => ({
-    project : state.projects.projects
+    project : state.projects.projects,
+    user:state.users.gitlabdata.id,
+
 })
 
-export default  connect(mapStateToProps, { createRepositories})(Repoform)
+export default  connect(mapStateToProps, { createRepositories,createProject})(Repoform)

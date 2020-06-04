@@ -7,7 +7,7 @@ import BuildIcon from '@material-ui/icons/Build';
 
 const api = new Gitlab({
     host: `https://codehub.code.in`,
-    token: '79Sus8xpmuKSsmFkKw2D',
+    token: 'cBsT5RSaeRYwDGiBL9iL',
   
   });
   

@@ -1,6 +1,6 @@
 import React ,{useState,useEffect} from 'react'
 import Repoform from './repo/repoform'
-import {createRepo} from '../actions/authAction'
+import {createRepo} from '../actions/gitActions'
 
 export default function CreateProject() {
      

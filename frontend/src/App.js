@@ -17,7 +17,7 @@ import Workspace from './components/workspace/workspace'
 import Repository from './components/repo/repository'
 import Project from './components/repo/project'
 import Explore from './components/explore'
-import Profie from './components/Profile/Profile'
+import Profile from './components/Profile/Profile'
 import User from './components/user/repo'
 import Api from './components/repos/gitbreaker'
 import Projects from './components/repo/project'
@@ -54,7 +54,7 @@ function App({loadUser}) {
                 <Route exact path='/workspace/create' component={Workspace}/>
                 <Route exact path='/dashboard/repositories' component={ Repository}/>
                 <Route exact path='/dashboard/projects' component={ Projects}/>
-                <Route exact path='/dashboard/profile' component={Profie}/>
+                <Route exact path='/dashboard/profile' component={Profile}/>
                 <Route exact path='/account/projects/create' component={CreateProject}/>
 
                 <Route exact path='/user/:username/:repo' component={ User}/>

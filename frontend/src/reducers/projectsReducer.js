@@ -19,13 +19,18 @@ export function projects(state=initialState,action){
     const {type,payload} = action;
 
     switch(type){
-
+        
         case CREATE_PROJECT:
             return{
                 ...state,
                 projects:payload
             }
         
+        case GET_REPOSITORIES:
+            return {
+                ...state,
+                repositories:payload
+            }
         case  GITLAB_PROJECT_FAIL:
             return {
                 ...state,

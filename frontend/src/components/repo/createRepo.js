@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
  import Repoform from './repoform'
 import { connect } from 'react-redux'
-import {createRepo} from '../../actions/authAction'
+import {createRepo} from '../../actions/gitActions'
 
   function CreateRepo(props) {
       

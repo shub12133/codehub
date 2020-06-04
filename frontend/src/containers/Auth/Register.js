@@ -13,7 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {connect} from 'react-redux'
-import {register,createUser} from '../../actions/authAction'
+import {register} from '../../actions/authAction'
+import {createUser} from '../../actions/gitActions'
 import AlertC from '../../components/Alert/Alert'
 import { useHistory } from "react-router-dom";
 
