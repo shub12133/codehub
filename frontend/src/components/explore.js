@@ -17,7 +17,7 @@ const api = new Gitlab({
  
   function Explore(props) {
    
-const {getProjects,projects,user} = props
+const {getProjects,projects,user,getUser} = props
 
     const [state, setState] = useState({
     projects:[],
@@ -38,7 +38,7 @@ const {getProjects,projects,user} = props
 
  
 
- getUser(user.username)
+ getUser(user)
 
   },[])
 
@@ -67,4 +67,4 @@ const mapStateToProps=(state)=>({
   
 })
 
- export default connect(mapStateToProps,{getProjects})(Explore)
+ export default connect(mapStateToProps,{getProjects,getUser})(Explore)
