@@ -25,6 +25,11 @@ export function projects(state=initialState,action){
                 ...state,
                 projects:payload
             }
+        case GET_PROJECTS:
+            return {
+                ...state,
+                projects:payload
+            }
         
         case GET_REPOSITORIES:
             return {

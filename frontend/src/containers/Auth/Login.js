@@ -19,6 +19,7 @@ import AlertC from '../../components/Alert/Alert'
 import GitHubIcon from '@material-ui/icons/GitHub';
 import {host,githubAuth} from '../../utils/constants'
 import { useHistory } from "react-router-dom";
+import {getUser} from '../../actions/gitActions'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Login(props) {
-    const {login,isAuthenticated,history} = props
+    const {login,isAuthenticated,history,user} = props
   const classes = useStyles();
   const [formData , setFormData] = useState({
       email : "",
@@ -65,6 +66,9 @@ function Login(props) {
 const  handleSubmit = e =>{
       e.preventDefault()
       login(formData,history)
+      .then(()=>{
+        getUser(user)
+      })
   }
   // if(isAuthenticated){
   //     return <Redirect to='/' />
@@ -145,7 +149,8 @@ const  handleSubmit = e =>{
   );
 }
 const mapStateToProps= state => ({
-    isAuthenticated : state.auth
+    isAuthenticated : state.auth,
+    user:state.auth.user
 })
 
 export default  connect(mapStateToProps, {login})(Login)

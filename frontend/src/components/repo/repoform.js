@@ -1,8 +1,9 @@
 import React,{useState,useEffect} from 'react'
 import {createRepositories,createProject,getUser} from '../../actions/gitActions'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
   function Repoform(props) {
-        const [createProject,createRepositories,user,getUser] = props
+        const {createProject,createRepositories,user,getUser} = props
     const [repo,setRepo]=useState({
         workspace:"",
         projectName:"",
@@ -10,9 +11,7 @@ import {connect} from 'react-redux'
         privateRepo:false
     })
 
-    useEffect(()=>{
-        getUser(user)
-    })
+   
     const handleCange=(e)=>{
            setRepo({
                ...repo,
@@ -22,9 +21,16 @@ import {connect} from 'react-redux'
 
     const handleCall = (e)=>{
         e.preventDefault()
-        
+        alert('yo')
         createProject(repo,user)
         
+    }
+
+    const handleCheck = (e)=>{
+        setRepo({
+            ...repo,
+            privateRepo:true
+        })
     }
     return (
         <div style={{maxWidth:"960px"}}>
@@ -45,12 +51,12 @@ import {connect} from 'react-redux'
                <input className="formInput" name="repositoryName" id="rname" type="text" onChange={(e)=>handleCange(e)}/>
                <br/>
                <label for="access"> Access level :</label>
-               <input type="checkbox" id="access" name="privateRepo" onChange={(e)=>handleCange(e)} />
+               <input type="checkbox" onClick={handleCheck} id="access" name="privateRepo" onChange={(e)=>handleCange(e)} />
                <span>private repo</span>
                <br/>
 
                <button type="submit" className="btn" >Create repository</button>
-               <a href="/overview">cancel</a>
+               <Link to="/overview">cancel</Link>
 
                </div>
              </form>
@@ -59,7 +65,7 @@ import {connect} from 'react-redux'
 }
 const mapStateToProps= state => ({
     project : state.projects.projects,
-    user:state.users.gitlabdata.id,
+    user:state.auth.user
 
 })
 

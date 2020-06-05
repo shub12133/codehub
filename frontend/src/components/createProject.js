@@ -1,9 +1,10 @@
 import React ,{useState,useEffect} from 'react'
 import Repoform from './repo/repoform'
-import {createRepo} from '../actions/gitActions'
-
-export default function CreateProject() {
-     
+import {createRepo, createProject} from '../actions/gitActions'
+import {Link} from 'react-router-dom'
+import { connect } from 'react-redux'
+  function CreateProject(props) {
+     const {createRepo,createProject}=props
         const [repo,setRepo]=useState({
           workspace:"",
           projectName:"",
@@ -16,13 +17,14 @@ export default function CreateProject() {
       const handleCange=(e)=>{
         e.preventDefault()
         setRepo({
+          ...repo,
             [e.target.name]:e.target.value
         })
-        createRepo(repo.projectName)
-    }
+      }
 
-    const sendReq = ()=>{
-      createRepo(repo.projectName)
+    const sendReq = (e)=>{
+      e.preventDefault()
+      createProject(repo)
 
     }
     return (
@@ -38,7 +40,7 @@ export default function CreateProject() {
         </div>
         
         <div style={{maxWidth:"960px"}}>
-             <form onSubmit={()=>sendReq()}>
+             <form onSubmit={sendReq}>
              <hr/>
              <div style={{textAlign:"left",marginLeft:"15%"}}>
                  <label  for="workspace" >Workspace  :  </label>
@@ -60,7 +62,7 @@ export default function CreateProject() {
                <br/>
 
                <button type="submit" className="btn" >Create repository</button>
-               <a href="/overview">cancel</a>
+               <Link to="/overview">cancel</Link>
 
                </div>
              </form>
@@ -68,3 +70,5 @@ export default function CreateProject() {
          </div>
     )
     }
+
+    export default connect(null,{createRepo,createProject})(CreateProject)

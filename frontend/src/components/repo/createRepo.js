@@ -3,11 +3,9 @@ import React,{useState,useEffect} from 'react'
 import { connect } from 'react-redux'
 import {createRepo} from '../../actions/gitActions'
 
-  function CreateRepo(props) {
+export default function CreateRepo(props) {
       
-  const handlerepo=(e)=>{
-      createRepo(e)
-    }
+   
     return (
         <div >
           <img  src="https://d301sr5gafysq2.cloudfront.net/frontbucket/parcel/present/empty-state.26a8b8b8.svg"/>
@@ -21,8 +19,7 @@ import {createRepo} from '../../actions/gitActions'
              </div>
              
             <Repoform
-              handlerepo={handlerepo}
-             
+              
             />
         </div>
         </div>
@@ -31,4 +28,4 @@ import {createRepo} from '../../actions/gitActions'
 
 
 
-export default connect(null,{})(CreateRepo)
+ 

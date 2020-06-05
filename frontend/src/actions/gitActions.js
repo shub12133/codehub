@@ -7,7 +7,9 @@ import axios from "axios";
     GITLAB_USER_FAIL,
     GITLAB_PROJECT_FAIL,
     GET_PROJECTS,
-    CREATE_PROJECT
+    CREATE_PROJECT,
+    GITLAB_USER_DATA,
+    GITLAB_USER_DATA_FAIL
 } from "./types";
 
 
@@ -31,7 +33,7 @@ const api = new Gitlab({
 export const createProject=(data,user)=>async dispatch=>{
     try{
         console.log("hello")
-        services.Projects.create({userId:data.id,path:data.repositoryName})
+        services.Projects.create({userId:22,name:data.projectName})
         .then((repository)=>{
             dispatch({
                 type:CREATE_PROJECT,
@@ -72,13 +74,13 @@ export const createRepositories=(data)=>async dispatch=>{
 export const getProjects=(data)=>async dispatch=>{
     try{
         console.log("getProjects")
-        services.Projects.all()
+        api.Users.projects(22)
         .then((repository)=>{
             dispatch({
                 type:GET_PROJECTS,
                 payload:repository
             })
-            console.log("80g= gitactions",repository)
+            console.log("user 6 pro",repository)
         })
     } catch(err){
         console.log(err)
@@ -93,7 +95,7 @@ export const getProjects=(data)=>async dispatch=>{
 //create user into giutlab 
 export const createUser=(data)=> async dispatch=>{
     try{
-      let users= await api.Users.create({name:data.name,username:data.username,email:data.email,password:data.password,admin:true})
+      let users= await api.Users.create({name:data.name,username:data.username,email:data.email,password:data.password,admin:false})
     
         dispatch({
             type:GITLAB_USER,
@@ -131,14 +133,14 @@ export const createRepo=(data)=>async dispatch=>{
 }
 
 
-export const getUser=(data)=>async dispatch=>{
+export const getUser=(user)=>async dispatch=>{
     try{
-        console.log(data)
-        const userName=data
-        api.Users.search({ username:data})
+        console.log(user)
+        // const userName=data
+        api.Users.search(user.username)
         .then((user)=>{
             dispatch({
-                type:GITLAB_USER,
+                type:GITLAB_USER_DATA,
                 payload:user
             })
             console.log(user)
@@ -146,7 +148,7 @@ export const getUser=(data)=>async dispatch=>{
     } catch(err){
         console.log(err)
         dispatch({
-            type : GITLAB_USER_FAIL
+            type : GITLAB_USER_DATA_FAIL
         }); 
        }
     

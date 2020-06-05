@@ -16,7 +16,7 @@ import {
     GITLAB_PROJECT_FAIL
 } from "./types";
 import { Users } from 'gitlab';
-import {createUser,getUSer} from './gitActions'
+import {createUser,getUser} from './gitActions'
 import {host,registerRoute,loginRoute,authDashboard} from '../utils/constants'
 import setAuthToken from "../utils/setAuthToken";
 import { Gitlab } from '@gitbeaker/browser'; // All Resources
@@ -36,6 +36,7 @@ export const loadUser = () => async dispatch => {
             type : USER_LOADED,
             payload : res.data
         })
+        getUser(res.data)
     }catch(err){
         dispatch({
             type : AUTH_ERROR
@@ -90,12 +91,12 @@ export const login = (data,history) =>
     
     try{
         const res = await axios.post(`${host}${loginRoute}`,data,config);
+        console.log('reqw',res.datas)
         dispatch({
             type : LOGIN_SUCCESS,
             payload : res.data
         });
-
-        dispatch(loadUser());
+         dispatch(loadUser());
         history.push('/dashboard/explore')
 
 
