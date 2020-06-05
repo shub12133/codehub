@@ -14,33 +14,29 @@ import Container from '@material-ui/core/Container';
 import {connect} from 'react-redux'
 import {register,createUser} from '../../actions/authAction'
 import AlertC from '../../components/Alert/Alert'
-import '../../App.css';
-import PropTypes from "prop-types";
-import layout from '../../components/layout/Form'
-
 import { useHistory } from "react-router-dom";
+import useStyles from '../../commonCss/CommonCss';
 
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-  form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
-}));
-
+// const useStyles = makeStyles((theme) => ({
+//   paper: {
+//     marginTop: theme.spacing(8),
+//     display: 'flex',
+//     flexDirection: 'column',
+//     alignItems: 'center',
+//   },
+//   avatar: {
+//     margin: theme.spacing(1),
+//     backgroundColor: theme.palette.secondary.main,
+//   },
+//   form: {
+//     width: '100%', // Fix IE 11 issue.
+//     marginTop: theme.spacing(3),
+//   },
+//   submit: {
+//     margin: theme.spacing(3, 0, 2),
+//   },
+// }));
 
  function Register(props) {
   let history = useHistory();
@@ -173,7 +169,6 @@ const useStyles = makeStyles((theme) => ({
     </Container>
   );
 }
-
 
 const mapStateToProps = state =>({
   user : state.auth

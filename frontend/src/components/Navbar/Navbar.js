@@ -11,16 +11,19 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
 import {connect} from 'react-redux'
 import {logout} from '../../actions/authAction'
+import { blue } from '@material-ui/core/colors';
+
+
 const useStyles = makeStyles((theme) => ({
     '@global': {
       ul: {
-        margin: 0,
-        padding: 0,
+        margin: 2,
+        padding: 7,
         listStyle: 'none',
       },
     },
     appBar: {
-      borderBottom: `1px solid ${theme.palette.divider}`,
+      borderBottom: `3px solid ${theme.palette.divider}`,
     },
     toolbar: {
       flexWrap: 'wrap',
@@ -29,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
       flexGrow: 1,
     },
     link: {
-      margin: theme.spacing(1, 1.5),
+      margin: theme.spacing(1, 1.6),
     },
     heroContent: {
       padding: theme.spacing(8, 0, 6),
@@ -50,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
           dashboard
         </Link>
        
-        <Button onClick={()=>logout(history)} color="primary" variant="outlined" className={classes.link}>
+        <Button onClick={()=>logout(history)} color="dark" variant="outlined" className={classes.link}>
             Logout
           </Button>
       </nav>
@@ -66,9 +69,9 @@ const useStyles = makeStyles((theme) => ({
     return (
         <>
     <CssBaseline />
-      <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
+      <AppBar position="static" color="blue" elevation={0} className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
+          <Typography variant="h6" color="dark" noWrap className={classes.toolbarTitle}>
             Code Hub
           </Typography>
         
@@ -88,4 +91,4 @@ const mapStateToProps = state=>({
     auth : state.auth
 })
 
-export default connect(mapStateToProps,{logout})(Navbar)
+export default connect(mapStateToProps,{logout})(Navbar)  

@@ -1,7 +1,31 @@
-import React,{useState,useEffect} from 'react'
+  import React,{useState,useEffect} from 'react'
  import Repoform from './repoform'
 import { connect } from 'react-redux'
 import {createRepo} from '../../actions/authAction'
+import header from '../Footer/Header'
+const styles = (theme) => ({
+  paper: {
+    maxWidth: 936,
+    margin: 'auto',
+    overflow: 'hidden',
+  },
+  searchBar: {
+    borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
+  },
+  searchInput: {
+    fontSize: theme.typography.fontSize,
+  },
+  block: {
+    display: 'block',
+  },
+  addUser: {
+    marginRight: theme.spacing(1),
+  },
+  contentWrapper: {
+    margin: '40px 16px',
+  },
+});
+
 
   function CreateRepo(props) {
       
