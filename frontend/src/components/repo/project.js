@@ -3,19 +3,24 @@ import ListTable from '../table/listTable'
 import { ProjectsBundle } from 'gitlab';
 import {createProject} from '../../actions/gitActions'
 import {connect} from 'react-redux'
- 
+ import {getProjects,getUser} from '../../actions/gitActions'
 
 
 
   function Projects(props) {
-     const {projects,createProject,user}= props
+     const {getProjects,createProject,user,projects}= props
+     
+
+     useEffect(()=>{
+         getProjects(user)
+     },[])
     const  handleProject=()=>{
  console.log("working")
  createProject(user)
 
     }
-    useEffect(()=>{
-    },[])
+
+    
     return (
         <div>
             <ListTable introName="Projects"
@@ -24,6 +29,7 @@ import {connect} from 'react-redux'
             linkTo="/account/projects/create"
              handleProject={handleProject}
             buttonText="create Project"
+            projects={projects}
             />
             {/* <button  onClick={()=>handleProject} >create project</button> */}
         </div>
@@ -35,5 +41,4 @@ const mapStateToProps= state => ({
     user:state.auth.user
 })
 
-export default  connect(mapStateToProps, {createProject})(Projects)
-
+export default  connect(mapStateToProps, {createProject,getProjects})(Projects)

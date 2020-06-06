@@ -1,6 +1,6 @@
 import React,{useEffect ,useState} from 'react'
 import { connect } from 'react-redux'
-import {getUser} from '../../actions/authAction'
+import {getUser} from '../../actions/gitActions'
  function Profile(props) {
    const {user,setUser} = useState({
        userdata:{}
@@ -25,3 +25,4 @@ const mapStateToProps = state =>({
   })
 
 export default connect(mapStateToProps,{getUser})(Profile)
+

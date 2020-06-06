@@ -1,34 +1,11 @@
-  import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect} from 'react'
  import Repoform from './repoform'
 import { connect } from 'react-redux'
-import {createRepo} from '../../actions/authAction'
-import header from '../Footer/Header'
-const styles = (theme) => ({
-  paper: {
-    maxWidth: 936,
-    margin: 'auto',
-    overflow: 'hidden',
-  },
-  searchBar: {
-    borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
-  },
-  searchInput: {
-    fontSize: theme.typography.fontSize,
-  },
-  block: {
-    display: 'block',
-  },
-  addUser: {
-    marginRight: theme.spacing(1),
-  },
-  contentWrapper: {
-    margin: '40px 16px',
-  },
-});
+import {createRepo} from '../../actions/gitActions'
 
-
-  function CreateRepo(props) {
+export default function CreateRepo(props) {
       
+   
     return (
         <div >
           <img  src="https://d301sr5gafysq2.cloudfront.net/frontbucket/parcel/present/empty-state.26a8b8b8.svg"/>
@@ -41,12 +18,10 @@ const styles = (theme) => ({
                <a href="/repo/import">import repository</a>
              </div>
              
-            <Repoform/>
+            <Repoform
+              
+            />
         </div>
         </div>
     )
 }
-
-
-
-export default connect(null,{})(CreateRepo)

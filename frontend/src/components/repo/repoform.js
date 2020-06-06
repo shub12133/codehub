@@ -1,25 +1,40 @@
 import React,{useState,useEffect} from 'react'
-import {createRepo} from '../../actions/authAction'
+import {createRepositories,createProject,getUser} from '../../actions/gitActions'
 import {connect} from 'react-redux'
-import useStyles from '../../commonCss/CommonCss';
-
-  function Repoform() {
-        
+import {Link} from 'react-router-dom'
+  function Repoform(props) {
+        const {createProject,createRepositories,user,getUser} = props
     const [repo,setRepo]=useState({
         workspace:"",
         projectName:"",
         repositoryName:"",
         privateRepo:false
     })
+
+   
     const handleCange=(e)=>{
            setRepo({
+               ...repo,
                [e.target.name]:e.target.value
            })
-           createRepo(repo.repositoryName)
+     }
+
+    const handleCall = (e)=>{
+        e.preventDefault()
+        alert('yo')
+        createProject(repo,user)
+        
+    }
+
+    const handleCheck = (e)=>{
+        setRepo({
+            ...repo,
+            privateRepo:true
+        })
     }
     return (
         <div style={{maxWidth:"960px"}}>
-             <form>
+             <form onSubmit={handleCall}>
              <hr/>
              <div style={{textAlign:"left",marginLeft:"15%"}}>
                  <label  for="workspace" >Workspace  :  </label>
@@ -36,12 +51,12 @@ import useStyles from '../../commonCss/CommonCss';
                <input className="formInput" name="repositoryName" id="rname" type="text" onChange={(e)=>handleCange(e)}/>
                <br/>
                <label for="access"> Access level :</label>
-               <input type="checkbox" id="access" name="privateRepo" onChange={(e)=>handleCange(e)} />
+               <input type="checkbox" onClick={handleCheck} id="access" name="privateRepo" onChange={(e)=>handleCange(e)} />
                <span>private repo</span>
                <br/>
 
                <button type="submit" className="btn" >Create repository</button>
-               <a href="/overview">cancel</a>
+               <Link to="/overview">cancel</Link>
 
                </div>
              </form>
@@ -49,7 +64,9 @@ import useStyles from '../../commonCss/CommonCss';
     )
 }
 const mapStateToProps= state => ({
-    project : state.projects.projects
+    project : state.projects.projects,
+    user:state.auth.user
+
 })
 
-export default  connect(mapStateToProps, { createRepo})(Repoform)
+export default  connect(mapStateToProps, { createRepositories,createProject})(Repoform)

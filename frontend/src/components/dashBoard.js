@@ -10,21 +10,21 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-// import useStyles from '../commonCss/CommonCss';
+import useStyles from '../commonCss/CommonCss';
 
 
 import {Link} from 'react-router-dom'
 import OverView from './OverView/overView'
 
 const pageLinks = ['OverView','Repos', 'Profile', 'Pull request', 'Review']
-const useStyles = makeStyles({
-  list: {
-    width: 250,
-  },
-  fullList: {
-    width: 'auto',
-  },
-});
+// const useStyles = makeStyles({
+//   list: {
+//     width: 250,
+//   },
+//   fullList: {
+//     width: 'auto',
+//   },
+// });
 
 
 
