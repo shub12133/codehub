@@ -5,23 +5,23 @@ import {getUser} from '../../actions/gitActions'
    const {user,setUser} = useState({
        userdata:{}
    })
-     const {getUsername,getUser} = props
+     const { profileData} = props
 
 useEffect(()=>{
-   getUser(getUsername.user.username)
-     
+      
 },[])
     return (
         <div>
-          profile data
-        </div>
+        <img src={profileData.avatar_url}/>
+      <h1>{profileData.name}</h1>
+         </div>
     )
 }
 
 
 const mapStateToProps = state =>({
     
-    getUsername : state.auth
+    profileData : state.users.gitlabdata[0]
   })
 
 export default connect(mapStateToProps,{getUser})(Profile)

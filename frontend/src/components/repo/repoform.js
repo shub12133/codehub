@@ -3,7 +3,7 @@ import {createRepositories,createProject,getUser} from '../../actions/gitActions
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
   function Repoform(props) {
-        const {createProject,createRepositories,user,getUser} = props
+        const {createProject,user,getUser} = props
     const [repo,setRepo]=useState({
         workspace:"",
         projectName:"",
@@ -21,8 +21,8 @@ import {Link} from 'react-router-dom'
 
     const handleCall = (e)=>{
         e.preventDefault()
-        alert('yo')
-        createProject(repo,user)
+        console.log("jjj",user)
+         createProject(repo,user[0].id)
         
     }
 
@@ -65,8 +65,8 @@ import {Link} from 'react-router-dom'
 }
 const mapStateToProps= state => ({
     project : state.projects.projects,
-    user:state.auth.user
-
+    user:state.users.gitlabdata
+   
 })
 
 export default  connect(mapStateToProps, { createRepositories,createProject})(Repoform)

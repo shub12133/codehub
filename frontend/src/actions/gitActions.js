@@ -30,10 +30,10 @@ const api = new Gitlab({
 
 
 
-export const createProject=(data,user)=>async dispatch=>{
+export const createProject=(data,userId)=>async dispatch=>{
     try{
-        console.log("hello")
-        services.Projects.create({userId:22,name:data.projectName})
+        console.log("hello",userId)
+        services.Projects.create({userId:userId,name:data.projectName})
         .then((repository)=>{
             dispatch({
                 type:CREATE_PROJECT,
@@ -74,7 +74,7 @@ export const createRepositories=(data)=>async dispatch=>{
 export const getProjects=(data)=>async dispatch=>{
     try{
         console.log("getProjects")
-        api.Users.projects(22)
+        services.Projects.all()
         .then((repository)=>{
             dispatch({
                 type:GET_PROJECTS,
@@ -96,7 +96,8 @@ export const getProjects=(data)=>async dispatch=>{
 export const createUser=(data)=> async dispatch=>{
     try{
       let users= await api.Users.create({name:data.name,username:data.username,email:data.email,password:data.password,admin:false})
-    
+      console.log("dataaa",users)
+
         dispatch({
             type:GITLAB_USER,
             payload:users
@@ -115,7 +116,7 @@ export const createUser=(data)=> async dispatch=>{
 export const createRepo=(data)=>async dispatch=>{
     try{
         console.log("hello")
-        services.Projects.create({userId:2,name:'bharathcodesnot'})
+        services.Projects.create({userId:1,name:'bharathcodesnot'})
         .then((repository)=>{
             dispatch({
                 type:CREATE_REPOSITORY,
@@ -133,17 +134,18 @@ export const createRepo=(data)=>async dispatch=>{
 }
 
 
-export const getUser=(user)=>async dispatch=>{
+export const getUser=(username)=>async dispatch=>{
     try{
-        console.log(user)
+        console.log(username)
         // const userName=data
-        api.Users.search(user.username)
+        api.Users.search(username)
         .then((user)=>{
+        //     user.filter((userSingle)=>user.name ===user)
             dispatch({
                 type:GITLAB_USER_DATA,
                 payload:user
             })
-            console.log(user)
+            console.log("89",user)
         })
     } catch(err){
         console.log(err)

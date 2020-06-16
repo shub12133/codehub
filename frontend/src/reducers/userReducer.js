@@ -20,8 +20,14 @@ export function users(state=initialState,action){
             return {
                 ...state,
                 gitlabdata:payload,
-                userCreated:true
+                
 
+            }
+        case GITLAB_USER:
+            return {
+                ...state,
+                gitlabdata:payload,
+                userCreated:true
             }
         case     GITLAB_USER_DATA_FAIL:
             return {

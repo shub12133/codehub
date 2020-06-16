@@ -8,7 +8,7 @@ import {getProjects } from '../../actions/gitActions'
    const {repositories,createRepositories,user,getProjects} =props
     const  handleRepo=()=>{
         console.log("working")
-         getProjects(user)
+         getProjects(user.id)
            }
     return (
         <div style={{marginTop:"10ps"}} >
@@ -50,7 +50,7 @@ import {getProjects } from '../../actions/gitActions'
 
 const mapStateToProps= state => ({
     repositories : state.projects.projects,
-    user:state.auth.user
+    user:state.users.gitlabdata[0]
 })
 
 export default  connect(mapStateToProps, {getProjects})(Repository)

@@ -26,6 +26,8 @@ const {getProjects,projects,user,getUser} = props
 
 
  useEffect(()=> {
+  
+
   getProjects()
   .then((projects)=>{
     setState({
@@ -35,11 +37,10 @@ const {getProjects,projects,user,getUser} = props
   }).catch((err)=>{
     console.log(err)
   })
-
+  getUser(user.user.username)
  
 
- getUser(user)
-
+ 
   },[])
 
     return (
@@ -63,7 +64,7 @@ const {getProjects,projects,user,getUser} = props
 
 const mapStateToProps=(state)=>({
   projects:state.projects.projects,
-  user:state.auth.user,
+  user:state.auth,
   
 })
 
