@@ -22,6 +22,8 @@ import UserRepo from './components/user/repo'
 import Api from './components/repos/gitbreaker'
 import Projects from './components/repo/project'
 import CreateProject from './components/createProject'
+import Landing from "./components/layout/Landing";
+
 const Home = ()=>{
   return (
     <h1>Home</h1>
@@ -48,6 +50,9 @@ function App({loadUser}) {
                 <Route exact path='/dashboard/overview' component={OverView}/>
                 <Route exact path='/dashboard/overview' component={OverView}/>
                 <Route exact path='/dashboard/explore' component={Explore}/>
+               <Route exact path="/" component={Landing} />
+                {/* <Route component={Routes} /> */}
+
 
                 <Route exact path='/repo/create' component={CreateRepo}/>
                 <Route exact path='/repo/import' component={ImportRepo}/>
