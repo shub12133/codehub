@@ -81,11 +81,11 @@ export default function SwipeableTemporaryDrawer() {
            </ListItem>
            </Link>
 
-           <Link   to="/dashboard/projects">
+           {/* <Link   to="/dashboard/projects">
            <ListItem button >
           <ListItemText className="linkClass" primary={"Projects"} />
            </ListItem>
-           </Link>
+           </Link> */}
 
            <Link className="linkClass"  to="/dashboard/profile">
            <ListItem button >
@@ -94,11 +94,11 @@ export default function SwipeableTemporaryDrawer() {
            </Link>
 
 
-           <Link className="linkClass"  to="/:username/:repo">
+           {/* <Link className="linkClass"  to="/:username/:repo">
            <ListItem button >
           <ListItemText primary={"Projects"} />
            </ListItem>
-           </Link>
+           </Link> */}
     </List>
       <Divider />
        

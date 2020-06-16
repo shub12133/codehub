@@ -4,10 +4,18 @@
  import {getProjects} from '../../actions/gitActions'
     function Repo(props) {
        const {user,repositories,getProjects} = props
- 
+        const [state,setState]= useState({
+          repo:{}
+        })
 
        useEffect((props)=>{
-       getProjects(user)
+      //  getProjects(user)
+      //  .then(()=>{
+      //   //  setState({
+      //   //   //  repo:repositories.filter((currentRepo)=> props.match.params.repo)
+      //   //  })
+         
+      //  })
        },[])
      return (
          <div>
@@ -19,6 +27,8 @@
                <p>Copy and connect the repository locally so that you can push updates you make and pull changes others make. Enter git clone and the repository URL at your command line:</p>
                <p>link here</p>
                <br/>
+               {/* <blockquote style={{color:"grey"}}>{state.http_url_to_repo}</blockquote> */}
+
                <blockquote style={{color:"grey"}}>{`git clone https://codehub.code.in/${props.match.params.username}/${props.match.params.repo}.git`}</blockquote>
                <br/>
                <p>Here's where you'll find this repository's source files. </p>
@@ -28,7 +38,7 @@
  }
  
  const mapStateToProps= state => ({
-    repositories : state.projects.repositories,
+    repositories : state.projects.projects,
     user:state.users,
 
 })

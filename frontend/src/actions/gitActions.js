@@ -3,13 +3,13 @@ import axios from "axios";
     GITLAB_USER,
     PROJECTS_DATA,
     CREATE_REPOSITORY,
-    GET_REPOSITORIES,
     GITLAB_USER_FAIL,
     GITLAB_PROJECT_FAIL,
     GET_PROJECTS,
     CREATE_PROJECT,
     GITLAB_USER_DATA,
-    GITLAB_USER_DATA_FAIL
+    GITLAB_USER_DATA_FAIL,
+    GITLAB_USER_PROJECT_FAIL
 } from "./types";
 
 
@@ -73,8 +73,8 @@ export const createRepositories=(data)=>async dispatch=>{
 
 export const getProjects=(data)=>async dispatch=>{
     try{
-        console.log("getProjects")
-        services.Projects.all()
+        console.log("getProjects",data)
+        services.Projects.all(data)
         .then((repository)=>{
             dispatch({
                 type:GET_PROJECTS,
@@ -90,6 +90,27 @@ export const getProjects=(data)=>async dispatch=>{
        }
     
 }
+
+export const getUserProjects=(data)=>async dispatch=>{
+    try{
+        console.log("UserProjects",data)
+        api.Users.projects(data)
+        .then((repository)=>{
+            dispatch({
+                type:PROJECTS_DATA,
+                payload:repository
+            })
+            console.log("user 6 pro",repository)
+        })
+    } catch(err){
+        console.log(err)
+        dispatch({
+            type : GITLAB_USER_PROJECT_FAIL
+        }); 
+       }
+    
+}
+
 
 
 //create user into giutlab 

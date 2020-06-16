@@ -1,17 +1,17 @@
 import {
    
-    PROJECTS_DATA,
+    
     GET_PROJECTS,
     CREATE_PROJECT,
     GET_REPOSITORIES,
     CREATE_REPOSITORY,
     GITLAB_PROJECT_FAIL,
-    GITLAB_USER,
-} from "../actions/types";
+ } from "../actions/types";
 
 const initialState = {
     
     projects:[],
+    currentProject:{},
     repositories:[]
 }
 
@@ -23,7 +23,7 @@ export function projects(state=initialState,action){
         case CREATE_PROJECT:
             return{
                 ...state,
-                projects:payload
+                currentProject:payload
             }
         case GET_PROJECTS:
             return {

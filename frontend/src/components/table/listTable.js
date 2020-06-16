@@ -21,7 +21,7 @@ return (
              
                  <tr>
                      <td>{item}</td>
-                     <td>Description</td>
+                     <td>Descriptiona</td>
 
                  </tr>
                  {projects.length > 0 && projects.map((project)=>(

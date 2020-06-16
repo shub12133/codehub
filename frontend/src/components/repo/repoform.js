@@ -1,8 +1,9 @@
 import React,{useState,useEffect} from 'react'
 import {createRepositories,createProject,getUser} from '../../actions/gitActions'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link,useHistory} from 'react-router-dom'
   function Repoform(props) {
+      const history = useHistory()
         const {createProject,user,getUser} = props
     const [repo,setRepo]=useState({
         workspace:"",
@@ -23,7 +24,7 @@ import {Link} from 'react-router-dom'
         e.preventDefault()
         console.log("jjj",user)
          createProject(repo,user[0].id)
-        
+        history.push(`/user/${user[0].username}/${repo.repositoryName}`)
     }
 
     const handleCheck = (e)=>{
