@@ -15,7 +15,7 @@ import CreateRepo from './components/repo/createRepo'
 import ImportRepo from './components/repo/importRepo'
 import Workspace from './components/workspace/workspace'
 import Repository from './components/repo/repository'
-import Project from './components/repo/project'
+// import Project from './components/repo/project'
 import Explore from './components/explore'
 import Profile from './components/Profile/Profile'
 import UserRepo from './components/user/repo'
@@ -46,7 +46,7 @@ function App({loadUser}) {
               </div>
               <div  style={{textAlign:"center",alignItems:"center",width:"100%"}} >
                 <Route exact path='/' component={Home}/>
-                <Route exact path='/dashboard' component={DashBoard} />
+                <Route exact path='/dashboard'   />
                 <Route exact path='/dashboard/overview' component={OverView}/>
                 <Route exact path='/dashboard/overview' component={OverView}/>
                 <Route exact path='/dashboard/explore' component={Explore}/>
@@ -58,7 +58,11 @@ function App({loadUser}) {
                 <Route exact path='/repo/import' component={ImportRepo}/>
                 <Route exact path='/workspace/create' component={Workspace}/>
                 <Route exact path='/dashboard/repositories' component={ Repository}/>
+<<<<<<< HEAD
                 <Route exact path='/dashboard/projects' component={ Projects}/>
+=======
+                {/* <Route exact path='/dashboard/projects' component={ Projects}/> */}
+>>>>>>> f386460f21effa76d0d3f5f5596e6a5ac8d65b8e
                 <Route exact path='/dashboard/profile' component={Profile}/>
                 <Route exact path='/account/projects/create' component={CreateProject}/>
 

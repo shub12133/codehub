@@ -1,13 +1,32 @@
+<<<<<<< HEAD
 import React ,{useState,useEffect} from 'react'
+=======
+ import React ,{useState,useEffect} from 'react'
+>>>>>>> f386460f21effa76d0d3f5f5596e6a5ac8d65b8e
  import ImportRepo from './importrepo'
  import {connect } from 'react-redux'
  import {getProjects} from '../../actions/gitActions'
     function Repo(props) {
        const {user,repositories,getProjects} = props
+<<<<<<< HEAD
  
 
        useEffect((props)=>{
        getProjects(user)
+=======
+        const [state,setState]= useState({
+          repo:{}
+        })
+
+       useEffect((props)=>{
+      //  getProjects(user)
+      //  .then(()=>{
+      //   //  setState({
+      //   //   //  repo:repositories.filter((currentRepo)=> props.match.params.repo)
+      //   //  })
+         
+      //  })
+>>>>>>> f386460f21effa76d0d3f5f5596e6a5ac8d65b8e
        },[])
      return (
          <div>
@@ -19,6 +38,11 @@ import React ,{useState,useEffect} from 'react'
                <p>Copy and connect the repository locally so that you can push updates you make and pull changes others make. Enter git clone and the repository URL at your command line:</p>
                <p>link here</p>
                <br/>
+<<<<<<< HEAD
+=======
+               {/* <blockquote style={{color:"grey"}}>{state.http_url_to_repo}</blockquote> */}
+
+>>>>>>> f386460f21effa76d0d3f5f5596e6a5ac8d65b8e
                <blockquote style={{color:"grey"}}>{`git clone https://codehub.code.in/${props.match.params.username}/${props.match.params.repo}.git`}</blockquote>
                <br/>
                <p>Here's where you'll find this repository's source files. </p>
@@ -28,7 +52,11 @@ import React ,{useState,useEffect} from 'react'
  }
  
  const mapStateToProps= state => ({
+<<<<<<< HEAD
     repositories : state.projects.repositories,
+=======
+    repositories : state.projects.projects,
+>>>>>>> f386460f21effa76d0d3f5f5596e6a5ac8d65b8e
     user:state.users,
 
 })

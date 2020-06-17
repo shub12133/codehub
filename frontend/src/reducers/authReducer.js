@@ -8,7 +8,7 @@ import {
     LOGOUT,
     ACCOUNT_DELETED,
     OAUTH_SUCCESS,
-    GITLAB_USER,
+    
 } from "../actions/types";
 
 const initialState = {

@@ -20,7 +20,10 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import {host,githubAuth} from '../../utils/constants'
 import { useHistory } from "react-router-dom";
 import {getUser} from '../../actions/gitActions'
+<<<<<<< HEAD
 import  useStyles from './../../commonCss/CommonCss'
+=======
+>>>>>>> f386460f21effa76d0d3f5f5596e6a5ac8d65b8e
 
 // const useStyles = makeStyles((theme) => ({
 //   root: {

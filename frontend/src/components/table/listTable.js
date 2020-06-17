@@ -24,7 +24,7 @@ return (
 
              <tr>
                      <td>{item}</td>
-                     <td>Description</td>
+                     <td>Descriptiona</td>
 
                  </tr>
                  {projects.length > 0 && projects.map((project)=>(
@@ -44,4 +44,12 @@ return (
              </table>
         </div>
     )
+<<<<<<< HEAD
 }
+=======
+}
+    
+ 
+
+ 
+>>>>>>> f386460f21effa76d0d3f5f5596e6a5ac8d65b8e

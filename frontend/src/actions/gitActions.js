@@ -9,7 +9,8 @@ import axios from "axios";
     GET_PROJECTS,
     CREATE_PROJECT,
     GITLAB_USER_DATA,
-    GITLAB_USER_DATA_FAIL
+    GITLAB_USER_DATA_FAIL,
+    GITLAB_USER_PROJECT_FAIL
 } from "./types";
 
 
@@ -30,10 +31,17 @@ const api = new Gitlab({
 
 
 
+<<<<<<< HEAD
 export const createProject=(data,user)=>async dispatch=>{
     try{
         console.log("hello")
         services.Projects.create({userId:22,name:data.projectName})
+=======
+export const createProject=(data,userId)=>async dispatch=>{
+    try{
+        console.log("hello",userId)
+        services.Projects.create({userId:userId,name:data.projectName})
+>>>>>>> f386460f21effa76d0d3f5f5596e6a5ac8d65b8e
         .then((repository)=>{
             dispatch({
                 type:CREATE_PROJECT,
@@ -73,8 +81,13 @@ export const createRepositories=(data)=>async dispatch=>{
 
 export const getProjects=(data)=>async dispatch=>{
     try{
+<<<<<<< HEAD
         console.log("getProjects")
         api.Users.projects(22)
+=======
+        console.log("getProjects",data)
+        services.Projects.all(data)
+>>>>>>> f386460f21effa76d0d3f5f5596e6a5ac8d65b8e
         .then((repository)=>{
             dispatch({
                 type:GET_PROJECTS,
@@ -91,12 +104,41 @@ export const getProjects=(data)=>async dispatch=>{
     
 }
 
+<<<<<<< HEAD
+=======
+export const getUserProjects=(data)=>async dispatch=>{
+    try{
+        console.log("UserProjects",data)
+        api.Users.projects(data)
+        .then((repository)=>{
+            dispatch({
+                type:PROJECTS_DATA,
+                payload:repository
+            })
+            console.log("user 6 pro",repository)
+        })
+    } catch(err){
+        console.log(err)
+        dispatch({
+            type : GITLAB_USER_PROJECT_FAIL
+        }); 
+       }
+    
+}
+
+
+>>>>>>> f386460f21effa76d0d3f5f5596e6a5ac8d65b8e
 
 //create user into giutlab 
 export const createUser=(data)=> async dispatch=>{
     try{
       let users= await api.Users.create({name:data.name,username:data.username,email:data.email,password:data.password,admin:false})
+<<<<<<< HEAD
     
+=======
+      console.log("dataaa",users)
+
+>>>>>>> f386460f21effa76d0d3f5f5596e6a5ac8d65b8e
         dispatch({
             type:GITLAB_USER,
             payload:users
@@ -115,7 +157,11 @@ export const createUser=(data)=> async dispatch=>{
 export const createRepo=(data)=>async dispatch=>{
     try{
         console.log("hello")
+<<<<<<< HEAD
         services.Projects.create({userId:2,name:'bharathcodesnot'})
+=======
+        services.Projects.create({userId:1,name:'bharathcodesnot'})
+>>>>>>> f386460f21effa76d0d3f5f5596e6a5ac8d65b8e
         .then((repository)=>{
             dispatch({
                 type:CREATE_REPOSITORY,
@@ -133,17 +179,31 @@ export const createRepo=(data)=>async dispatch=>{
 }
 
 
+<<<<<<< HEAD
 export const getUser=(user)=>async dispatch=>{
     try{
         console.log(user)
         // const userName=data
         api.Users.search(user.username)
         .then((user)=>{
+=======
+export const getUser=(username)=>async dispatch=>{
+    try{
+        console.log(username)
+        // const userName=data
+        api.Users.search(username)
+        .then((user)=>{
+        //     user.filter((userSingle)=>user.name ===user)
+>>>>>>> f386460f21effa76d0d3f5f5596e6a5ac8d65b8e
             dispatch({
                 type:GITLAB_USER_DATA,
                 payload:user
             })
+<<<<<<< HEAD
             console.log(user)
+=======
+            console.log("89",user)
+>>>>>>> f386460f21effa76d0d3f5f5596e6a5ac8d65b8e
         })
     } catch(err){
         console.log(err)
@@ -152,4 +212,10 @@ export const getUser=(user)=>async dispatch=>{
         }); 
        }
     
+<<<<<<< HEAD
 }
+=======
+}
+
+
+>>>>>>> f386460f21effa76d0d3f5f5596e6a5ac8d65b8e
