@@ -9,7 +9,8 @@ import axios from "axios";
     CREATE_PROJECT,
     GITLAB_USER_DATA,
     GITLAB_USER_DATA_FAIL,
-    GITLAB_USER_PROJECT_FAIL
+    GITLAB_USER_PROJECT_FAIL,
+    PROJECT_TREE
 } from "./types";
 
 
@@ -178,3 +179,23 @@ export const getUser=(username)=>async dispatch=>{
 }
 
 
+//get repository blob tree
+export const getUserProjectTree=(data)=>async dispatch=>{
+    try{
+        console.log("projectis",data)
+        services.Repositories.tree(data)
+        .then((tree)=>{
+            dispatch({
+                type:PROJECT_TREE,
+                payload:tree
+            })
+            // console.log("user",repository)
+        })
+    } catch(err){
+        console.log(err)
+        // dispatch({
+        //     type : GITLAB_USER_PROJECT_FAIL
+        // }); 
+       }
+    
+}

@@ -53,3 +53,6 @@ export const CREATE_REPOSITORY = 'CREATE_REPOSITORY'
 //prjects
 export const GET_PROJECTS = 'GET_PROJECTS'
 export const CREATE_PROJECT = 'CREATE_PROJECT'
+
+//blob data
+export const PROJECT_TREE ='PROJECT_TREE'

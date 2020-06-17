@@ -1,9 +1,10 @@
  import React ,{useState,useEffect} from 'react'
  import ImportRepo from './importrepo'
  import {connect } from 'react-redux'
+ import {Link} from 'react-router-dom'
  import {getProjects} from '../../actions/gitActions'
     function Repo(props) {
-       const {user,repositories,getProjects} = props
+       const {user,repositories,getProjects,tree} = props
         const [state,setState]= useState({
           repo:{}
         })
@@ -33,6 +34,19 @@
                <br/>
                <p>Here's where you'll find this repository's source files. </p>
              </div>
+             <p>files inside the repo</p>
+
+        <div style={{border:"2px solid black",padding:"10px"}}>
+                <ul>
+                  {tree !== null  && tree.map((item)=>(
+                    <Link>
+                    <li key={item.id}>{item.name} </li>
+
+                    </Link>
+                  ))}
+                </ul>
+        </div>
+
           </div>
      )
  }
@@ -40,7 +54,7 @@
  const mapStateToProps= state => ({
     repositories : state.projects.projects,
     user:state.users,
-
+    tree:state.users.projectTree
 })
 
 export default  connect(mapStateToProps, { getProjects})(Repo)
