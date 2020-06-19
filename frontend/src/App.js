@@ -47,8 +47,7 @@ function App({loadUser}) {
                 <Route exact path='/' component={Home}/>
                 <Route exact path='/dashboard'   />
                 <Route exact path='/dashboard/overview' component={OverView}/>
-                <Route exact path='/dashboard/overview' component={OverView}/>
-                <Route exact path='/dashboard/explore' component={Explore}/>
+                 <Route exact path='/dashboard/explore' component={Explore}/>
 
                 <Route exact path='/repo/create' component={CreateRepo}/>
                 <Route exact path='/repo/import' component={ImportRepo}/>

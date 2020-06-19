@@ -7,7 +7,8 @@ import {
     PROJECTS_DATA,
     PROJECT_TREE,
     PROJECT_REPO_CODE,
-    CURRENT_PROJECT_ID  
+    CURRENT_PROJECT_ID ,
+    RESET_PROJECT_TREE
 } from "../actions/types";
 
 const initialState = {
@@ -53,11 +54,16 @@ export function users(state=initialState,action){
                 userProjects:payload
 
             }
-            case PROJECT_TREE:
+        case PROJECT_TREE:
                 return {
                     ...state,
                     projectTree:payload
                 }
+        case RESET_PROJECT_TREE:
+            return {
+                ...state,
+                projectTree:null
+            }
         case PROJECT_REPO_CODE:
             return {
                 ...state,

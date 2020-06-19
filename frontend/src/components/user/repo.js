@@ -5,7 +5,7 @@
  import {getProjects,getProjectCode} from '../../actions/gitActions'
     function Repo(props) {
       console.log("propsssss",props)
-       const {user,repositories,getProjects,tree,getProjectCode} = props
+       const {user,repositories,getProjects,tree,getProjectCode,pid} = props
         const [state,setState]= useState({
           repo:{}
         })
@@ -21,8 +21,11 @@
        },[])
 
        const handleRepoCode =(data)=>{
-         console.log(data)
-        getProjectCode(data.id)
+         console.log(data,"data")
+         console.log(props.match.params)
+          const pid = user.userProjects.filter((p)=> p.name == props.match.params.repo)
+         console.log("pid",pid)
+        getProjectCode(pid[0].id,data.id)
        }
      return (
          <div>
@@ -60,7 +63,7 @@
  const mapStateToProps= state => ({
     repositories : state.projects.projects,
     user:state.users,
-    tree:state.users.projectTree
-})
+    tree:state.users.projectTree,
+ })
 
 export default  connect(mapStateToProps, { getProjects,getProjectCode})(Repo)

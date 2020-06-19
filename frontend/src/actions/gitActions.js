@@ -12,7 +12,8 @@ import axios from "axios";
     GITLAB_USER_PROJECT_FAIL,
     PROJECT_TREE,
     PROJECT_REPO_CODE,
-    CURRENT_PROJECT_ID
+    CURRENT_PROJECT_ID,
+    RESET_PROJECT_TREE
 } from "./types";
 
 
@@ -202,11 +203,30 @@ export const getUserProjectTree=(data)=>async dispatch=>{
     
 }
 
-
-export const getProjectCode=(data)=>async dispatch=>{
+export const resetProjectTree=(data)=>async dispatch=>{
     try{
-        console.log("projectis",data)
-        services.Repositories.showBlobRaw('35',data)
+        console.log("reset",data)
+       
+            dispatch({
+                type:RESET_PROJECT_TREE,
+             })
+            // console.log("user",repository)
+    } catch(err){
+        console.log(err)
+        // dispatch({
+        //     type : GITLAB_USER_PROJECT_FAIL
+        // }); 
+       }
+    
+}
+
+
+
+export const getProjectCode=(projectId,data)=>async dispatch=>{
+    try{
+        console.log("qw",data,projectId)
+
+        services.Repositories.showBlobRaw(projectId,data)
         .then((code)=>{
             dispatch({
                 type:PROJECT_REPO_CODE,

@@ -13,8 +13,7 @@ export default function overView() {
              <div style={{marginTop:"20px"}}>
                  <a href="/repo/create" style={{color:"grey"}} className="btn hoverbtn">Create repository </a>
                  <a href="/repo/import" style={{color:"grey"}} className="btn hoverbtn">import repository </a>
-                 <a href="/workspace/create" style={{color:"grey"}} onMouseOver className="btn">Create workspace </a>
-
+ 
  
              </div>
         </div>
