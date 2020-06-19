@@ -33,19 +33,17 @@
 
              </div>
              <div>
+             <br/>
+             <br/>
                <h6>Take the next steps for this new repository and its freshly added files</h6>
                <p>Copy and connect the repository locally so that you can push updates you make and pull changes others make. Enter git clone and the repository URL at your command line:</p>
-               <p>link here</p>
-               <br/>
-               {/* <blockquote style={{color:"grey"}}>{state.http_url_to_repo}</blockquote> */}
-
+ 
                <blockquote style={{color:"grey"}}>{`git clone https://codehub.code.in/${props.match.params.username}/${props.match.params.repo}.git`}</blockquote>
-               <br/>
-               <p>Here's where you'll find this repository's source files. </p>
-             </div>
-             <p>files inside the repo</p>
+               </div>
 
-        <div style={{border:"2px solid black",padding:"10px"}}>
+        <div style={{border:"1px solid grey",padding:"10px",width:"400px"}}>
+        <h3>files</h3>
+
                 <ul>
                   {tree !== null  && tree.map((item)=>(
                     <Link onClick={()=>handleRepoCode(item)} to={`${props.location.pathname}/${item.name}`}>

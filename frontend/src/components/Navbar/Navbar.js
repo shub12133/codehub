@@ -2,6 +2,18 @@ import React from 'react'
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 
+import {
+  Drawer,
+  IconButton,
+   Divider,
+   Box,
+  withStyles
+} from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
+
+
+
+
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import Toolbar from '@material-ui/core/Toolbar';
@@ -11,6 +23,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
 import {connect} from 'react-redux'
 import {logout} from '../../actions/authAction'
+
+const drawerWidth = 240;
+
+const styles = {
+  toolbar: {
+    minWidth: drawerWidth
+  }
+};
+
 const useStyles = makeStyles((theme) => ({
     '@global': {
       ul: {
@@ -63,6 +84,17 @@ const useStyles = makeStyles((theme) => ({
         </>
     )
 
+
+
+
+    // SideDrawer.propTypes = {
+    //   classes: PropTypes.object.isRequired,
+    //   open: PropTypes.bool.isRequired,
+    //   onClose: PropTypes.func.isRequired
+    // };
+
+
+
     return (
         <>
     <CssBaseline />
@@ -80,9 +112,35 @@ const useStyles = makeStyles((theme) => ({
           
         </Toolbar>
       </AppBar>
+
+
+{/* 
+      <Drawer anchor="right" open={open} variant="temporary" onClose={onClose}>
+      <Toolbar disableGutters className={classes.toolbar}>
+        <Box
+          pl={3}
+          pr={3}
+          display="flex"
+          justifyContent="space-between"
+          width="100%"
+          alignItems="center"
+        >
+          <Typography variant="h6">A Sidedrawer</Typography>
+          <IconButton
+            onClick={onClose}
+            color="primary"
+            aria-label="Close Sidedrawer"
+          >
+            <CloseIcon />
+          </IconButton>
+        </Box>
+      </Toolbar>
+      <Divider />
+    </Drawer> */}
         </>
     )
 }
+
 
 const mapStateToProps = state=>({
     auth : state.auth

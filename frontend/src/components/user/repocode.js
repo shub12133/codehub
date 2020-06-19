@@ -7,8 +7,11 @@ import {connect } from 'react-redux'
 
     return (
         <div>
+        <h2>code</h2>
+        <div style={{backgroundColor:"#F6F8FA",height:"20px",border:"1px solid grey"}}></div>
+
             {code !== null && 
-            <div>
+            <div style={{border:"1px solid grey",textAlign:"left" }}>
                 {code}
             </div>}
         </div>

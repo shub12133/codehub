@@ -8,6 +8,7 @@ import Register from './containers/Auth/Register'
 import {loadUser} from './actions/authAction'
 import {connect} from 'react-redux'
 import Navbar from './components/Navbar/Navbar'
+import Home from './components/Home/Home'
 import OverView from './components/OverView/overView'
 import Oauth from './containers/Auth/Oauth'
 import DashBoard from './components/dashBoard'
@@ -23,11 +24,7 @@ import UserRepo from './components/user/repo'
 import Api from './components/repos/gitbreaker'
 import Projects from './components/repo/project'
 import CreateProject from './components/createProject'
-const Home = ()=>{
-  return (
-    <h1>Home</h1>
-  )
-}
+ 
 function App({loadUser}) {
   useEffect(() => {
     loadUser()
@@ -39,15 +36,17 @@ function App({loadUser}) {
           <Navbar/>
         </header>
         <div style={{display:'flex',height:"100vh"}} >
-        
+
               <div style={{backgroundColor:"rgb(7, 71, 166)"}}>
+
                   <DashBoard/>
+
               </div>
               <div  style={{textAlign:"center",alignItems:"center",width:"100%"}} >
-                <Route exact path='/' component={Home}/>
                 <Route exact path='/dashboard'   />
                 <Route exact path='/dashboard/overview' component={OverView}/>
                  <Route exact path='/dashboard/explore' component={Explore}/>
+                 <Route exact path='/' component={Home}/>
 
                 <Route exact path='/repo/create' component={CreateRepo}/>
                 <Route exact path='/repo/import' component={ImportRepo}/>

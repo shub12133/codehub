@@ -23,13 +23,13 @@ import {getUserProjects,getUserProjectTree,getProjectId, resetProjectTree} from 
     return (
         <div style={{marginTop:"10ps"}} >
 
-           <div  style={{display:"flex",textAlign:"center"}} className="intro">
+           <div  style={{display:"inline-flex",textAlign:"",margin:"30px 50px",flexDirection:"spaceAround"}} className="intro">
             <h3>Repositories</h3>
             <Link to='/repo/create'  className="btn btn-info" >Create repository</Link>
             </div>
 
-             <table >
-             <tbody>
+             <table style={{display:"inherit",alignItems:"center"}} >
+             <tbody style={{display:"initial"}}>
 
              
                  <tr>
