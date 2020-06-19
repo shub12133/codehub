@@ -53,3 +53,12 @@ export const CREATE_REPOSITORY = 'CREATE_REPOSITORY'
 //prjects
 export const GET_PROJECTS = 'GET_PROJECTS'
 export const CREATE_PROJECT = 'CREATE_PROJECT'
+<<<<<<< HEAD
+=======
+
+//blob data
+export const PROJECT_TREE ='PROJECT_TREE'
+export const PROJECT_REPO_CODE = 'PROJECT_REPO_CODE'
+export const CURRENT_PROJECT_ID = 'CURRENT_PROJECT_ID'
+export const RESET_PROJECT_TREE = 'RESET_PROJECT_TREE'
+>>>>>>> e6138897b8707a50047ac4f53cde2857402f8a53

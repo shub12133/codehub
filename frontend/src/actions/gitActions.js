@@ -10,7 +10,11 @@ import axios from "axios";
     CREATE_PROJECT,
     GITLAB_USER_DATA,
     GITLAB_USER_DATA_FAIL,
-    GITLAB_USER_PROJECT_FAIL
+    GITLAB_USER_PROJECT_FAIL,
+    PROJECT_TREE,
+    PROJECT_REPO_CODE,
+    CURRENT_PROJECT_ID,
+    RESET_PROJECT_TREE
 } from "./types";
 
 
@@ -179,3 +183,80 @@ export const getUser=(username)=>async dispatch=>{
 }
 
 
+//get repository blob tree
+export const getUserProjectTree=(data)=>async dispatch=>{
+    try{
+        console.log("projectis",data)
+        services.Repositories.tree(data)
+        .then((tree)=>{
+            dispatch({
+                type:PROJECT_TREE,
+                payload:tree
+            })
+            // console.log("user",repository)
+        })
+    } catch(err){
+        console.log(err)
+        // dispatch({
+        //     type : GITLAB_USER_PROJECT_FAIL
+        // }); 
+       }
+    
+}
+
+export const resetProjectTree=(data)=>async dispatch=>{
+    try{
+        console.log("reset",data)
+       
+            dispatch({
+                type:RESET_PROJECT_TREE,
+             })
+            // console.log("user",repository)
+    } catch(err){
+        console.log(err)
+        // dispatch({
+        //     type : GITLAB_USER_PROJECT_FAIL
+        // }); 
+       }
+    
+}
+
+
+
+export const getProjectCode=(projectId,data)=>async dispatch=>{
+    try{
+        console.log("qw",data,projectId)
+
+        services.Repositories.showBlobRaw(projectId,data)
+        .then((code)=>{
+            dispatch({
+                type:PROJECT_REPO_CODE,
+                payload:code
+            })
+            // console.log("user",repository)
+        })
+    } catch(err){
+        console.log(err)
+        // dispatch({
+        //     type : GITLAB_USER_PROJECT_FAIL
+        // }); 
+       }
+    
+}
+
+export const getProjectId=(data)=>async dispatch=>{
+    try{
+        
+            dispatch({
+                type:CURRENT_PROJECT_ID,
+                payload:data
+            })
+            // console.log("user",repository)
+     } catch(err){
+        console.log(err)
+        // dispatch({
+        //     type : GITLAB_USER_PROJECT_FAIL
+        // }); 
+       }
+    
+}

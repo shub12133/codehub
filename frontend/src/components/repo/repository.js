@@ -3,26 +3,33 @@ import ListTable from '../table/listTable'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
-import {getUserProjects } from '../../actions/gitActions'
+import {getUserProjects,getUserProjectTree,getProjectId, resetProjectTree} from '../../actions/gitActions'
   function Repository(props) {
-   const {repositories,user,getUserProjects} =props
+   const {repositories,user,getUserProjects,getUserProjectTree,getProjectId,resetProjectTree} =props
     const  handleRepo=()=>{
         console.log("working",user.id)
            }
         useEffect(()=>{
             getUserProjects(user.id)
-
+            return(()=>{
+                resetProjectTree()
+            })
+             
         },[])
+    const handleBlob = (data)=>{
+        getUserProjectTree(data)
+        // getProjectId(data.id)
+    }
     return (
         <div style={{marginTop:"10ps"}} >
-
-           <div  style={{display:"flex",textAlign:"center"}} className="intro">
             <h3>Repositories</h3>
+           <div  style={{display:"inline-flex",textAlign:"",margin:"30px 50px",flexDirection:"spaceAround"}} className="intro">
+            
             <Link to='/repo/create'  className="btn btn-info" >Create repository</Link>
             </div>
 
-             <table >
-             <tbody>
+             <table style={{display:"inherit",alignItems:"center"}} >
+             <tbody style={{display:"initial"}}>
 
              
                  <tr>
@@ -32,7 +39,7 @@ import {getUserProjects } from '../../actions/gitActions'
                  </tr>
                  {repositories.length > 0 && repositories.map((repositories)=>(
                     <tr style={{borderTop:"1px solid grey"}}>
-                    <Link to={`/user/${user.name}/${repositories.name}`}>
+                    <Link onClick={()=>handleBlob(repositories.id)} to={`/user/${user.name}/${repositories.name}`}>
                  <td>
                  <img src="https://d301sr5gafysq2.cloudfront.net/16f34e177e1f/img/projects/avatars/32/4.png"/>
                      <span>{repositories.name}</span>
@@ -56,7 +63,7 @@ const mapStateToProps= state => ({
     user:state.users.gitlabdata[0]
 })
 
-export default  connect(mapStateToProps, {getUserProjects})(Repository)
+export default  connect(mapStateToProps, {getUserProjects,getUserProjectTree,getProjectId,resetProjectTree})(Repository)
 
 
 

@@ -5,13 +5,20 @@ import {
     GITLAB_USER_DATA,
     GITLAB_USER_DATA_FAIL,
     PROJECTS_DATA,
+    PROJECT_TREE,
+    PROJECT_REPO_CODE,
+    CURRENT_PROJECT_ID ,
+    RESET_PROJECT_TREE
 } from "../actions/types";
 
 const initialState = {
     
     gitlabdata:{},
     userCreated:false,
-    userProjects:[]
+    userProjects:[],
+    projectTree:null,
+    code:null,
+    currentProjectId:null
 }
 
 export function users(state=initialState,action){
@@ -31,6 +38,11 @@ export function users(state=initialState,action){
                 gitlabdata:payload,
                 userCreated:true
             }
+        case CURRENT_PROJECT_ID:
+            return {
+                ...state,
+                currentProjectId:payload
+            }
         case     GITLAB_USER_DATA_FAIL:
             return {
                 ...state,
@@ -41,6 +53,21 @@ export function users(state=initialState,action){
                 ...state,
                 userProjects:payload
 
+            }
+        case PROJECT_TREE:
+                return {
+                    ...state,
+                    projectTree:payload
+                }
+        case RESET_PROJECT_TREE:
+            return {
+                ...state,
+                projectTree:null
+            }
+        case PROJECT_REPO_CODE:
+            return {
+                ...state,
+                code:payload
             }
        case GITLAB_USER_PROJECT_FAIL:
        return{

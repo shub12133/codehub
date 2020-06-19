@@ -70,6 +70,32 @@ function RegisterDialog(props) {
     registerTermsCheckbox,
   ]);
 
+<<<<<<< HEAD
+=======
+  const {register,user,createUser} = props
+  const [formData, setFormData] = useState({
+      name : '',
+      username:'',
+      email : "",
+      password:'',
+      phone: ''
+  })
+  const classes = useStyles();
+ const handleChange = e => {
+      setFormData({
+          ...formData,
+          [e.target.name] : e.target.value
+      })
+  }
+ const handleSubmit = (e)=>{
+     e.preventDefault()
+     register(formData,history)
+      console.log(formData)
+ }
+ const handlePush =()=>{
+  history.push('/login')
+ }
+>>>>>>> e6138897b8707a50047ac4f53cde2857402f8a53
   return (
     <FormDialog
       loading={isLoading}
@@ -107,6 +133,7 @@ function RegisterDialog(props) {
             margin="normal"
             required
             fullWidth
+<<<<<<< HEAD
             error={
               status === "passwordTooShort" || status === "passwordsDontMatch"
             }
@@ -238,6 +265,25 @@ function RegisterDialog(props) {
         </Button>
       }
     />
+=======
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Sign Up
+          </Button>
+          <Grid container justify="flex-end">
+            <Grid item>
+              <Link onClick={handlePush} variant="body2">
+                Already have an account? Sign in
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+      
+    </Container>
+>>>>>>> e6138897b8707a50047ac4f53cde2857402f8a53
   );
 }
 

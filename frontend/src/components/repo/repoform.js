@@ -38,12 +38,12 @@ import {Link,useHistory} from 'react-router-dom'
              <form onSubmit={handleCall}>
              <hr/>
              <div style={{textAlign:"left",marginLeft:"15%"}}>
-                 <label  for="workspace" >Workspace  :  </label>
+                 {/* <label  for="workspace" >Workspace  :  </label>
                       <select id="workspace" className="formInput" name="workspace" onChange={(e)=>handleCange(e)}>
                          <option>bharth</option>
                          <option>dev</option>
 
-                     </select>
+                     </select> */}
                   <br/>
                <label for="pname">Project name :</label>
                <input className="formInput" name="projectName" id="pname" type="text" onChange={(e)=>handleCange(e)}/>
@@ -51,9 +51,9 @@ import {Link,useHistory} from 'react-router-dom'
                <label for="rname">Repository name :</label>
                <input className="formInput" name="repositoryName" id="rname" type="text" onChange={(e)=>handleCange(e)}/>
                <br/>
-               <label for="access"> Access level :</label>
+               {/* <label for="access"> Access level :</label>
                <input type="checkbox" onClick={handleCheck} id="access" name="privateRepo" onChange={(e)=>handleCange(e)} />
-               <span>private repo</span>
+               <span>private repo</span> */}
                <br/>
 
                <button type="submit" className="btn" >Create repository</button>
