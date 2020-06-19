@@ -1,6 +1,6 @@
-import React , {useEffect} from 'react';
+import React , {Fragment, Suspense, lazy,useEffect} from 'react';
 import {BrowserRouter as Router,Route} from 'react-router-dom';
-import Sidebar from './components/dashBoard'
+import Sidebar from './components/dashboard/dashBoard';
 import Footer from './components/Footer/Footer'
 import './App.css';
 import Login from './containers/Auth/Login'
@@ -10,7 +10,7 @@ import {connect} from 'react-redux'
 import Navbar from './components/Navbar/Navbar'
 import OverView from './components/OverView/overView'
 import Oauth from './containers/Auth/Oauth'
-import DashBoard from './components/dashBoard'
+import DashBoard from './components/dashboard/dashBoard'
 import CreateRepo from './components/repo/createRepo'
 import ImportRepo from './components/repo/importRepo'
 import Workspace from './components/workspace/workspace'
@@ -22,7 +22,17 @@ import UserRepo from './components/user/repo'
 import Api from './components/repos/gitbreaker'
 import Projects from './components/repo/project'
 import CreateProject from './components/createProject'
-import Landing from "./components/layout/Landing";
+import theme from "./theme";
+import GlobalStyles from "./GlobalStyles";
+import * as serviceWorker from "./serviceWorker";
+import Pace from "./shared/components/Pace";
+ import home from "./components/home/Home";
+ import header from "./components/home/HeadSection";
+
+
+
+const main =lazy(() => import("./containers/Auth/Main"));
+  
 
 const Home = ()=>{
   return (
@@ -50,21 +60,16 @@ function App({loadUser}) {
                 <Route exact path='/dashboard/overview' component={OverView}/>
                 <Route exact path='/dashboard/overview' component={OverView}/>
                 <Route exact path='/dashboard/explore' component={Explore}/>
-               <Route exact path="/" component={Landing} />
-                {/* <Route component={Routes} /> */}
-
+                {/* <Route exact path='/Footer/home' component={Home}/> */}
 
                 <Route exact path='/repo/create' component={CreateRepo}/>
                 <Route exact path='/repo/import' component={ImportRepo}/>
                 <Route exact path='/workspace/create' component={Workspace}/>
                 <Route exact path='/dashboard/repositories' component={ Repository}/>
-<<<<<<< HEAD
-                <Route exact path='/dashboard/projects' component={ Projects}/>
-=======
                 {/* <Route exact path='/dashboard/projects' component={ Projects}/> */}
->>>>>>> f386460f21effa76d0d3f5f5596e6a5ac8d65b8e
                 <Route exact path='/dashboard/profile' component={Profile}/>
                 <Route exact path='/account/projects/create' component={CreateProject}/>
+                {/* <Route exact path='/home/c component={CreateProject}/> */}
 
                 <Route exact path='/user/:username/:repo' component={ UserRepo}/>
  

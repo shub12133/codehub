@@ -1,4 +1,4 @@
-import React ,{useState,useEffect} from 'react';
+import React ,{useState,useEffect,Fragment} from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -10,21 +10,23 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import useStyles from '../commonCss/CommonCss';
-
+import PropTypes from "prop-types";
+import { Typography, Box } from "@material-ui/core";
+import UserDataArea from "./UserDataArea";
 
 import {Link} from 'react-router-dom'
-import OverView from './OverView/overView'
+import OverView from '../OverView/overView';
+
 
 const pageLinks = ['OverView','Repos', 'Profile', 'Pull request', 'Review']
-// const useStyles = makeStyles({
-//   list: {
-//     width: 250,
-//   },
-//   fullList: {
-//     width: 'auto',
-//   },
-// });
+const useStyles = makeStyles({
+  list: {
+    width: 250,
+  },
+  fullList: {
+    width: 'auto',
+  },
+});
 
 
 

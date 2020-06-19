@@ -1,94 +1,159 @@
-import React from 'react'
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
+import React, { memo } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Hidden,
+  IconButton,
+  withStyles
+} from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/Menu";
+import HomeIcon from "@material-ui/icons/Home";
+import HowToRegIcon from "@material-ui/icons/HowToReg";
+import LockOpenIcon from "@material-ui/icons/LockOpen";
+import BookIcon from "@material-ui/icons/Book";
+import NavigationDrawer from "../../shared/components/NavigationDrawer";
 
-import CssBaseline from '@material-ui/core/CssBaseline';
+const styles = theme => ({
+  appBar: {
+    boxShadow: theme.shadows[6],
+    backgroundColor: theme.palette.common.white
+  },
+  toolbar: {
+    display: "flex",
+    justifyContent: "space-between"
+  },
+  menuButtonText: {
+    fontSize: theme.typography.body1.fontSize,
+    fontWeight: theme.typography.h6.fontWeight
+  },
+  brandText: {
+    fontFamily: "'Baloo Bhaijaan', cursive",
+    fontWeight: 400
+  },
+  noDecoration: {
+    textDecoration: "none !important"
+  }
+});
 
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
-import { makeStyles } from '@material-ui/core/styles';
-import { useHistory } from "react-router-dom";
-import {connect} from 'react-redux'
-import {logout} from '../../actions/authAction'
-import { blue } from '@material-ui/core/colors';
-
-
-const useStyles = makeStyles((theme) => ({
-    '@global': {
-      ul: {
-        margin: 2,
-        padding: 7,
-        listStyle: 'none',
-      },
+function NavBar(props) {
+  const {
+    classes,
+    openRegister,
+    openLogin,
+    handleMobileDrawerOpen,
+    handleMobileDrawerClose,
+    mobileDrawerOpen,
+    selectedTab
+  } = props;
+  const menuItems = [
+    {
+      link: "/",
+      name: "Home",
+      icon: <HomeIcon className="text-white" />
     },
-    appBar: {
-      borderBottom: `3px solid ${theme.palette.divider}`,
+    
+    {
+      name: "Register",
+      onClick: openRegister,
+      icon: <HowToRegIcon className="text-white" />
     },
-    toolbar: {
-      flexWrap: 'wrap',
-    },
-    toolbarTitle: {
-      flexGrow: 1,
-    },
-    link: {
-      margin: theme.spacing(1, 1.6),
-    },
-    heroContent: {
-      padding: theme.spacing(8, 0, 6),
+    {
+      name: "Login",
+      onClick: openLogin,
+      icon: <LockOpenIcon className="text-white" />
     }
-}))
- function Navbar({auth : {isAuthenticated , loading} ,logout}) {
-    const classes = useStyles();
-    let history = useHistory();
-    const handleClickLogin = ()=>{
-            history.push('/login')
-    }
-    const handleDashoard =()=>{
-      history.push('/dashboard')
-    }
-    const authLinks = (
-        <nav>
-        <Link variant="button" color="textPrimary" onClick={handleDashoard} className={classes.link}>
-          dashboard
-        </Link>
-       
-        <Button onClick={()=>logout(history)} color="dark" variant="outlined" className={classes.link}>
-            Logout
-          </Button>
-      </nav>
-    )
-    const guestLinks = (
-        <>
-        <Button onClick={handleClickLogin} color="primary" variant="outlined" className={classes.link}>
-            Login
-          </Button>
-        </>
-    )
-
-    return (
-        <>
-    <CssBaseline />
-      <AppBar position="static" color="blue" elevation={0} className={classes.appBar}>
+  ];
+  return (
+    <div className={classes.root}>
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <Typography variant="h6" color="dark" noWrap className={classes.toolbarTitle}>
-            Code Hub
-          </Typography>
-        
-        {
-            !loading && (
-            <>{isAuthenticated ? authLinks : guestLinks}</>
-            )
-        }
-          
+          <div>
+            <Typography
+              variant="h4"
+              className={classes.brandText}
+              display="inline"
+              color="primary"
+            >
+              Code
+            </Typography>
+            <Typography
+              variant="h4"
+              className={classes.brandText}
+              display="inline"
+              color="secondary"
+            >
+              Hub
+            </Typography>
+          </div>
+          <div>
+            <Hidden mdUp>
+              <IconButton
+                className={classes.menuButton}
+                onClick={handleMobileDrawerOpen}
+                aria-label="Open Navigation"
+              >
+                <MenuIcon color="primary" />
+              </IconButton>
+            </Hidden>
+            <Hidden smDown>
+              {menuItems.map(element => {
+                if (element.link) {
+                  return (
+                    <Link
+                      key={element.name}
+                      to={element.link}
+                      className={classes.noDecoration}
+                      onClick={handleMobileDrawerClose}
+                    >
+                      <Button
+                        color="secondary"
+                        size="large"
+                        classes={{ text: classes.menuButtonText }}
+                      >
+                        {element.name}
+                      </Button>
+                    </Link>
+                  );
+                }
+                return (
+                  <Button
+                    color="secondary"
+                    size="large"
+                    onClick={element.onClick}
+                    classes={{ text: classes.menuButtonText }}
+                    key={element.name}
+                  >
+                    {element.name}
+                  </Button>
+                );
+              })}
+            </Hidden>
+          </div>
         </Toolbar>
       </AppBar>
-        </>
-    )
+      <NavigationDrawer
+        menuItems={menuItems}
+        anchor="right"
+        open={mobileDrawerOpen}
+        selectedItem={selectedTab}
+        onClose={handleMobileDrawerClose}
+      />
+    </div>
+  );
 }
 
-const mapStateToProps = state=>({
-    auth : state.auth
-})
+NavBar.propTypes = {
+  classes: PropTypes.object.isRequired,
+  handleMobileDrawerOpen: PropTypes.func,
+  handleMobileDrawerClose: PropTypes.func,
+  mobileDrawerOpen: PropTypes.bool,
+  selectedTab: PropTypes.string,
+  openRegisterDialog: PropTypes.func.isRequired,
+  openLoginDialog: PropTypes.func.isRequired
+};
 
-export default connect(mapStateToProps,{logout})(Navbar)  
+export default withStyles(styles, { withTheme: true })(memo(NavBar));

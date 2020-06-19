@@ -1,177 +1,253 @@
-import React , {useState} from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import {connect} from 'react-redux'
+import React, { useState, useCallback, useRef, Fragment } from "react";
+import PropTypes from "prop-types";
 import {register} from '../../actions/authAction'
 import {createUser} from '../../actions/gitActions'
 import AlertC from '../../components/Alert/Alert'
-import { useHistory } from "react-router-dom";
-import useStyles from '../../commonCss/CommonCss'
 
-// const useStyles = makeStyles((theme) => ({
-//   paper: {
-//     marginTop: theme.spacing(8),
-//     display: 'flex',
-//     flexDirection: 'column',
-//     alignItems: 'center',
-//   },
-//   avatar: {
-//     margin: theme.spacing(1),
-//     backgroundColor: theme.palette.secondary.main,
-//   },
-//   form: {
-//     width: '100%', // Fix IE 11 issue.
-//     marginTop: theme.spacing(3),
-//   },
-//   submit: {
-//     margin: theme.spacing(3, 0, 2),
-//   },
-// }));
 
- function Register(props) {
-  let history = useHistory();
+import {
+  FormHelperText,
+  TextField,
+  Button,
+  Checkbox,
+  Typography,
+  FormControlLabel,
+  withStyles,
+} from "@material-ui/core";
+import FormDialog from "../../shared/components/FormDialog";
+import HighlightedInformation from "../../shared/components/HighlightedInformation";
+import ButtonCircularProgress from "../../shared/components/ButtonCircularProgress";
+import VisibilityPasswordTextField from "../../shared/components/VisibilityPasswordTextField";
 
-  const {register,user,createUser} = props
-  const [formData, setFormData] = useState({
-      name : '',
-      username:'',
-      email : "",
-      password:'',
-      phone: ''
-  })
-  const classes = useStyles();
- const handleChange = e => {
-      setFormData({
-          ...formData,
-          [e.target.name] : e.target.value
-      })
-  }
- const handleSubmit = (e)=>{
-     e.preventDefault()
-     register(formData,history)
-      console.log(formData)
- }
+const styles = (theme) => ({
+  link: {
+    transition: theme.transitions.create(["background-color"], {
+      duration: theme.transitions.duration.complex,
+      easing: theme.transitions.easing.easeInOut,
+    }),
+    cursor: "pointer",
+    color: theme.palette.primary.main,
+    "&:enabled:hover": {
+      color: theme.palette.primary.dark,
+    },
+    "&:enabled:focus": {
+      color: theme.palette.primary.dark,
+    },
+  },
+});
+
+function RegisterDialog(props) {
+  const { setStatus, theme, onClose, openTermsDialog, status, classes } = props;
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasTermsOfServiceError, setHasTermsOfServiceError] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const registerTermsCheckbox = useRef();
+  const registerPassword = useRef();
+  const registerPasswordRepeat = useRef();
+
+  const register = useCallback(() => {
+    if (!registerTermsCheckbox.current.checked) {
+      setHasTermsOfServiceError(true);
+      return;
+    }
+    if (
+      registerPassword.current.value !== registerPasswordRepeat.current.value
+    ) {
+      setStatus("passwordsDontMatch");
+      return;
+    }
+    setStatus(null);
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+  }, [
+    setIsLoading,
+    setStatus,
+    setHasTermsOfServiceError,
+    registerPassword,
+    registerPasswordRepeat,
+    registerTermsCheckbox,
+  ]);
+
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign up
-        </Typography>
-        <AlertC/>
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="name"
-                variant="outlined"
-                required
-                fullWidth
-                id="name"
-                label="Enter Name"
-                autoFocus
-                onChange={handleChange}
-              />
-             
-            </Grid>
-          
-
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="phone"
-                label="Enter Phone Number"
-                name="phone"
-                autoComplete="phone"
-                onChange={handleChange}
-              />
-            </Grid>
-            <Grid item xs={12} sm={12}>
-            <TextField
-                autoComplete="fusername"
-                name="username"
-                variant="outlined"
-                required
-                fullWidth
-                id="username"
-                label="Enter Username"
-                autoFocus
-                onChange={handleChange}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                onChange={handleChange}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                onChange={handleChange}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid>
-          </Grid>
-          <Button
-            type="submit"
+    <FormDialog
+      loading={isLoading}
+      onClose={onClose}
+      open
+      headline="Register"
+      onFormSubmit={(e) => {
+        e.preventDefault();
+        register();
+      }}
+      hideBackdrop
+      hasCloseIcon
+      content={
+        <Fragment>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
             fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign Up
-          </Button>
-          <Grid container justify="flex-end">
-            <Grid item>
-              <Link href="/login" variant="body2">
-                Already have an account? Sign in
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-      
-    </Container>
+            error={status === "invalidEmail"}
+            label="Email Address"
+            autoFocus
+            autoComplete="off"
+            type="email"
+            onChange={() => {
+              if (status === "invalidEmail") {
+                setStatus(null);
+              }
+            }}
+            FormHelperTextProps={{ error: true }}
+          />
+          
+          <VisibilityPasswordTextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            error={
+              status === "passwordTooShort" || status === "passwordsDontMatch"
+            }
+            label="Password"
+            inputRef={registerPassword}
+            autoComplete="off"
+            onChange={() => {
+              if (
+                status === "passwordTooShort" ||
+                status === "passwordsDontMatch"
+              ) {
+                setStatus(null);
+              }
+            }}
+            helperText={(() => {
+              if (status === "passwordTooShort") {
+                return "Create a password at least 6 characters long.";
+              }
+              if (status === "passwordsDontMatch") {
+                return "Your passwords dont match.";
+              }
+              return null;
+            })()}
+            FormHelperTextProps={{ error: true }}
+            isVisible={isPasswordVisible}
+            onVisibilityChange={setIsPasswordVisible}
+          />
+          <VisibilityPasswordTextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            error={
+              status === "passwordTooShort" || status === "passwordsDontMatch"
+            }
+            label="Repeat Password"
+            inputRef={registerPasswordRepeat}
+            autoComplete="off"
+            onChange={() => {
+              if (
+                status === "passwordTooShort" ||
+                status === "passwordsDontMatch"
+              ) {
+                setStatus(null);
+              }
+            }}
+            helperText={(() => {
+              if (status === "passwordTooShort") {
+                return "Create a password at least 6 characters long.";
+              }
+              if (status === "passwordsDontMatch") {
+                return "Your passwords dont match.";
+              }
+            })()}
+            FormHelperTextProps={{ error: true }}
+            isVisible={isPasswordVisible}
+            onVisibilityChange={setIsPasswordVisible}
+          />
+          <FormControlLabel
+            style={{ marginRight: 0 }}
+            control={
+              <Checkbox
+                color="primary"
+                inputRef={registerTermsCheckbox}
+                onChange={() => {
+                  setHasTermsOfServiceError(false);
+                }}
+              />
+            }
+            label={
+              <Typography variant="body1">
+                I agree to the
+                <span
+                  className={classes.link}
+                  onClick={isLoading ? null : openTermsDialog}
+                  tabIndex={0}
+                  role="button"
+                  onKeyDown={(event) => {
+                    // For screenreaders listen to space and enter events
+                    if (
+                      (!isLoading && event.keyCode === 13) ||
+                      event.keyCode === 32
+                    ) {
+                      openTermsDialog();
+                    }
+                  }}
+                >
+                  {" "}
+                  terms of service
+                </span>
+              </Typography>
+            }
+          />
+          {hasTermsOfServiceError && (
+            <FormHelperText
+              error
+              style={{
+                display: "block",
+                marginTop: theme.spacing(-1),
+              }}
+            >
+              In order to create an account, you have to accept our terms of
+              service.
+            </FormHelperText>
+          )}
+          {status === "accountCreated" ? (
+            <HighlightedInformation>
+              We have created your account. Please click on the link in the
+              email we have sent to you before logging in.
+            </HighlightedInformation>
+          ) : (
+            <HighlightedInformation>
+              Registration is disabled until we go live.
+            </HighlightedInformation>
+          )}
+        </Fragment>
+      }
+      actions={
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          size="large"
+          color="secondary"
+          disabled={isLoading}
+        >
+          Register
+          {isLoading && <ButtonCircularProgress />}
+        </Button>
+      }
+    />
   );
 }
 
-const mapStateToProps = state =>({
-  user : state.auth
-})
+RegisterDialog.propTypes = {
+  theme: PropTypes.object.isRequired,
+  onClose: PropTypes.func.isRequired,
+  openTermsDialog: PropTypes.func.isRequired,
+  status: PropTypes.string,
+  setStatus: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
+};
 
-export default connect(mapStateToProps, {register,createUser})(Register)
+export default withStyles(styles, { withTheme: true })(RegisterDialog);

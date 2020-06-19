@@ -25,10 +25,7 @@ export default function CreateRepo(props) {
         </div>
     )
 }
-<<<<<<< HEAD
-=======
 
 
 
  
->>>>>>> f386460f21effa76d0d3f5f5596e6a5ac8d65b8e

@@ -3,20 +3,11 @@ import ListTable from '../table/listTable'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
-<<<<<<< HEAD
-import {getProjects } from '../../actions/gitActions'
-  function Repository(props) {
-   const {repositories,createRepositories,user,getProjects} =props
-    const  handleRepo=()=>{
-        console.log("working")
-         getProjects(user)
-=======
 import {getUserProjects } from '../../actions/gitActions'
   function Repository(props) {
    const {repositories,user,getUserProjects} =props
     const  handleRepo=()=>{
         console.log("working",user.id)
->>>>>>> f386460f21effa76d0d3f5f5596e6a5ac8d65b8e
            }
         useEffect(()=>{
             getUserProjects(user.id)
@@ -61,13 +52,6 @@ import {getUserProjects } from '../../actions/gitActions'
 }
 
 const mapStateToProps= state => ({
-<<<<<<< HEAD
-    repositories : state.projects.projects,
-    user:state.auth.user
-})
-
-export default  connect(mapStateToProps, {getProjects})(Repository)
-=======
     repositories : state.users.userProjects,
     user:state.users.gitlabdata[0]
 })
@@ -77,4 +61,3 @@ export default  connect(mapStateToProps, {getUserProjects})(Repository)
 
 
 
->>>>>>> f386460f21effa76d0d3f5f5596e6a5ac8d65b8e

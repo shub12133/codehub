@@ -1,16 +1,10 @@
 import React,{useState,useEffect} from 'react'
 import {createRepositories,createProject,getUser} from '../../actions/gitActions'
 import {connect} from 'react-redux'
-<<<<<<< HEAD
-import {Link} from 'react-router-dom'
-  function Repoform(props) {
-        const {createProject,createRepositories,user,getUser} = props
-=======
 import {Link,useHistory} from 'react-router-dom'
   function Repoform(props) {
       const history = useHistory()
         const {createProject,user,getUser} = props
->>>>>>> f386460f21effa76d0d3f5f5596e6a5ac8d65b8e
     const [repo,setRepo]=useState({
         workspace:"",
         projectName:"",
@@ -28,15 +22,9 @@ import {Link,useHistory} from 'react-router-dom'
 
     const handleCall = (e)=>{
         e.preventDefault()
-<<<<<<< HEAD
-        alert('yo')
-        createProject(repo,user)
-        
-=======
         console.log("jjj",user)
          createProject(repo,user[0].id)
         history.push(`/user/${user[0].username}/${repo.repositoryName}`)
->>>>>>> f386460f21effa76d0d3f5f5596e6a5ac8d65b8e
     }
 
     const handleCheck = (e)=>{
@@ -78,13 +66,8 @@ import {Link,useHistory} from 'react-router-dom'
 }
 const mapStateToProps= state => ({
     project : state.projects.projects,
-<<<<<<< HEAD
-    user:state.auth.user
-
-=======
     user:state.users.gitlabdata
    
->>>>>>> f386460f21effa76d0d3f5f5596e6a5ac8d65b8e
 })
 
 export default  connect(mapStateToProps, { createRepositories,createProject})(Repoform)

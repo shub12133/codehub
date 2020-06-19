@@ -1,160 +1,207 @@
-import React , {useState} from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import {connect} from 'react-redux'
-import {login} from '../../actions/authAction'
-import {Redirect} from 'react-router-dom'
-import AlertC from '../../components/Alert/Alert'
-import GitHubIcon from '@material-ui/icons/GitHub';
-import {host,githubAuth} from '../../utils/constants'
-import { useHistory } from "react-router-dom";
-import {getUser} from '../../actions/gitActions'
-<<<<<<< HEAD
-import  useStyles from './../../commonCss/CommonCss'
-=======
->>>>>>> f386460f21effa76d0d3f5f5596e6a5ac8d65b8e
+import React, { useState, useCallback, useRef, Fragment } from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import { withRouter } from "react-router-dom";
+import {
+  TextField,
+  Button,
+  Checkbox,
+  Typography,
+  FormControlLabel,
+  withStyles,
+} from "@material-ui/core";
+import FormDialog from "../../shared/components/FormDialog";
+import HighlightedInformation from "../../shared/components/HighlightedInformation";
+import ButtonCircularProgress from "../../shared/components/ButtonCircularProgress";
+import VisibilityPasswordTextField from "../../shared/components/VisibilityPasswordTextField";
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     width: '100%',
-//     '& > * + *': {
-//       marginTop: theme.spacing(2),
-//     },
-//   },
-//   paper: {
-//     marginTop: theme.spacing(8),
-//     display: 'flex',
-//     flexDirection: 'column',
-//     alignItems: 'center',
-//   },
-//   avatar: {
-//     margin: theme.spacing(1),
-//     backgroundColor: theme.palette.secondary.main,
-//   },
-//   form: {
-//     width: '100%', // Fix IE 11 issue.
-//     marginTop: theme.spacing(1),
-//   },
-//   submit: {
-//     margin: theme.spacing(3, 0, 2),
-//   },
-//   bkg : {
-//       backgroundColor : "#f5f5f5"
-//   }
-// }));
+const styles = (theme) => ({
+  forgotPassword: {
+    marginTop: theme.spacing(2),
+    color: theme.palette.primary.main,
+    cursor: "pointer",
+    "&:enabled:hover": {
+      color: theme.palette.primary.dark,
+    },
+    "&:enabled:focus": {
+      color: theme.palette.primary.dark,
+    },
+  },
+  disabledText: {
+    cursor: "auto",
+    color: theme.palette.text.disabled,
+  },
+  formControlLabel: {
+    marginRight: 0,
+  },
+});
 
-function Login(props) {
-    const {login,isAuthenticated,history,user} = props
-  const classes = useStyles();
-  const [formData , setFormData] = useState({
-      email : "",
-      password : ""
-  })
- const handleChange = e =>{
-      setFormData({
-          ...formData,
-          [e.target.name] : e.target.value
-      })
-  }
-const  handleSubmit = e =>{
-      e.preventDefault()
-      login(formData,history)
-      .then(()=>{
-        getUser(user)
-      })
-  }
-  // if(isAuthenticated){
-  //     return <Redirect to='/' />
-  // }
- const handleGithub = ()=>{
-   window.location.href = `${host}${githubAuth}`
- }
+function LoginDialog(props) {
+  const {
+    setStatus,
+    history,
+    classes,
+    onClose,
+    openChangePasswordDialog,
+    status,
+  } = props;
+  const [isLoading, setIsLoading] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const loginEmail = useRef();
+  const loginPassword = useRef();
+
+  const login = useCallback(() => {
+    setIsLoading(true);
+    setStatus(null);
+    if (loginEmail.current.value !== "test@web.com") {
+      setTimeout(() => {
+        setStatus("invalidEmail");
+        setIsLoading(false);
+      }, 1500);
+    } else if (loginPassword.current.value !== "test") {
+      setTimeout(() => {
+        setStatus("invalidPassword");
+        setIsLoading(false);
+      }, 1500);
+    } else {
+      setTimeout(() => {
+        history.push("/c/dashboard");
+      }, 150);
+    }
+  }, [setIsLoading, loginEmail, loginPassword, history, setStatus]);
+
   return (
-    <Container component="main" maxWidth="xs" className={classes.bkg}>
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <GitHubIcon onClick={handleGithub}/>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <AlertC/>
-       
-        <form className={classes.form} noValidate onSubmit={handleSubmit}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            value={formData.email}
-            autoComplete="email"
-            autoFocus
-            onChange = {handleChange}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            value={formData.password}
-            id="password"
-            autoComplete="current-password"
-            onChange = {handleChange}
-
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
-          </Button>
-          <Grid container>
-            {/* <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid> */}
-            <Grid item>
-              <Link href="/register" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-     
-    </Container>
+    <Fragment>
+      <FormDialog
+        open
+        onClose={onClose}
+        loading={isLoading}
+        onFormSubmit={(e) => {
+          e.preventDefault();
+          login();
+        }}
+        hideBackdrop
+        headline="Login"
+        content={
+          <Fragment>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              error={status === "invalidEmail"}
+              required
+              fullWidth
+              label="Email Address"
+              inputRef={loginEmail}
+              autoFocus
+              autoComplete="off"
+              type="email"
+              onChange={() => {
+                if (status === "invalidEmail") {
+                  setStatus(null);
+                }
+              }}
+              helperText={
+                status === "invalidEmail" &&
+                "This email address isn't associated with an account."
+              }
+              FormHelperTextProps={{ error: true }}
+            />
+            <VisibilityPasswordTextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              error={status === "invalidPassword"}
+              label="Password"
+              inputRef={loginPassword}
+              autoComplete="off"
+              onChange={() => {
+                if (status === "invalidPassword") {
+                  setStatus(null);
+                }
+              }}
+              helperText={
+                status === "invalidPassword" ? (
+                  <span>
+                    Incorrect password. Try again, or click on{" "}
+                    <b>&quot;Forgot Password?&quot;</b> to reset it.
+                  </span>
+                ) : (
+                  ""
+                )
+              }
+              FormHelperTextProps={{ error: true }}
+              onVisibilityChange={setIsPasswordVisible}
+              isVisible={isPasswordVisible}
+            />
+            <FormControlLabel
+              className={classes.formControlLabel}
+              control={<Checkbox color="primary" />}
+              label={<Typography variant="body1">Remember me</Typography>}
+            />
+            {status === "verificationEmailSend" ? (
+              <HighlightedInformation>
+                We have send instructions on how to reset your password to your
+                email address
+              </HighlightedInformation>
+            ) : (
+              <HighlightedInformation>
+                Email is: <b>test@web.com</b>
+                <br />
+                Password is: <b>test</b>
+              </HighlightedInformation>
+            )}
+          </Fragment>
+        }
+        actions={
+          <Fragment>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="secondary"
+              disabled={isLoading}
+              size="large"
+            >
+              Login
+              {isLoading && <ButtonCircularProgress />}
+            </Button>
+            <Typography
+              align="center"
+              className={classNames(
+                classes.forgotPassword,
+                isLoading ? classes.disabledText : null
+              )}
+              color="primary"
+              onClick={isLoading ? null : openChangePasswordDialog}
+              tabIndex={0}
+              role="button"
+              onKeyDown={(event) => {
+                // For screenreaders listen to space and enter events
+                if (
+                  (!isLoading && event.keyCode === 13) ||
+                  event.keyCode === 32
+                ) {
+                  openChangePasswordDialog();
+                }
+              }}
+            >
+              Forgot Password?
+            </Typography>
+          </Fragment>
+        }
+      />
+    </Fragment>
   );
 }
-const mapStateToProps= state => ({
-    isAuthenticated : state.auth,
-    user:state.auth.user
-})
 
-export default  connect(mapStateToProps, {login})(Login)
+LoginDialog.propTypes = {
+  classes: PropTypes.object.isRequired,
+  onClose: PropTypes.func.isRequired,
+  setStatus: PropTypes.func.isRequired,
+  openChangePasswordDialog: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+  status: PropTypes.string,
+};
+
+export default withRouter(withStyles(styles)(LoginDialog));
