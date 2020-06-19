@@ -51,7 +51,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Login(props) {
-    const {login,isAuthenticated,history,user} = props
+  const history = useHistory()
+    const {login,isAuthenticated,user} = props
   const classes = useStyles();
   const [formData , setFormData] = useState({
       email : "",

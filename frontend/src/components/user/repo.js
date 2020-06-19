@@ -2,9 +2,10 @@
  import ImportRepo from './importrepo'
  import {connect } from 'react-redux'
  import {Link} from 'react-router-dom'
- import {getProjects} from '../../actions/gitActions'
+ import {getProjects,getProjectCode} from '../../actions/gitActions'
     function Repo(props) {
-       const {user,repositories,getProjects,tree} = props
+      console.log("propsssss",props)
+       const {user,repositories,getProjects,tree,getProjectCode} = props
         const [state,setState]= useState({
           repo:{}
         })
@@ -18,6 +19,11 @@
          
       //  })
        },[])
+
+       const handleRepoCode =(data)=>{
+         console.log(data)
+        getProjectCode(data.id)
+       }
      return (
          <div>
              <div>
@@ -39,7 +45,7 @@
         <div style={{border:"2px solid black",padding:"10px"}}>
                 <ul>
                   {tree !== null  && tree.map((item)=>(
-                    <Link>
+                    <Link onClick={()=>handleRepoCode(item)} to={`${props.location.pathname}/${item.name}`}>
                     <li key={item.id}>{item.name} </li>
 
                     </Link>
@@ -57,4 +63,4 @@
     tree:state.users.projectTree
 })
 
-export default  connect(mapStateToProps, { getProjects})(Repo)
+export default  connect(mapStateToProps, { getProjects,getProjectCode})(Repo)

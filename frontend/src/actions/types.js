@@ -56,3 +56,5 @@ export const CREATE_PROJECT = 'CREATE_PROJECT'
 
 //blob data
 export const PROJECT_TREE ='PROJECT_TREE'
+export const PROJECT_REPO_CODE = 'PROJECT_REPO_CODE'
+export const CURRENT_PROJECT_ID = 'CURRENT_PROJECT_ID'

@@ -10,7 +10,9 @@ import axios from "axios";
     GITLAB_USER_DATA,
     GITLAB_USER_DATA_FAIL,
     GITLAB_USER_PROJECT_FAIL,
-    PROJECT_TREE
+    PROJECT_TREE,
+    PROJECT_REPO_CODE,
+    CURRENT_PROJECT_ID
 } from "./types";
 
 
@@ -192,6 +194,44 @@ export const getUserProjectTree=(data)=>async dispatch=>{
             // console.log("user",repository)
         })
     } catch(err){
+        console.log(err)
+        // dispatch({
+        //     type : GITLAB_USER_PROJECT_FAIL
+        // }); 
+       }
+    
+}
+
+
+export const getProjectCode=(data)=>async dispatch=>{
+    try{
+        console.log("projectis",data)
+        services.Repositories.showBlobRaw('35',data)
+        .then((code)=>{
+            dispatch({
+                type:PROJECT_REPO_CODE,
+                payload:code
+            })
+            // console.log("user",repository)
+        })
+    } catch(err){
+        console.log(err)
+        // dispatch({
+        //     type : GITLAB_USER_PROJECT_FAIL
+        // }); 
+       }
+    
+}
+
+export const getProjectId=(data)=>async dispatch=>{
+    try{
+        
+            dispatch({
+                type:CURRENT_PROJECT_ID,
+                payload:data
+            })
+            // console.log("user",repository)
+     } catch(err){
         console.log(err)
         // dispatch({
         //     type : GITLAB_USER_PROJECT_FAIL

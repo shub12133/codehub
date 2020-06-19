@@ -15,6 +15,7 @@ import CreateRepo from './components/repo/createRepo'
 import ImportRepo from './components/repo/importRepo'
 import Workspace from './components/workspace/workspace'
 import Repository from './components/repo/repository'
+import RepoCode from './components/user/repocode'
 // import Project from './components/repo/project'
 import Explore from './components/explore'
 import Profile from './components/Profile/Profile'
@@ -58,7 +59,8 @@ function App({loadUser}) {
                 <Route exact path='/account/projects/create' component={CreateProject}/>
 
                 <Route exact path='/user/:username/:repo' component={ UserRepo}/>
- 
+                <Route exact path='/user/:username/:repo/:filename' component={ RepoCode}/>
+
                 <Route  path='/login' component={Login}/>
                 <Route exact path='/register' component={Register}/>
                 <Route path="/oauth/:token/success/:success" component={Oauth}/>
