@@ -10,11 +10,11 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-
-
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import IconButton from '@material-ui/core/IconButton';
 import {Link} from 'react-router-dom'
 import OverView from './OverView/overView'
-
+import MenuIcon from '@material-ui/icons/Menu';
 const pageLinks = ['OverView','Repos', 'Profile', 'Pull request', 'Review']
 const useStyles = makeStyles({
   list: {
@@ -23,6 +23,12 @@ const useStyles = makeStyles({
   fullList: {
     width: 'auto',
   },
+  menuButton: {
+    marginRight: 36,
+  },
+  menuButtonHidden: {
+    display: 'none',
+  }
 });
 
 
@@ -36,6 +42,7 @@ export default function SwipeableTemporaryDrawer() {
      projects:[]
     
   });
+
  const [component,setComponent] =useState({
 
  })
@@ -106,11 +113,15 @@ export default function SwipeableTemporaryDrawer() {
   );
 
   return (
-    <div>
+   
     <div >
       {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+          {/* <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button> */}
+          
+          <IconButton onClick={toggleDrawer(anchor, true)}>
+            <MenuIcon />
+          </IconButton>
           <SwipeableDrawer
             anchor={anchor}
             open={state[anchor]}
@@ -123,5 +134,5 @@ export default function SwipeableTemporaryDrawer() {
       ))}
     </div>
 
-      </div>
+    
   )}

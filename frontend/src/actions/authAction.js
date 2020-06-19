@@ -45,6 +45,10 @@ export const loadUser = () => async dispatch => {
 
 }
 
+export const redirectUser = (history)=> dispatch=> {
+    history.push('/dashboard')
+}
+
 
 //Register User
 export const register = (data,history) => 
@@ -64,6 +68,7 @@ export const register = (data,history) =>
         });
         dispatch(loadUser());
         dispatch(createUser(data))
+        dispatch(redirectUser(history))
     }catch(err){
         const errors = err.response.data.errors;
         if(errors){
@@ -91,16 +96,18 @@ export const login = (data,history) =>
     
     try{
         const res = await axios.post(`${host}${loginRoute}`,data,config);
-        console.log('reqw',res.datas)
+       
         dispatch({
             type : LOGIN_SUCCESS,
             payload : res.data
         });
          dispatch(loadUser());
-        history.push('/dashboard/explore')
+         dispatch(redirectUser(history))
+        // history.push('/dashboard')
 
 
     }catch(err){
+      
         const errors = err.response.data.errors;
         if(errors){
             errors.forEach(error => dispatch(setAlert(error.msg, "red")));
@@ -108,6 +115,7 @@ export const login = (data,history) =>
         dispatch({
             type : LOGIN_FAIL
         });
+         
     }
 
 }

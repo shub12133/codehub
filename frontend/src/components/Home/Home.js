@@ -145,7 +145,7 @@ const styles = theme => ({
                           </Typography>
                         </Box>
                         <Link
-                         to="/dashboard"
+                         to="/login"
                          color="secondary">
                          <button
                          variant="contained"
@@ -153,7 +153,7 @@ const styles = theme => ({
                           fullWidth
                           className={classes.extraLargeButton}
                           classes={{ label: classes.extraLargeButtonLabel }}>
-                       Go to Dashboard
+                           Login to Get Started 
                          </button>
                           
                          

@@ -42,22 +42,25 @@ const {getProjects,projects,user,getUser} = props
 
  
   },[])
+  
 
     return (
-        <div class="row">
-        <div class="col-8">
-        </div>
-        <div class="col-4">
-        <h5>Explore repositories</h5>
+      <>
+    
+       <div className="container" >
+       <h1>Explore Repositories</h1>
         {projects.length >0 && projects.map((project)=>(
-    <div style={{textAlign:"left"}}>
-      <h6>{project.name}</h6>
-      <StarBorderIcon/><span>{project.star_count}</span>
-           <BuildIcon/> <span>{project.forks_count}</span>
+    <div style={{border: "1px solid black", display:"flex" ,marginBottom:'10px'}} className="shadow">
+      
+      <img src={project.owner.avatar_url}  alt={project.name}/>
+      <div style={{padding:"15px"}}>
+      <h6>Project Name: {project.name}</h6>
+        <h6>Owner : {project.owner.name}</h6>
+        </div>
       </div>
   ))}
-   </div>
-      </div>
+  </div>
+       </>
       
     )
 }

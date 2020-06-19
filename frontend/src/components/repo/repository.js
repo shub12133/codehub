@@ -22,9 +22,9 @@ import {getUserProjects,getUserProjectTree,getProjectId, resetProjectTree} from 
     }
     return (
         <div style={{marginTop:"10ps"}} >
-
-           <div  style={{display:"inline-flex",textAlign:"",margin:"30px 50px",flexDirection:"spaceAround"}} className="intro">
             <h3>Repositories</h3>
+           <div  style={{display:"inline-flex",textAlign:"",margin:"30px 50px",flexDirection:"spaceAround"}} className="intro">
+            
             <Link to='/repo/create'  className="btn btn-info" >Create repository</Link>
             </div>
 
