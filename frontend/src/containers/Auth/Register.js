@@ -61,6 +61,9 @@ const useStyles = makeStyles((theme) => ({
      register(formData,history)
       console.log(formData)
  }
+ const handlePush =()=>{
+  history.push('/login')
+ }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -158,7 +161,7 @@ const useStyles = makeStyles((theme) => ({
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="/login" variant="body2">
+              <Link onClick={handlePush} variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>

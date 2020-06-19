@@ -77,6 +77,9 @@ const  handleSubmit = e =>{
  const handleGithub = ()=>{
    window.location.href = `${host}${githubAuth}`
  }
+ const handlePush =()=>{
+  history.push('/register')
+ }
   return (
     <Container component="main" maxWidth="xs" className={classes.bkg}>
       <CssBaseline />
@@ -138,7 +141,7 @@ const  handleSubmit = e =>{
               </Link>
             </Grid> */}
             <Grid item>
-              <Link href="/register" variant="body2">
+              <Link onClick={handlePush} variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
