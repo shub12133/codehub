@@ -17,45 +17,6 @@ import LockOpenIcon from "@material-ui/icons/LockOpen";
 import BookIcon from "@material-ui/icons/Book";
 import NavigationDrawer from "../../shared/components/NavigationDrawer";
 
-<<<<<<< HEAD
-const styles = theme => ({
-  appBar: {
-    boxShadow: theme.shadows[6],
-    backgroundColor: theme.palette.common.white
-  },
-  toolbar: {
-    display: "flex",
-    justifyContent: "space-between"
-  },
-  menuButtonText: {
-    fontSize: theme.typography.body1.fontSize,
-    fontWeight: theme.typography.h6.fontWeight
-  },
-  brandText: {
-    fontFamily: "'Baloo Bhaijaan', cursive",
-    fontWeight: 400
-  },
-  noDecoration: {
-    textDecoration: "none !important"
-  }
-});
-
-function NavBar(props) {
-  const {
-    classes,
-    openRegister,
-    openLogin,
-    handleMobileDrawerOpen,
-    handleMobileDrawerClose,
-    mobileDrawerOpen,
-    selectedTab
-  } = props;
-  const menuItems = [
-    {
-      link: "/",
-      name: "Home",
-      icon: <HomeIcon className="text-white" />
-=======
 import {
   Drawer,
   IconButton,
@@ -93,7 +54,6 @@ const useStyles = makeStyles((theme) => ({
         padding: 0,
         listStyle: 'none',
       },
->>>>>>> e6138897b8707a50047ac4f53cde2857402f8a53
     },
     
     {
@@ -106,12 +66,6 @@ const useStyles = makeStyles((theme) => ({
       onClick: openLogin,
       icon: <LockOpenIcon className="text-white" />
     }
-<<<<<<< HEAD
-  ];
-  return (
-    <div className={classes.root}>
-      <AppBar position="fixed" className={classes.appBar}>
-=======
 }))
  function Navbar({auth : {isAuthenticated , loading} ,logout}) {
     const classes = useStyles();
@@ -156,7 +110,6 @@ const useStyles = makeStyles((theme) => ({
         <>
     <CssBaseline />
       <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
->>>>>>> e6138897b8707a50047ac4f53cde2857402f8a53
         <Toolbar className={classes.toolbar}>
           <div>
             <Typography
@@ -222,28 +175,6 @@ const useStyles = makeStyles((theme) => ({
           </div>
         </Toolbar>
       </AppBar>
-<<<<<<< HEAD
-      <NavigationDrawer
-        menuItems={menuItems}
-        anchor="right"
-        open={mobileDrawerOpen}
-        selectedItem={selectedTab}
-        onClose={handleMobileDrawerClose}
-      />
-    </div>
-  );
-}
-
-NavBar.propTypes = {
-  classes: PropTypes.object.isRequired,
-  handleMobileDrawerOpen: PropTypes.func,
-  handleMobileDrawerClose: PropTypes.func,
-  mobileDrawerOpen: PropTypes.bool,
-  selectedTab: PropTypes.string,
-  openRegisterDialog: PropTypes.func.isRequired,
-  openLoginDialog: PropTypes.func.isRequired
-};
-=======
 
 
 {/* 
@@ -277,6 +208,5 @@ NavBar.propTypes = {
 const mapStateToProps = state=>({
     auth : state.auth
 })
->>>>>>> e6138897b8707a50047ac4f53cde2857402f8a53
 
 export default withStyles(styles, { withTheme: true })(memo(NavBar));
