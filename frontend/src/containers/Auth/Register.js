@@ -70,8 +70,6 @@ function RegisterDialog(props) {
     registerTermsCheckbox,
   ]);
 
-<<<<<<< HEAD
-=======
   const {register,user,createUser} = props
   const [formData, setFormData] = useState({
       name : '',
@@ -95,7 +93,6 @@ function RegisterDialog(props) {
  const handlePush =()=>{
   history.push('/login')
  }
->>>>>>> e6138897b8707a50047ac4f53cde2857402f8a53
   return (
     <FormDialog
       loading={isLoading}
