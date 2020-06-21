@@ -40,9 +40,13 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    background : '#2E3B55'
+
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
+    background : '#2E3B55'
+
   },
   toolbarIcon: {
     display: 'flex',
@@ -50,12 +54,16 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
     padding: '0 8px',
     ...theme.mixins.toolbar,
+    background : '#2E3B55'
+
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
+      background : '#2E3B55'
+
     }),
   },
   appBarShift: {
@@ -68,6 +76,8 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: 36,
+    background : '#2E3B55'
+
   },
   menuButtonHidden: {
     display: 'none',
@@ -110,9 +120,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
+    background : '#2E3B55'
   },
   fixedHeight: {
     height: 240,
+    
   },
 }));
 

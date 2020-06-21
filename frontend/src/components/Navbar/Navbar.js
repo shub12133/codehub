@@ -1,21 +1,7 @@
-import React, { memo } from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  Hidden,
-  IconButton,
-  withStyles
-} from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
-import HomeIcon from "@material-ui/icons/Home";
-import HowToRegIcon from "@material-ui/icons/HowToReg";
-import LockOpenIcon from "@material-ui/icons/LockOpen";
-import BookIcon from "@material-ui/icons/Book";
-import NavigationDrawer from "../../shared/components/NavigationDrawer";
+import React from 'react'
+import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
+import css from '../../commonCss/CommonCss'
 
 import {
   Drawer,
@@ -39,32 +25,43 @@ import { useHistory } from "react-router-dom";
 import {connect} from 'react-redux'
 import {logout} from '../../actions/authAction'
 
-const drawerWidth = 240;
 
-const styles = {
-  toolbar: {
-    minWidth: drawerWidth
-  }
-};
 
 const useStyles = makeStyles((theme) => ({
     '@global': {
+      background : '#2E3B55',
       ul: {
         margin: 0,
         padding: 0,
         listStyle: 'none',
+        background : '#2E3B55',
+        height: '100%'
+    
+        
+
+
       },
     },
-    
-    {
-      name: "Register",
-      onClick: openRegister,
-      icon: <HowToRegIcon className="text-white" />
+    appBar: {
+      borderBottom: `1px solid ${theme.palette.divider}`,
+
+      
     },
-    {
-      name: "Login",
-      onClick: openLogin,
-      icon: <LockOpenIcon className="text-white" />
+    toolbar: {
+      flexWrap: 'wrap',
+
+    },
+    toolbarTitle: {
+      flexGrow: 1,
+
+    },
+    link: {
+      margin: theme.spacing(1, 1.5),
+
+    },
+    heroContent: {
+      padding: theme.spacing(8, 0, 6),
+
     }
 }))
  function Navbar({auth : {isAuthenticated , loading} ,logout}) {
@@ -109,70 +106,19 @@ const useStyles = makeStyles((theme) => ({
     return (
         <>
     <CssBaseline />
-      <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
+      <AppBar position="static" color='#2E3B55' elevation={0} className={classes.appBar}>
+        
         <Toolbar className={classes.toolbar}>
-          <div>
-            <Typography
-              variant="h4"
-              className={classes.brandText}
-              display="inline"
-              color="primary"
-            >
-              Code
-            </Typography>
-            <Typography
-              variant="h4"
-              className={classes.brandText}
-              display="inline"
-              color="secondary"
-            >
-              Hub
-            </Typography>
-          </div>
-          <div>
-            <Hidden mdUp>
-              <IconButton
-                className={classes.menuButton}
-                onClick={handleMobileDrawerOpen}
-                aria-label="Open Navigation"
-              >
-                <MenuIcon color="primary" />
-              </IconButton>
-            </Hidden>
-            <Hidden smDown>
-              {menuItems.map(element => {
-                if (element.link) {
-                  return (
-                    <Link
-                      key={element.name}
-                      to={element.link}
-                      className={classes.noDecoration}
-                      onClick={handleMobileDrawerClose}
-                    >
-                      <Button
-                        color="secondary"
-                        size="large"
-                        classes={{ text: classes.menuButtonText }}
-                      >
-                        {element.name}
-                      </Button>
-                    </Link>
-                  );
-                }
-                return (
-                  <Button
-                    color="secondary"
-                    size="large"
-                    onClick={element.onClick}
-                    classes={{ text: classes.menuButtonText }}
-                    key={element.name}
-                  >
-                    {element.name}
-                  </Button>
-                );
-              })}
-            </Hidden>
-          </div>
+          <Typography variant="h6"  noWrap className={classes.toolbarTitle}>
+            Code Hub
+          </Typography>
+        
+        {
+            !loading && (
+            <>{isAuthenticated ? authLinks : guestLinks}</>
+            )
+        }
+          
         </Toolbar>
       </AppBar>
 
@@ -209,4 +155,4 @@ const mapStateToProps = state=>({
     auth : state.auth
 })
 
-export default withStyles(styles, { withTheme: true })(memo(NavBar));
+export default connect(mapStateToProps,{logout})(Navbar)

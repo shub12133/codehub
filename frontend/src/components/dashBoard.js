@@ -1,4 +1,4 @@
-import React ,{useState,useEffect,Fragment} from 'react';
+import React ,{useState,useEffect} from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -19,15 +19,18 @@ const pageLinks = ['OverView','Repos', 'Profile', 'Pull request', 'Review']
 const useStyles = makeStyles({
   list: {
     width: 250,
+    background : '#2E3B55'
   },
   fullList: {
     width: 'auto',
+    background : '#2E3B55'
   },
   menuButton: {
     marginRight: 36,
   },
   menuButtonHidden: {
     display: 'none',
+    background : '#2E3B55'
   }
 });
 
@@ -52,6 +55,7 @@ export default function SwipeableTemporaryDrawer() {
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      
       return;
     }
 
@@ -61,7 +65,8 @@ export default function SwipeableTemporaryDrawer() {
   const list = (anchor) => (
     <div
   
-    style={{backgroundColor:"rgb(7, 71, 166)",height:"100%"}}
+    style={{backgroundColor:"#2E3B55",height:"100%"}}
+    
       className={clsx(classes.list, {
         [classes.fullList]: anchor === 'top' || anchor === 'bottom',
       })}

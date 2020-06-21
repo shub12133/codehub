@@ -1,40 +1,54 @@
-import React, { useState, useCallback, useRef, Fragment } from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { withRouter } from "react-router-dom";
-import {
-  TextField,
-  Button,
-  Checkbox,
-  Typography,
-  FormControlLabel,
-  withStyles,
-} from "@material-ui/core";
-import FormDialog from "../../shared/components/FormDialog";
-import HighlightedInformation from "../../shared/components/HighlightedInformation";
-import ButtonCircularProgress from "../../shared/components/ButtonCircularProgress";
-import VisibilityPasswordTextField from "../../shared/components/VisibilityPasswordTextField";
+import React , {useState} from 'react';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import {connect} from 'react-redux'
+import {login} from '../../actions/authAction'
+import {Redirect} from 'react-router-dom'
+import AlertC from '../../components/Alert/Alert'
+import GitHubIcon from '@material-ui/icons/GitHub';
+import {host,githubAuth} from '../../utils/constants'
+import { useHistory } from "react-router-dom";
+import {getUser} from '../../actions/gitActions'
 
-const styles = (theme) => ({
-  forgotPassword: {
-    marginTop: theme.spacing(2),
-    color: theme.palette.primary.main,
-    cursor: "pointer",
-    "&:enabled:hover": {
-      color: theme.palette.primary.dark,
-    },
-    "&:enabled:focus": {
-      color: theme.palette.primary.dark,
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
     },
   },
-  disabledText: {
-    cursor: "auto",
-    color: theme.palette.text.disabled,
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
-  formControlLabel: {
-    marginRight: 0,
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
   },
-});
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  bkg : {
+      backgroundColor : "#f5f5f5"
+  }
+}));
 
 function Login(props) {
   const history = useHistory()
@@ -138,14 +152,9 @@ const  handleSubmit = e =>{
     </Container>
   );
 }
+const mapStateToProps= state => ({
+    isAuthenticated : state.auth,
+    user:state.auth.user
+})
 
-LoginDialog.propTypes = {
-  classes: PropTypes.object.isRequired,
-  onClose: PropTypes.func.isRequired,
-  setStatus: PropTypes.func.isRequired,
-  openChangePasswordDialog: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
-  status: PropTypes.string,
-};
-
-export default withRouter(withStyles(styles)(LoginDialog));
+export default  connect(mapStateToProps, {login})(Login)

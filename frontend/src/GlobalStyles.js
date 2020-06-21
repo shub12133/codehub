@@ -96,8 +96,4 @@ function globalStyles() {
   return null;
 }
 
-<<<<<<< HEAD
 export default withStyles(styles, { withTheme: true })(globalStyles);
-=======
-export default withStyles(styles, { withTheme: true })(globalStyles);
->>>>>>> e6138897b8707a50047ac4f53cde2857402f8a53

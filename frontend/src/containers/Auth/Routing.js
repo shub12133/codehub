@@ -22,7 +22,7 @@ function Routing(props) {
           content={post.content}
           otherArticles={blogPosts.filter(blogPost => blogPost.id !== post.id)}
         />
-      ))}
+      ))}   
       <PropsRoute
         exact
         path="/blog"

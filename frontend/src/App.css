@@ -1,43 +1,17 @@
-.App {
-  /*text-align: center;*/
-}
 .App .MuiAppBar-colorPrimary{
-  background-color: blue;
+  background-color: #715728f5;
 }
 .disableLink{
   pointer-events: none;
   color: #ccc;
-
 }
-
-
-
-
-.dashbordContainer{
-  -webkit-box-shadow:   -2px 2px 5px 0px rgba(208, 204, 204, 0.75);
--moz-box-shadow:   -2px 2px 5px 0px rgba(208, 204, 204, 0.75);
-box-shadow:   -2px 2px 5px 0px rgba(208, 204, 204, 0.75);
-}
-.legendsDiv{
-    padding: 10px;
-    display: flex;
-    flex-direction: row;
-}
-
-
 .MuiContainer-maxWidthXs{
   -webkit-box-shadow: -1px -1px 5px 3px black;
 -moz-box-shadow: -1px -1px 5px 3px black;
-box-shadow: -1px -1px 5px 3px  black;
-font-display: 1px -1px 5px 3px  black;
-display:1px -1px 5px 3px  black; ;
+box-shadow: -1px -1px 5px 3px black;
 }
 .navHeader{
   display:flex;
-}
-
-.MuiTableSortLabel-root, .MuiTableCell-root, legend span:first-child {
-  text-transform: capitalize;
 }
 .btn {
   display: inline-block;
@@ -61,71 +35,15 @@ display:1px -1px 5px 3px  black; ;
   background: var(--light-color);
   color: #333344;
 }
-
-.alert {
-  padding: 0.8rem;
-  margin: 1rem 0;
-  border-radius: 6px;
-  opacity: 0.9;
-  background: var(--light-color);
-  color: #333344;
+element.style {
+  background-color: #495057;
+  height: 100%;
 }
 
-.btn-primary,
-.bg-primary,
-.badge-primary,
-.alert-primary {
-  background: var(--primary-color);
-  color: #fff;
+md-nav-bar .md-nav-bar {
+  background: yellow;
 }
-
-.btn-light,
-.bg-light,
-.badge-light,
-.alert-light {
-  background: var(--light-color);
-  color: #333344;
+disableLink{
+  pointer-events: none;
+  color: #ccc;
 }
-
-.btn-dark,
-.bg-dark,
-.badge-dark,
-.alert-dark {
-  background: var(--dark-color);
-  color: #fff;
-}
-.login-register-form {
-  width: 50vw;
-  margin: 5% auto;
-  padding: 1% 10%;
-  background-color: #dd7631;
-  border-radius: 20px;
-}
-
-body {
-  padding-right: 20px;
-}
-body {
-	font-family: 'EB Garamond', serif;
-	text-align: center;
-	background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.123rf.com%2Fphoto_120285875_close-up-paper-texture-background-abstract-seamless-pattern-rag-ultra-smooth.html&psig=AOvVaw0wSccAw6FvKQ3DDJWbxTOm&ust=1592379193180000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJjn2PfoheoCFQAAAAAdAAAAABAm")
-
-}
-
-h1 {
-	font-size: 3em;
-	color: #F0ECEA;;
-}
-#footer{
-	margin-top: 50px;
-	color: #F0ECEA;
-	font-size: 1.5em;
-	background-color: 
-}
-
-/* .landing {
-  position: relative;
-  background: url("./img/Project-Scope-Management-Cover.jpg") no-repeat center center/cover;
-  height: 90vh;
-} */
-
