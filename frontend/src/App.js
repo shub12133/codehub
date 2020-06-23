@@ -63,7 +63,7 @@ function App({loadUser, auth}) {
         <Suspense fallback={<Fragment />}>
         <div style={{display:'flex',height:"100vh"}} >
 
-              <div style={{backgroundColor:"rgb(73,80,87)"}}>
+              <div style={{backgroundColor:"rgb(73,80,87)",height:'100%'}}>
 
                   <DashBoard/>
 
