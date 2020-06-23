@@ -33,7 +33,7 @@ import {getUserProjects,getUserProjectTree,getProjectId, resetProjectTree} from 
             </div>
 
              <table style={{display:"inherit",alignItems:"center"}} >
-             <tbody style={{display:"initial"}}>
+             <tbody style={{border:"1px solid black"}} style={{display:"initial"}}>
 
              
                  <tr>

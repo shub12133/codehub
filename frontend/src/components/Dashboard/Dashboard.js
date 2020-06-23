@@ -41,6 +41,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
+  paper: {
+    background: 'black',
+    color: 'white'
+  },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
   },
@@ -49,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: '0 8px',
-    ...theme.mixins.toolbar,
+    ...theme.mixins.toolbar, 
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -59,6 +63,8 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   appBarShift: {
+    color:"black",
+
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(['width', 'margin'], {
@@ -79,6 +85,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
+    // color:'black',
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -110,6 +117,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
+     
   },
   fixedHeight: {
     height: 240,
