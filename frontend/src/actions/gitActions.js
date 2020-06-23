@@ -23,13 +23,13 @@ import { ProjectsBundle } from 'gitlab';
 
 const api = new Gitlab({
     host: `https://codehub.code.in`,
-    token: 'cBsT5RSaeRYwDGiBL9iL',
+    token: 'chEuJXxkYFZHtKVPBkCU',
   
   });
 
   const services = new ProjectsBundle({
     host:   'https://codehub.code.in',
-    token: 'cBsT5RSaeRYwDGiBL9iL'
+    token: 'chEuJXxkYFZHtKVPBkCU'
   })
 
 
@@ -37,7 +37,7 @@ const api = new Gitlab({
 export const createProject=(data,userId)=>async dispatch=>{
     try{
         console.log("hello",userId)
-        services.Projects.create({userId:userId,name:data.projectName})
+        services.Projects.create({userId:userId,name:data.repositoryName})
         .then((repository)=>{
             dispatch({
                 type:CREATE_PROJECT,
@@ -161,7 +161,7 @@ export const createRepo=(data)=>async dispatch=>{
 
 export const getUser=(username)=>async dispatch=>{
     try{
-        console.log(username)
+        console.log("99",username)
         // const userName=data
         api.Users.search(username)
         .then((user)=>{
@@ -173,7 +173,7 @@ export const getUser=(username)=>async dispatch=>{
             console.log("89",user)
         })
     } catch(err){
-        console.log(err)
+        console.log("p",err)
         dispatch({
             type : GITLAB_USER_DATA_FAIL
         }); 

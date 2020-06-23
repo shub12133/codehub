@@ -2,6 +2,7 @@ import React ,{useState,useEffect} from 'react'
 
 import {connect } from 'react-redux'
 import { CodeBlock, dracula } from 'react-code-blocks'
+import { PrismAsyncLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 
  function Repocode(props) {
     const {code} = props
@@ -18,11 +19,14 @@ import { CodeBlock, dracula } from 'react-code-blocks'
 
             <CodeBlock
       text={code}
-      language="html"
+      language={'html'}
       showLineNumbers={true}
       theme={dracula}
       wrapLines
-    />}
+    /> }
+
+   
+    
         </div>
     )
 }
