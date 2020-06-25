@@ -2,6 +2,10 @@ import React,{useEffect} from 'react'
 import ListTable from '../table/listTable'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+
+
+
 
 import {getUserProjects,getUserProjectTree,getProjectId, resetProjectTree} from '../../actions/gitActions'
   function Repository(props) {
@@ -19,28 +23,45 @@ import {getUserProjects,getUserProjectTree,getProjectId, resetProjectTree} from 
     const handleBlob = (data)=>{
         getUserProjectTree(data)
         // getProjectId(data.id)
+
+        
     }
+    
     return (
         
+    
 
-        <div style={{marginTop:"10ps"}} >
-              {/* <td>{item}</td> */}
 
-            <td>Repositories</td>
-           <div  style={{display:"inline-flex",textAlign:"",margin:"30px 50px",flexDirection:"spaceAround"}} className="intro">
+            <div style={{border: "1px solid black", display:"flex" ,marginBottom:'100px'}} className="shadow">
+
+        
             
+                     <td id ="Repositories"></td>
+            
+           <div  style={{display:"inline-flex",textAlign:"",margin:"30px 50px",flexDirection:"spaceAround"}} className="intro">
+           <tbody>
+
             <Link to='/repo/create'  className="btn btn-info" >Create repository</Link>
+            </tbody>
             </div>
 
              <table style={{display:"inherit",alignItems:"center"}} >
+                 
              <tbody style={{border:"1px solid black"}} style={{display:"initial"}}>
+              
+             <thead>
 
-             
                  <tr>
-                     <td>Repositories</td>
-                     <td>Description</td>
+
+                     <th scope="col">Repositories</th>
+                     
+                     <th scope="col">Description</th>
 
                  </tr>
+                 </thead>
+
+                 <br/>
+                    
                  {repositories.length > 0 && repositories.map((repositories)=>(
                     <tr style={{borderTop:"1px solid grey"}}>
                     <Link onClick={()=>handleBlob(repositories.id)} to={`/user/${user.name}/${repositories.name}`}>
