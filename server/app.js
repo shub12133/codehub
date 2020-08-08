@@ -70,6 +70,8 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
+const port = process.env.PORT || 3001;
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
