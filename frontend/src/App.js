@@ -8,7 +8,7 @@ import Register from './containers/Auth/Register'
 import {loadUser} from './actions/authAction'
 import {connect} from 'react-redux'
 import Navbar from './components/Navbar/Navbar'
-import Home from './components/home/Home';
+import Home from './components/Home/Home';
 import OverView from './components/OverView/overView'
 import Oauth from './containers/Auth/Oauth'
 // import DashBoard from './components/dashBoard'
